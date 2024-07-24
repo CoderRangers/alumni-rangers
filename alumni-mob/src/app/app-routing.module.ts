@@ -13,7 +13,11 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule),
     canActivate: [AlreadyLoggedInGuard]
-  }
+  },
+  {
+    path: 'account-activation',
+    loadChildren: () => import('./account-activation/account-activation.module').then( m => m.AccountActivationPageModule)
+  },
 ];
 @NgModule({
   imports: [

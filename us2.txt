@@ -1,0 +1,5 @@
+1- créer le bouton "Activer mon compte" sur login.page.html
+2- créer la page "account-activation"
+3- lier le bouton à la page avec une méthode dans le login.page.ts
+3- créer le composant "account-activation" qui contiendra le formulaire de demande d'email
+
