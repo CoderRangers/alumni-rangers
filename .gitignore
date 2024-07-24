@@ -1,0 +1,8 @@
+# exclude node_modules
+node_modules
+
+# TS/JS app build dir
+*/dist/
+
+# VS Code workspaces save files
+*.code-workspace

@@ -1,0 +1,10 @@
+ion-grid {
+    ion-row {
+        &:first-child {
+            color: red;
+            ion-col {
+                color: inherit;
+            }
+        }
+    }
+}
