@@ -1,3 +1,13 @@
-<p>
-  email-form works!
-</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <ion-list>
+    <ion-item>
+      <ion-input formControlName="email" placeholder="Votre email"></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+
+  </ion-list>
+  
+  <ion-button type="submit" [disabled]="form.invalid">Valider</ion-button>
+
+</form>

@@ -15,8 +15,4 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  activationAccount(): void {
-    this._router.navigate(['account-activation'])
-  }
-
 }

@@ -16,7 +16,8 @@ const routes: Routes = [
   },
   {
     path: 'account-activation',
-    loadChildren: () => import('./account-activation/account-activation.module').then( m => m.AccountActivationPageModule)
+    loadChildren: () => import('./account-activation/account-activation.module').then( m => m.AccountActivationPageModule),
+    canActivate: [AlreadyLoggedInGuard]
   },
 ];
 @NgModule({

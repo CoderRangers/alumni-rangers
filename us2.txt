@@ -1,5 +1,13 @@
-1- créer le bouton "Activer mon compte" sur login.page.html
-2- créer la page "account-activation"
-3- lier le bouton à la page avec une méthode dans le login.page.ts
-3- créer le composant "account-activation" qui contiendra le formulaire de demande d'email
+1- créer le lien "Activer mon compte sur login.page.html
 
+2- créer la page "account-activation" (ionic g page)
+
+3- lier le lien à la page "account-activation" (l16)
+
+4- créer le composant "email-form" qui contiendra le formulaire de demande d'email avec le bouton de validation (ionic g component)
+
+5- créer le formulaire avec un champ de saisie d'email danl le composant (Validators email et required)
+
+6- méthode onSubmit sur le bouton Valider du formulaire (email-form.ts) à coder dans une prochaine US
+
+7- lier le guard [alreary-logged-in] à la route 'account-activation' dans app-routing-module.ts

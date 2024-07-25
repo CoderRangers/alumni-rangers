@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -8,13 +8,16 @@ import { AccountActivationPageRoutingModule } from './account-activation-routing
 
 import { AccountActivationPage } from './account-activation.page';
 import { EmailFormComponent } from './components/email-form.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
     IonicModule,
-    AccountActivationPageRoutingModule
+    FormsModule,
+    AccountActivationPageRoutingModule,
+    RouterModule,
+    ReactiveFormsModule
   ],
   declarations: [AccountActivationPage, EmailFormComponent]
 })
