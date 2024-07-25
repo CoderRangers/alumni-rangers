@@ -9,6 +9,7 @@ import { PostEntity } from './post/models/post-entity'
 import { PoeModule } from './poe/poe.module';
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { PoeEntity } from './poe/models/poe-entity'
+import { AccountModule } from './account/account.module';
 
 // dotenv.config({path: `.$(process.env.ENV_MODE).env`})
  const envfile = process.env.ENV_MODE
@@ -30,7 +31,7 @@ import { PoeEntity } from './poe/models/poe-entity'
                 synchronize: _configService.get<boolean>('ORM_OPTIONS_SYNC'), // at each execution of gateway, (re)create the post_repository database
                 entities: [PostEntity, PoeEntity],
             }),
-        }), PoeModule],
+        }), PoeModule, AccountModule],
     controllers: [AppController],
     providers: [AppService],
 })
