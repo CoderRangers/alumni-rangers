@@ -25,6 +25,7 @@ const envfile = process.env.EXEC_MODE; // first step acces the content of the EX
         entities: [AccountEntity],
       }),
     }),
+    TypeOrmModule.forFeature([AccountEntity]),
   ],
   controllers: [AppController],
   providers: [AppService],
