@@ -1,0 +1,87 @@
+2éme jour: créer un microservice
+1 ) générer un nouveau projet nestJS, de type micro-services : 
+nest new account  - -skip-git
+Npm i @nestjs/microservices
+Dans le main.ts :
+
+Declaration dans la function bootstrap() nestFactory.createMicroservices : pour spécialiser notre service en un microservice 
+Definition du Port / host / protocol 
+
+
+2 ) créer l'image Docker pour MariaDB : création du dossier Docker et des fichiers :
+fichier docker-compose.yml
+
+Definir le container name
+Definir le port : 3308:3306 
+le port à gauche du ':', c'est le port exposer au système (auquel on pourra se connecter via TypeORM)
+le port à droite du ':', c'est le port à l'intérieur du conteneur, sur lequel écoute MariaDB (3306 tjr le mm pour MariaDB)
+
+fichier .gitignore
+
+fichier .env.sample : définir les noms des variables de configuration (nom d'utilisateur, mots de passe, etc) de la BD
+
+fichier .env definir les même variables de configuration que dans .env.sample et leurs valeurs :
+ pswRoot / nom d’utilisateur / le psw de l’utilisateur pour accéder à la
+ BD / le nom de la BD
+
+3 ) configurer TypeORM : 
+npm i @nestjs/typeorm typeorm mariadb @nestjs/config mysql
+
+Création du fichier account.type.ts
+Creation du fichier account-entitiy.ts, qui fait la correspondance dans MariaDB, avec les colonnes : ID, login, password, rôle, isActivated
+
+Creation de l’image docker : 
+
+# Création et exécution de l'image docker, en fonction de ce qui est décrit dans le fichier docker-compose.yml (dans le dossier courant)
+Sudo docker compose up 
+
+# Exécution de la commande 'mariadb -u account_db_admin -p' (= connexion en ligne de commande à MariaDB) à l'intérieur du conteneur account_db_container : 
+Sudo docker exec -it account_db_container mariadb -u account_db_admin -p
+
+
+Utiliser des variables de connexion à MariaDB différente, suivant qu'on soit sur l'ordi d'un dev ou sur un serveur de production, via les scripts npm run suivants et la variable d'environment EXEC_MODE : 
+start:dev, ligne 12 package.json
+start:prod,ligne 14 package.json
+
+Plus : 
+Pour se connecter à la base de données : 
+Sudo docker exec -it nomDelaBase mariadb nomDel’utilisateur 
+Sudo docker compose up :lancer le container docker 
+Sudo docker compose down : arrêter le tournage de la base
+
+Vérification si typeORM à créer la table dans la base de données : 
+
+show databases;
+Use account_repository;
+Show tables;
+Show columns from account; 
+
+
+
+structure du code du micro-service :
+- controller : la classe où on définit les méthodes qui vont recevoir les messages TCP (par ex : { cmd: 'allAccounts', email: 'address@example.com' }) envoyés par la gateway, puis appeler les méthodes du service qui feront ce que demande les messages TCP.
+- service : classe où on définit les méthodes qui vont interagir avec le repository créé implicitement par TypeORM (via le décorateur @InjectRepository, notamment). En l'occurrence, chercher dans MariaDB soit un account particulier correspondant à une adresse email, soit tous les accounts. 
+repository : pas besoin de créer une classe spécifique vu que TypeORM nous fournis les méthodes nécessaires (find(), findOneBy(), insert(), etc), tant qu'on a pas besoin de faire des requêtes SQL spéciales ou qui ont besoin d'être très performantes. 
+
+
+
+Pour créer manuellement quelques accounts dans la bdd MariaDB (qui 
+est dans le conteneur Docker nommé account_db_container), pour tester de
+ bout-en-bout l'US1 avec Postman :
+(après avoir créer et lancer account_db_container) (Cd docker) 
+1 ) sudo docker exec -it account_db_container mariadb -u account_db_admin -p
+2 ) Show tables 
+2,5) si vous n'avez encore jamais exécuté le microservice account, faites le maintenant pour que TypeORM utilise AccountEntity pour créer la table account avec les colonnes qui vont bien)
+3 ) use account_repository;
+4 ) insert into account (email, password, role, isActivated) values ('adresse@email.org', 'mdp_nul', 'intern', false);
+5 ) pour créer d'autres accounts, reprendre la requête 3 et modifier les valeurs
+6 ) une fois que vous avez créé quelques accounts dans la bdd, et que
+ vous avez lancé la gateway et le microservice account, vous pouvez 
+tester les requêtes REST suivantes dans Postman :
+GET http://localhost:3000/account/adresse@email.org
+GET http://localhost:3000/account
+
+
+
+
+
