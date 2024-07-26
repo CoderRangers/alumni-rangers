@@ -5,8 +5,11 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { PoeEntity } from './models/poe-entity'
 
 @Module({
-    providers: [PoeService],
-    controllers: [PoeController],
-    imports: [TypeOrmModule.forFeature([PoeEntity])],
+    // providers: [PoeService],
+    // controllers: [PoeController],
+    // imports: [TypeOrmModule.forFeature([PoeEntity])],
+    providers: [],
+    controllers: [],
+    imports: [],
 })
 export class PoeModule {}

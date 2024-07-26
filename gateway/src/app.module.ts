@@ -14,7 +14,7 @@ import { AccountModule } from './account/account.module';
 // dotenv.config({path: `.$(process.env.ENV_MODE).env`})
  const envfile = process.env.ENV_MODE
 @Module({
-    imports: [InternModule, PostModule,
+    /* imports: [InternModule, PostModule,
         ConfigModule.forRoot({
             envFilePath: envfile,
         }),
@@ -31,6 +31,13 @@ import { AccountModule } from './account/account.module';
                 synchronize: _configService.get<boolean>('ORM_OPTIONS_SYNC'), // at each execution of gateway, (re)create the post_repository database
                 entities: [PostEntity, PoeEntity],
             }),
+        }), PoeModule, AccountModule],
+    controllers: [AppController],
+    providers: [AppService], */
+
+    imports: [InternModule,
+        ConfigModule.forRoot({
+            envFilePath: envfile,
         }), PoeModule, AccountModule],
     controllers: [AppController],
     providers: [AppService],

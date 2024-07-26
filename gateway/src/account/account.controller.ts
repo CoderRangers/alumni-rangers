@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Res } from '@nestjs/common'
+import { Controller, Get, Logger, Param, Res } from '@nestjs/common'
 import { AccountService } from './account.service'
 import { Observable, take } from 'rxjs'
 import { AccountType } from './model/account-type'
@@ -16,11 +16,13 @@ export class AccountController {
     @Get(':email')
     findOne(@Param('email') email: string, @Res() res: Response) {
         const typeEmail: string = email
+        Logger.log('typeEmail: ' + typeEmail)
         return this.accountService
             .findOne(typeEmail)
             .pipe(take(1))
             .subscribe({
                 next: (response: any) => {
+                    Logger.log('response: ' + response)
                     if (response) {
                         res.status(200).send(response)
                     } else {
