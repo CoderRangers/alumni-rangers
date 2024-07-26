@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { AccountType } from './models/account.type';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AccountEntity } from './models/account-entity';
@@ -15,7 +15,13 @@ export class AppService {
     return this._repository.find();
   }
 
-  getOneAccount(email: string): Promise<AccountType> {
-    return this._repository.findOneBy({ email: email });
+  getOneAccount(payload: any): Promise<AccountType> {
+    // Logger.log('email: ' + JSON.stringify(email));
+    // Logger.log('email.email: ' + email.email);
+    const dbRequestResult = this._repository.findOneBy({
+      email: payload.email,
+    });
+    // Logger.log('dbRequestResult: ' + JSON.stringify(dbRequestResult));
+    return dbRequestResult;
   }
 }
