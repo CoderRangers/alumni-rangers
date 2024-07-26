@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { AccountType } from './models/account.type';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AccountEntity } from './models/account-entity';
