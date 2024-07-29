@@ -1,25 +1,127 @@
-1- créer les ressources nécessaire avec la commande nest g ressources account(nom de la ressource)
+1- 	créer les ressources nécessaire avec la commande:
+	nest g ressources account(nom de la ressource)
 
-2- il faut enregistrer le microservice dans le module concerné(account.module.ts)
+2- 	il faut enregistrer le microservice dans le module concerné(account.module.ts):
+
 	-on rajoute dans le décorateur @Module un import qui recense le microservice ACCOUNT.
 	-on définis le nom du microservice , le type de transport, des options (host et port).
 	
-3- création du type Account qui nous permettra de manipuler les données avec le paradigme objet si besoin.
+3- 	création du type Account qui nous permettra de manipuler
+	les données en tant qu'objet si besoin.
 
-4-Dans le account.service.ts on injecte le microservice recensé dans le module grâce au décorateur @Inject(dans les paramètres du controller pas dans le corps) ainsi qu'un attribut client de type clientProxy(permet la communication avec une application extérieure )
+4-	Dans le account.service.ts : 
 
-5- On définis les méthodes dont on a besoin , à savoir, findAll() et findOne().
+		-on injecte le microservice avec le décorateur
+		@Inject(dans les paramètres() du constructeur pas dans le corps de la méthode)
+		
+		-ajout d'un attribut _client de type clientProxy
+		(permet la communication avec une application extérieure )
+	
+		
 
-6- Dans ces méthodes on configure un message qui identifiera la méthode ciblé dans le microservice(const pattern : any ={cmd:'allAccount'}
+5- On définit les méthodes dont on a besoin , à savoir, findAll() et findOne().
 
-7- Pour terminer nos méthodes on retourne la méthode send du client injecté dans le service. La gateway peut maintenant communiqué avec le microservice !
+6- Dans ces méthodes on configure un message qui identifiera la méthode ciblée dans le microservice ACCOUNT.
+(const pattern : any ={cmd:'allAccount'}
 
-8-Pour communiquer avec notre application FRONT (http)
-On configure notre controller qui prendra 'account' pour compléter son URI (localhost:3000/account).
+7- Pour terminer nos méthodes on retourne la méthode send du client injectée dans le service.
 
-9-Pour la méthode qui nous intéresse findOne() on appelle la méthode par le service(account).
+	*explication de la méthode findOne():
+	
+	findOne(email: string): Observable<AccountType> {
+	
+		->on passe en paramètre un email qui servira de clé pour retrouver un compte.
+		->on demande un observable pour travailler de façon asynchrone
+		  (on ne sait pas quand on obtiendra la réponse).
+		->on demande un objet type account.
+	
+        const pattern: any = { cmd: 'oneAccount' }
+        	->on définit notre message qui devra correspondre à
+        	  une méthode du microservice ACCOUNT.
+        	
+        return this._client.send<AccountType>(pattern, { email })
+        
+        	-on retourne une instance de clientProxy.
+        	-on appelle la méthode send du clientProxy.
+        	-on précise que la réponse attendue est de AccountType.
+        	-la méthode prend 2 paramètres:
+        	
+        		-pattern qui contient notre message.
+        		-email qui est la donnée reçue depuis le front.
+        		
+        
+    }
+	La gateway peut maintenant communiquer avec le microservice !
+	
+8-	Pour communiquer avec notre application FRONT (http)
+	On configure notre controller qui prendra une chaîne de caractère 'account' en paramètre
+	pour compléter son URI (localhost:3000/account).
 
-10- On utilise la méthode Pipe afin de limiter le nombre de donnée émise avec la méthode take(1), dans ce là on limite a la première valeur reçu(la @param email)
+9-	Pour la méthode qui nous intéresse findOne() on appelle la méthode par le service(account).
 
-11- on peut souscrire avec la méthode subscribe pour traiter la réponse.
+10- 	On utilise la méthode Pipe afin de limiter le nombre de données émises 
+	avec la méthode take(1), dans ce cas là on limite à la première valeur 			
+	reçue.
+	
+11- 	on peut souscrire avec la méthode subscribe pour traiter la réponse.
+
+
+	*explication de la méthode findOne() de Account.controller.ts
+	
+	@Get(':email')1->avec le décorateur on indique que cette méthode est une requête http
+	 		avec un paramètre de chemin email.
+	
+	
+	
+    	findOne(@Param('email') email: string, @Res() res: Response) { 2->la méthode prend en paramètre
+    									le morceau d'URI email et un
+    									objet res de type réponse
+    									(permis grâce au décorateur @Res).
+    								      -->la réponse res changera en fonction
+    								        de la réponse du microservice.
+    	
+    	
+    	
+        const typeEmail: string = email 3->on assigne à typeEmail la variable en paramètre de notre méthode
+        				  pour la manipuler facilement ????
+        
+        
+        return this.accountService  4-> on retourne une instance de AccountService.
+            .findOne(typeEmail) 5-> on appelle la méthode findOne() de account.service.ts.
+            
+            .pipe(take(1)) 6-> cette méthode (take(1)) limitera l'observable à émettre une seule valeur.
+            
+            .subscribe({7->la méthode subscribe propre aux objets de type Observable
+            		   permet de manipuler la réponse émise.
+            
+                next: (response: any) => {8->la méthode next permet de réagir à ce qui a été émis par l'observable,
+                			     la réponse.
+                
+                
+                
+                9-> Si l'objet response est défini, si il y a quelque chose dedans
+                on rentre dans cette condition.
+                
+                   if (response) {
+                        res.status(200).send(response)
+                        
+                10->On peut envoyer une réponse au FRONT grâce à la variable res
+                de type response déclarée en paramètre de notre méthode.
+                
+                11-> on peut utiliser la méthode status avec 200 en paramètre pour préciser que tout 
+                   s'est bien déroulé.
+                12->puis appliquer la méthode send qui prend la valeur émise par l'Observable response.
+                
+                    } else {
+                        res.status(404).send() 13-> Dans le cas contraire on envoie seulement un status 404
+                        			 c'est le cas ou l'Observable n'a émis aucune valeur,
+                        			 on a reçu aucune information un log devrait renvoyer indefined.
+                    }
+                },
+                error: (error: any) => {	14->error: définit quoi faire en cas d'erreur de l'Observable,
+                				dans ce cas on envoie un status 500 avec une variable error.
+                    res.status(500).send(error)
+                },
+            })
+    }
 
