@@ -3,4 +3,5 @@ export type PoeType = {
     name: string
     beginAt: Date
     endAt: Date
+    type: string
 }

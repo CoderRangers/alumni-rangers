@@ -2,10 +2,10 @@ import { InternType } from "../intern/intern-type"
 import { CommentType } from "./comment-type"
 
 
-enum PostCategory {
-    "Offre d'emploi",
-    "Actualités",
-    "Offre de stage"
+export enum PostCategory {
+    jobOffer = "Offre d'emploi",
+    news = "Actualités",
+    internshipOffer = "Offre de stage"
 
 }
 export type PostType = {
