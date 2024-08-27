@@ -42,7 +42,63 @@ export class PostService {
           }
       },
         category: PostCategory.news,
-      }
+      },
+      {
+        id: 'b',
+        title: 'Titre B',
+        content: 'Contenu B : bla bla bla',
+        media: 'https://picsum.photos/80/80?random',
+        postedAt: new Date('26/08/2024'),
+        author: 
+        {
+          firstname: "Antoine",
+          lastname: "Dupont",
+          gender: "M",
+          mails: ["mail1", "mail2"],
+          phone: "0605040311",
+          occupation: "demi de mélée",
+          company: {
+              id: 1,
+              name: "Stade Toulousain"
+              },
+          poe: {
+              id: 1,
+              beginAt: new Date("2024/05/05"),
+              endAt: new Date("2024/07/05"),
+              name: "Les trois quarts",
+              type: "POEI"
+          }
+      },
+        category: PostCategory.jobOffer,
+      },
+      {
+        id: 'c',
+        title: 'Titre C',
+        content: 'Contenu C : bla bla bla',
+        media: 'https://picsum.photos/80/80?random',
+        postedAt: new Date('25/08/2024'),
+        author: 
+        {
+          firstname: "Romain",
+          lastname: "Ntamack",
+          gender: "M",
+          mails: ["mail5", "mail6"],
+          phone: "0605040347",
+          occupation: "demi d'ouverture",
+          company: {
+              id: 1,
+              name: "Stade Toulousain"
+              },
+          poe: {
+              id: 1,
+              beginAt: new Date("2024/05/05"),
+              endAt: new Date("2024/07/05"),
+              name: "Les trois quarts",
+              type: "POEI"
+          }
+      },
+        category: PostCategory.internshipOffer,
+      },
     ]
     return posts
   }
