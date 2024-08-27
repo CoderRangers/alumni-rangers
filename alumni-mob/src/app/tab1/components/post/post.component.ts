@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core'
+import { Component, Input, OnDestroy, OnInit } from '@angular/core'
 import { Subscription } from 'rxjs'
 //import { InternService } from 'src/app/core/services/intern.service'
 import { PostService } from 'src/app/core/services/post.service'
@@ -17,7 +17,9 @@ export class PostComponent implements OnInit, OnDestroy {
    * List of interns to be displayed in the view
    * @var InternType[]
    */
-  public posts: Array<PostType> = []
+  /*public posts: Array<PostType> = []*/
+  @Input()
+  public post!: PostType
 
   private _subscription!: Subscription
 
