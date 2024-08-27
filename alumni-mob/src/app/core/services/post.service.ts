@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { PostType } from '../types/post/post-type';
+import { PostCategory, PostType } from '../types/post/post-type';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,40 @@ export class PostService {
   constructor(
     private _httpClient: HttpClient
   ) { }
+
+  findAllMock(): Array<PostType> {
+    const posts: Array<PostType> = [
+      {
+        id: 'a',
+        title: 'Titre A',
+        content: 'Contenu A : bla bla bla',
+        media: 'https://picsum.photos/80/80?random',
+        postedAt: new Date('27/08/2024'),
+        author: 
+        {
+          firstname: "Cyril",
+          lastname: "Baille",
+          gender: "M",
+          mails: ["mail3", "mail4"],
+          phone: "0605040311",
+          occupation: "Pilier",
+          company: {
+              id: 1,
+              name: "Stade Toulousain"
+              },
+          poe: {
+              id: 2,
+              beginAt: new Date("2024/05/05"),
+              endAt: new Date("2024/07/05"),
+              name: "Les avants",
+              type: "POEI"
+          }
+      },
+        category: PostCategory.news,
+      }
+    ]
+    return posts
+  }
 
 /*   findAll(): Observable<Array<PostType>> {
     return this._httpClient.get<Array<PostType>>(this.URI)
