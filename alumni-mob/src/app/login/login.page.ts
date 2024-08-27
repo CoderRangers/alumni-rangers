@@ -1,5 +1,5 @@
+/* eslint-disable @angular-eslint/no-empty-lifecycle-method */
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,9 +8,7 @@ import { Router } from '@angular/router';
 })
 export class LoginPage implements OnInit {
 
-  constructor(
-    private _router: Router
-  ) { }
+  constructor() { }
 
   ngOnInit() {
   }

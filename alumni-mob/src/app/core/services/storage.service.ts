@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class StorageService {
 
   private _storageEngine = localStorage
+  private _storageIndexedDb = indexedDB.open('log', 1)
 
   constructor() { }
 
@@ -15,8 +16,8 @@ export class StorageService {
   }
 
   retrieve(key: string): any | null {
-    const rawData: string | null = this._storageEngine.getItem(key)
-    return rawData ? JSON.parse(rawData) : rawData
+    const rowData: string | null = this._storageEngine.getItem(key)
+    return rowData ? JSON.parse(rowData) : rowData
   }
 
   remove(key: string): void {

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './core/guards/auth.guard';
-import { AlreadyLoggedInGuard } from './core/guards/already-logged-in.guard';
+import { NoAuthGuard } from './core/guards/no.auth.guard';
 
 const routes: Routes = [
   {
@@ -11,14 +11,14 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule),
-    canActivate: [AlreadyLoggedInGuard]
+    loadChildren: () => import('./login/login.module')
+    .then( m => m.LoginPageModule),
+    canActivate: [NoAuthGuard]
   },
   {
-    path: 'account-activation',
-    loadChildren: () => import('./account-activation/account-activation.module').then( m => m.AccountActivationPageModule),
-    canActivate: [AlreadyLoggedInGuard]
-  },
+    path: 'intern',
+    loadChildren: () => import('./intern/intern.module').then( m => m.InternPageModule)
+  }
 ];
 @NgModule({
   imports: [

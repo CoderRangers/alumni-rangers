@@ -1,18 +1,13 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <ion-list>
     <ion-item>
-      <ion-input formControlName="login" placeholder="Votre login"></ion-input>
+      <ion-input formControlName="login" placeholder="Votre login..."></ion-input>
     </ion-item>
     <ion-item>
       <ion-input formControlName="password" type="password" placeholder="Votre mot de passe">
         <ion-input-password-toggle slot="end"></ion-input-password-toggle>
       </ion-input>
     </ion-item>
+      <ion-button type="submit" [disabled]="form.invalid" shape="round">GO !</ion-button>
   </ion-list>
-  
-  <ion-button type="submit" [disabled]="form.invalid">Allons-y</ion-button>
-
 </form>
-
-<!-- affiche en direct les valeurs contenues dans les champs, au format JSON, pour aider au debug -->
-<!-- {{form.value | json}} -->

@@ -1,13 +1,7 @@
 <ng-container *ngFor="let post of posts">
-  <!-- <button (click)="intern.lastname='Casper'">Me</button> -->
 
   <ion-card>
-  <!-- [intern] is the property from intern.component.ts -->
-    <app-intern [intern]="post.author"></app-intern>
-  
-    <app-post-content [post]="post"></app-post-content>
+    <!-- <app-intern [post]="post"></app-intern> -->
   </ion-card>
-
   
 </ng-container>
-

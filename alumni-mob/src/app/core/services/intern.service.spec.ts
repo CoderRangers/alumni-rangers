@@ -1,16 +1,61 @@
-import { TestBed } from '@angular/core/testing';
+import { Injectable } from '@angular/core';
+import { InternType } from '../types/intern/intern-type';
+import { InternTransformer } from '../types/intern/intern-transformer';
 
-import { InternService } from './intern.service';
+@Injectable({
+  providedIn: 'root'
+})
+export class InternService {
+  private _interns: Array<InternTransformer> = []
 
-describe('InternService', () => {
-  let service: InternService;
+  constructor() {
+  }
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(InternService);
-  });
+  public findAll(): Array<InternTransformer> {
+    return [... this._interns]
+  }
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-});
+/*   private _setInterns(): void {
+    this._interns = [
+    {
+      lastname: 'Aubert',
+      firstname: 'Jean-Luc',
+      occupation: 'Formateur',
+      company: {
+        name: 'Aélion'
+      },
+      poe: {
+        name: 'Dev Mobile',
+        beginAt: new Date(2024, 5, 24),
+        endAt: new Date(2024, 8, 24)
+      }
+    },
+    {
+      lastname: 'Talut',
+      firstname: 'Jean',
+      occupation: 'Intern',
+      company: {
+        name: 'Aélion'
+      },
+      poe: {
+        name: 'Dev Mobile',
+        beginAt: new Date(2024, 5, 24),
+        endAt: new Date(2024, 8, 24)
+      }
+    },
+    {
+      lastname: 'Talut',
+      firstname: 'Jean',
+      occupation: 'Intern',
+      company: {
+        name: 'Aélion'
+      },
+      poe: {
+        name: 'Dev Mobile',
+        beginAt: new Date(2024, 5, 24),
+        endAt: new Date(2024, 8, 24)
+      }
+    }
+  ]
+  } */
+}

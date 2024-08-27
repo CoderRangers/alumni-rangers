@@ -1,5 +1,15 @@
-<ion-card-content>
-  <h2>{{ post.title }}</h2>
-  <p>{{ post.content }}</p>
-  <span><p>Publié {{ post.postedAt }}</p></span>
-</ion-card-content>
+
+  <ion-card-content>
+    <ion-item>
+      {{ post.title}} 
+    </ion-item>
+    <ion-item>
+      {{ post.media}}
+    </ion-item>
+    <ion-item>
+      {{ post.content}}
+    </ion-item>
+    <ion-item>
+      <ion-note>Publié le {{ post.postedAt }}</ion-note>
+    </ion-item> 
+  </ion-card-content>

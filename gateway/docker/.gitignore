@@ -1,5 +1,4 @@
 # Do not track datas folder content
 datas
-
-# Track the datas folder only, not its content
+# Track folder only
 !datas/.gitkeep

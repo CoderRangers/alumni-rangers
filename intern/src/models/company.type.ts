@@ -1,4 +1,4 @@
-export type CompanyType = {
-  id?: number
-  name: string
-}
+export class CompanyType {
+  id?: number;
+  name: string;
+};

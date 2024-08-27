@@ -1,67 +1,58 @@
-import { Logger } from '@nestjs/common'
-import { InternType } from './models/intern.type'
+import { Injectable } from '@nestjs/common';
+import { InternType } from './models/intern.type';
 
+@Injectable()
 export class AppRepository {
-  private _interns: Array<InternType> = []
+  private _interns: Array<InternType> = [];
 
   constructor() {
-    this._populate()
-  }
-
-  getOneIntern(id: number): InternType | null {
-    const result: InternType | null = this._interns.find(
-      (intern: InternType) => intern.id == id,
-    )
-    /* Logger.log('[AppRepository] getOneIntern(id = ' + id + ')')
-    Logger.log('[AppRepository>getOneIntern] result = ' + result) */
-    if (result) {
-      return result
-    }
-    return null
+    this._populate();
   }
 
   findAll(): Array<InternType> {
-    return this._interns
+    return this._interns;
   }
 
-  /**
-   * Just for mock purpose
-   * Populate a list with some fixed data (Fixture)
-   */
+  findOne(id: number): InternType | null {
+    const result = this._interns.find((intern: InternType) => intern.id == id);
+    return result ? result : null;
+  }
+
   private _populate(): void {
     this._interns.push({
       id: 1,
-      lastname: 'Aubert',
-      firstname: 'Jean-Luc',
-      occupation: 'Formateur',
+      lastname: 'Mauré',
+      firstname: 'Julien',
+      occupation: 'Stagiaire',
       company: {
         id: 1,
         name: 'Aélion',
       },
       poe: {
         id: 1,
-        name: 'Dev Mobile',
-        type: 'POEC',
+        name: 'POEC dev Mobile',
         beginAt: new Date(2024, 5, 24),
-        endAt: new Date(2024, 9, 24),
+        endAt: new Date(2024, 8, 24),
+        type: 'POEC',
       },
-    })
+    });
+
     this._interns.push({
       id: 2,
-      lastname: 'Moussaoui',
-      firstname: 'Ibrahym',
-      occupation: 'Recruteur',
+      lastname: 'Dupont',
+      firstname: 'Antoine',
+      occupation: `demi de mélée`,
       company: {
-        id: 1,
-        name: 'Aélion',
+        id: 2,
+        name: 'Stade Toulousain',
       },
       poe: {
-        id: 2,
-        name: 'Dev Cybersécurité',
-        type: 'POEI',
-        beginAt: new Date(2024, 1, 1),
-        endAt: new Date(2024, 3, 31),
+        id: 1,
+        name: 'POEC dev Mobile',
+        beginAt: new Date(2024, 5, 24),
+        endAt: new Date(2024, 8, 24),
+        type: 'POEC',
       },
-    })
+    });
   }
 }

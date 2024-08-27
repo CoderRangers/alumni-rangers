@@ -1,26 +1,66 @@
-import { Injectable, Logger } from '@nestjs/common'
-import { AppRepository } from './app.repository'
-import { InternType } from './models/intern.type'
+/* import { Injectable } from '@nestjs/common';
+import { InternType } from './models/intern.type';
+import { AppRepository } from './app.repository';
 
 @Injectable()
 export class AppService {
-  private _repo: AppRepository
+  constructor(private _repository: AppRepository) {}
 
-  constructor() {
-    this._repo = new AppRepository()
+  findAll(): Array<InternType> {
+    return this._repository.findAll();
   }
 
-  getOneIntern(id: number): InternType | null {
-    // eslint-disable-next-line prettier/prettier
-    // Logger.log('[AppService>getOneIntern] id = ' + id + ', typeof id = ' + typeof(id))
-    return this._repo.getOneIntern(id)
+  findOne(id: number): InternType | null {
+    return this._repository.findOne(id);
+  }
+} */
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { CreateInternDto } from 'src/dto/create-intern.dto';
+import { Intern } from 'src/interfaces/intern.interface';
+import { Model } from 'mongoose';
+import { UpdateInternDto } from 'src/dto/update-intern.dto';
+@Injectable()
+export class AppService {
+  constructor(@InjectModel('Intern') private internModel: Model<Intern>) {}
+
+  async createIntern(createInternDto: CreateInternDto): Promise<Intern> {
+    const newIntern = new this.internModel(createInternDto);
+    return newIntern.save();
   }
 
-  getAllInterns(): Array<InternType> {
-    return this._repo.findAll()
+  async updateIntern(internId: string, updateInternDto: UpdateInternDto): Promise<Intern> {
+    const existingIntern = await this.internModel.findByIdAndUpdate(
+      internId,
+      updateInternDto,
+      { new: true },
+    );
+    if (!existingIntern) {
+      throw new NotFoundException(`Intern #${internId} not found`);
+    }
+    return existingIntern;
   }
 
-  getHello(): string {
-    return 'Hello World!'
+  async getAllIntern(): Promise<Intern[]> {
+    const internData = await this.internModel.find().sort({lastname: 1});
+    if (!internData || internData.length == 0) {
+      throw new NotFoundException('Interns data not found!');
+    }
+    return internData;
+  }
+  async getIntern(internId: string): Promise<Intern> {
+    const existingIntern = await this.internModel.findById(internId).exec();
+    if (!existingIntern) {
+      throw new NotFoundException(`Intern #${internId} not found`);
+    }
+    return existingIntern;
+  }
+
+  async deleteIntern(internId: string): Promise<Intern> {
+    const deletedIntern = await this.internModel.findByIdAndDelete(internId);
+    if (!deletedIntern) {
+      throw new NotFoundException(`Intern #${internId} not found`);
+    }
+    return deletedIntern;
   }
 }

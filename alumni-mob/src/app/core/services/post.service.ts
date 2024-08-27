@@ -1,23 +1,22 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
-import { PostType } from '../types/post.type';
+import { Observable, map } from 'rxjs';
+import { PostType } from '../types/post/post-type';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
-
-  private readonly URI: string = 'http://localhost:3000/post'
+  private readonly URI = 'http://localhost:3000/post'
 
   constructor(
     private _httpClient: HttpClient
   ) { }
 
-  findAll(): Observable<Array<PostType>> {
+/*   findAll(): Observable<Array<PostType>> {
     return this._httpClient.get<Array<PostType>>(this.URI)
     .pipe(
-      map((posts: Array<any>) => { // Transform an observable into another observable
+      map((posts: Array<any>) => { // Transform an observable to another observable
         return posts.map((post: any) => {
           return { // Deserialization
             id: post.id,
@@ -27,8 +26,8 @@ export class PostService {
             media: post.media,
             author: {
               id: post.author.id,
-              lastname: post.author.lastname,
               firstname: post.author.firstname,
+              lastname: post.author.lastname,
               occupation: post.author.occupation,
               company: {
                 id: post.author.company.id,
@@ -42,8 +41,8 @@ export class PostService {
               }
             }
           }
-        }) // Transform an array into another array
+        }) // Transform an array to another array
       })
     )
-  }
+  } */
 }

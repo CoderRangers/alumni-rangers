@@ -6,16 +6,17 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(
+
+  constructor (
     private _storageService: StorageService,
     private _router: Router
-  ) {}
+  ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): MaybeAsync<GuardResult> {
-    if (this._storageService.retrieve('auth')) return true
-
-    this._router.navigate(['/', 'login'])
+    if (this._storageService.retrieve('auth'))
+      return true
+    
+    this._router.navigate(['/','login'])
     return false
   }
-  
 }

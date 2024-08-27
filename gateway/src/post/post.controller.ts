@@ -1,13 +1,14 @@
-import { Controller, Get } from '@nestjs/common'
-import { PostService } from './post.service'
-import { PostEntity } from './models/post-entity'
+import { Controller, Get } from '@nestjs/common';
+import { PostService } from './post.service';
+import { PostType } from './models/post.type';
+import { Observable, take } from 'rxjs';
 
 @Controller('post')
 export class PostController {
-    constructor(private _service: PostService) {}
+  constructor(private _service: PostService) {}
 
-    @Get() // defines that the endpoint GET http://localhost:3000/post, consumes the findAll() method
-    async findAll(): Promise<Array<PostEntity>> {
-        return await this._service.findAll()
-    }
+  @Get()
+  findAll(): Observable<Array<PostType>> {
+    return this._service.findAll().pipe(take(1));
+  }
 }

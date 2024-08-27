@@ -1,21 +1,22 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+/* eslint-disable prettier/prettier */
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({
-    name: 'poe',
+    name: 'poe'
 })
 export class PoeEntity {
     @PrimaryGeneratedColumn()
     id: number
 
-    @Column()
-    name: string
-
-    @Column()
-    type: string
-
-    @Column()
+    @Column({type: 'date'})
     beginAt: Date
 
-    @Column()
+    @Column({type: 'date'})
     endAt: Date
+
+    @Column({length: 75})
+    name: string
+
+    @Column({length: 50})
+    type: string
 }

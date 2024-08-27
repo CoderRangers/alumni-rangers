@@ -1,16 +1,18 @@
-import { Injectable } from '@nestjs/common'
-import { InjectRepository } from '@nestjs/typeorm'
-import { PostEntity } from './models/post-entity'
-import { Repository } from 'typeorm'
+/* eslint-disable prettier/prettier */
+import { Inject, Injectable } from '@nestjs/common';
+import { PostType } from './models/post.type';
+import { ClientProxy } from '@nestjs/microservices';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class PostService {
-    constructor(
-        @InjectRepository(PostEntity)
-        private _repository: Repository<PostEntity>
-    ) {}
+  constructor(
+    @Inject('POST') private _client: ClientProxy
+  ) {}
 
-    findAll(): Promise<Array<PostEntity>> {
-        return this._repository.find()
-    }
+  
+  findAll(): Observable<Array<PostType>> {
+    const pattern: any = { cmd: 'allIntern' };
+    return this._client.send<Array<PostType>>(pattern, {});
+  }
 }

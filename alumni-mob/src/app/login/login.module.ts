@@ -9,13 +9,14 @@ import { LoginPageRoutingModule } from './login-routing.module';
 import { LoginPage } from './login.page';
 import { SigninComponent } from './components/signin.component';
 import { RouterModule } from '@angular/router';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    LoginPageRoutingModule,
+    LoginPageRoutingModule, 
     ReactiveFormsModule,
     RouterModule
   ],
