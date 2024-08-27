@@ -8,8 +8,8 @@ export enum Role {
   name: 'post',
 })
 export class PostEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column({ length: 75 })
   title: string;
@@ -21,7 +21,7 @@ export class PostEntity {
   media: string;
 
   @Column()
-  type: string;
+  category: string;
 
   @Column()
   postedAt: Date;
