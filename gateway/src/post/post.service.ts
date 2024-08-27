@@ -12,7 +12,7 @@ export class PostService {
 
   
   findAll(): Observable<Array<PostType>> {
-    const pattern: any = { cmd: 'allIntern' };
+    const pattern: any = { cmd: 'allPost' };
     return this._client.send<Array<PostType>>(pattern, {});
   }
 }
