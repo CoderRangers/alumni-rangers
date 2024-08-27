@@ -14,10 +14,10 @@
           <ion-label>{{ intern.firstname }} {{ intern.lastname }} </ion-label>
         </ion-row>
         <ion-row>
-          <ion-label>{{ intern.occupation }} chez {{ intern.company?.name }}</ion-label>
+          <ion-label>{{ intern.occupation }} chez {{ intern.company.name }}</ion-label>
         </ion-row>
         <ion-row>
-          <ion-note>{{ intern.poe?.name }} ({{ intern.poe?.beginAt | date: 'dd/MM/yyy'}} - {{ intern.poe?.endAt | date: 'dd/MM/yyy' }})</ion-note>
+          <ion-note>{{ intern.poe.name }} ({{ intern.poe.beginAt | date: 'dd/MM/yyy'}} - {{ intern.poe.endAt | date: 'dd/MM/yyy' }})</ion-note>
         </ion-row>
       </ion-col>
       <ion-col size="1">
