@@ -20,7 +20,7 @@ export class PostService {
         title: 'Titre A',
         content: 'Contenu A : bla bla bla',
         media: '/assets/moto.jpeg',
-        postedAt: new Date('27/08/2024'),
+        postedAt: new Date('2024-08-27T09:10:15'),
         author: 
         {
           firstname: "Cyril",
@@ -48,7 +48,7 @@ export class PostService {
         title: 'Titre B',
         content: 'Contenu B : bla bla bla',
         media: 'https://picsum.photos/80/80?random',
-        postedAt: new Date('26/08/2024'),
+        postedAt: new Date('2024-08-26T13:32:03'),
         author: 
         {
           firstname: "Antoine",
@@ -76,7 +76,7 @@ export class PostService {
         title: 'Titre C',
         content: 'Contenu C : bla bla bla',
         media: 'https://picsum.photos/80/80?random',
-        postedAt: new Date('25/08/2024'),
+        postedAt: new Date('2024-08-25T22:42:00'),
         author: 
         {
           firstname: "Romain",

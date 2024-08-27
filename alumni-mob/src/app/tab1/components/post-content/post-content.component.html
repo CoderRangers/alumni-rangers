@@ -10,6 +10,22 @@
       {{ postContent.content}}
     </ion-item>
     <ion-item>
-      <ion-note>Publié le {{ postContent.postedAt }}</ion-note>
+      <ion-note>Publié le {{ postContent.postedAt | date: 'dd/MM/yyyy' }} à {{ postContent.postedAt | date: 'shortTime' }} </ion-note>
     </ion-item> 
   </ion-card-content>
+
+<!-- 
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{post.title}}</ion-card-title>
+      <ion-card-subtitle>{{post.content}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      {{post.media}} 
+    </ion-card-content>
+    <div>
+      <ion-note>
+        {{ post.postedAt | date: 'dd/MM/yyyy'}}
+      </ion-note>
+    </div>
+  </ion-card> -->
