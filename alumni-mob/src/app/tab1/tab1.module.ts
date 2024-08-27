@@ -11,6 +11,7 @@ import { InternComponent } from './components/intern/intern.component';
 import { PostContentComponent } from './components/post-content/post-content.component';
 import { PostListComponent } from './components/post-list/post-list.component';
 import { InteractionBarComponent } from './components/interactionBar/interaction-bar.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { InteractionBarComponent } from './components/interactionBar/interaction
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
-    Tab1PageRoutingModule
+    Tab1PageRoutingModule,
+    SharedModule
   ],
   declarations: [Tab1Page, PostComponent, InternComponent, PostContentComponent, PostListComponent,InteractionBarComponent]
 })

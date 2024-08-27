@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Subscription, take } from 'rxjs';
 import { InternService } from 'src/app/core/services/intern.service';
 import { InternTransformer } from 'src/app/core/types/intern/intern-transformer';
-//import { InternType } from 'src/app/core/types/intern/intern-type';
+import { InternType } from 'src/app/core/types/intern/intern-type';
 import { PostType } from 'src/app/core/types/post/post-type';
 
 @Component({
@@ -13,7 +13,7 @@ import { PostType } from 'src/app/core/types/post/post-type';
 
 export class InternComponent  implements OnInit {
  
-  public interns: Array<InternTransformer> = [];
+  public interns: Array<InternType> = [];
 
   private _subscription!: Subscription;
 
@@ -33,7 +33,7 @@ export class InternComponent  implements OnInit {
 
   ngOnInit(): void {
     this._subscription = this._service.findAll().subscribe({
-      next: (interns: Array<InternTransformer>) => {
+      next: (interns: Array<InternType>) => {
         this.interns = interns
       },
       error: (error: any) => {},

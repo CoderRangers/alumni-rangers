@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { InternService } from 'src/app/core/services/intern.service';
 import { InternTransformer } from 'src/app/core/types/intern/intern-transformer';
+import { InternType } from 'src/app/core/types/intern/intern-type';
 
 @Component({
   selector: 'app-intern-info',
@@ -12,7 +13,7 @@ import { InternTransformer } from 'src/app/core/types/intern/intern-transformer'
 export class InternInfoComponent  implements OnInit {
 
   private _subscription!: Subscription;
-  public intern: InternTransformer = new InternTransformer;
+  public intern!: InternType;
   //private route = inject(ActivatedRoute);
   private id:string | undefined;
 
@@ -28,7 +29,7 @@ export class InternInfoComponent  implements OnInit {
     
       if(id) {
         this._subscription = this._service.findOne(id).subscribe({
-          next: (intern: InternTransformer) => {
+          next: (intern: InternType) => {
             this.intern = intern
             //console.log("intern info " + id)
           },

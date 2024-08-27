@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { InternService } from 'src/app/core/services/intern.service';
 import { InternTransformer } from 'src/app/core/types/intern/intern-transformer';
+import { InternType } from 'src/app/core/types/intern/intern-type';
 
 @Component({
   selector: 'app-interns',
@@ -11,13 +12,13 @@ import { InternTransformer } from 'src/app/core/types/intern/intern-transformer'
 export class InternsComponent  implements OnInit, OnDestroy {
   
   private _subscription!: Subscription;
-  public interns: Array<InternTransformer> = [];
+  public interns: Array<InternType> = [];
 
   constructor(private _service: InternService) { }
 
   ngOnInit() {
     this._subscription = this._service.findAll().subscribe({
-      next: (interns: Array<InternTransformer>) => {
+      next: (interns: Array<InternType>) => {
         this.interns = interns
         console.log("interns " + interns)
       },

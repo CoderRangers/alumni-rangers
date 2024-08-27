@@ -4,12 +4,13 @@ import { InternTransformer } from '../types/intern/intern-transformer'
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { plainToClass, plainToInstance } from 'class-transformer';
+import { InternType } from '../types/intern/intern-type';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InternService {
-  private _interns: Array<InternTransformer> = []
+  private _interns: Array<InternType> = []
   private readonly URI: string = 'http://localhost:3000/api/v1/intern'
 
   // constructor utilisé seulement pour de l'injection de dépendances. 
@@ -17,24 +18,24 @@ export class InternService {
     private _httpClient: HttpClient // injection du service HttpCLient dans le service InternService
   ) {}
 
-  public findAll(): Observable<Array<InternTransformer>> {
-    return this._httpClient.get<Array<InternTransformer>>(this.URI)
-      .pipe(
+  public findAll(): Observable<Array<InternType>> {
+    return this._httpClient.get<Array<InternType>>(this.URI)
+      /* .pipe(
         map((interns: Array<any>) => {
           return interns.map((intern: any) => {
             return plainToInstance(InternTransformer, intern)
           })
         })
-      )
+      ) */
   }
 
-  public findOne(id: string): Observable<InternTransformer> {
-    return this._httpClient.get<InternTransformer>(this.URI+'/'+id)
-    .pipe(
+  public findOne(id: string): Observable<InternType> {
+    return this._httpClient.get<InternType>(this.URI+'/'+id)
+    /* .pipe(
       map((intern: any) => {
         return plainToInstance(InternTransformer, intern)
       })
-    )
+    ) */
   }
 
   public companyFilter(comp: string): Array<InternTransformer> {

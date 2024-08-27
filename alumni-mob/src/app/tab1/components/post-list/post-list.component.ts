@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { InfiniteScrollCustomEvent } from '@ionic/angular';
+import { PostService } from 'src/app/core/services/post.service';
+import { PostType } from 'src/app/core/types/post/post-type';
 
 @Component({
   selector: 'app-post-list',
@@ -7,8 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostListComponent  implements OnInit {
 
-  constructor() { }
+  public posts!: Array<PostType>
 
-  ngOnInit() {}
+  constructor(private _postService: PostService) { }
+
+  ngOnInit() {
+    this.posts = this._postService.findAllMock() // TODO: load only a few posts
+  }
+
+  onIonInfinite(ev: InfiniteScrollCustomEvent) {
+    // TODO : load more posts with this._postService
+    setTimeout(() => {
+      (ev as InfiniteScrollCustomEvent).target.complete();
+    }, 500);
+  }
 
 }
