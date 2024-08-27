@@ -9,6 +9,7 @@ import { Tab1PageRoutingModule } from './tab1-routing.module';
 import { PostComponent } from './components/post/post.component';
 import { InternComponent } from './components/intern/intern.component';
 import { PostContentComponent } from './components/post-content/post-content.component';
+import { PostListComponent } from './components/post-list/post-list.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,6 @@ import { PostContentComponent } from './components/post-content/post-content.com
     ExploreContainerComponentModule,
     Tab1PageRoutingModule
   ],
-  declarations: [Tab1Page, PostComponent, InternComponent, PostContentComponent]
+  declarations: [Tab1Page, PostComponent, InternComponent, PostContentComponent, PostListComponent]
 })
 export class Tab1PageModule {}
