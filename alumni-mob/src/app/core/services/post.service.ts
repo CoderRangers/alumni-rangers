@@ -19,7 +19,7 @@ export class PostService {
         id: 'a',
         title: 'Titre A',
         content: 'Contenu A : bla bla bla',
-        media: 'https://picsum.photos/80/80?random',
+        media: '/assets/moto.jpeg',
         postedAt: new Date('27/08/2024'),
         author: 
         {
