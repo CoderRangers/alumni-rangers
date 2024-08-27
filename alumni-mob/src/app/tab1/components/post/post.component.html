@@ -1,8 +1,7 @@
 <ng-container *ngFor="let post of posts">
-
   <ion-card>
-    <!-- <app-intern [post]="post"></app-intern> -->
+    <app-intern-header></app-intern-header>
+    <app-post-content [postContent]="post"></app-post-content>
+    <app-interaction-bar></app-interaction-bar>
   </ion-card>
-  
-  
 </ng-container>

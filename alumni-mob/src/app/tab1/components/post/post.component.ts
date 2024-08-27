@@ -27,14 +27,14 @@ export class PostComponent implements OnInit, OnDestroy {
 
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngOnInit(): void {
-/*     this._subscription = this._service.findAll()
-      .subscribe({
-        next: (posts: Array<PostType>) => {
-          this.posts = posts
-        },
-        error: (error: any) => {},
-        complete: () => {}
-      }) */
+    /*this._subscription*/ this._service.findAllMock()
+      // .subscribe({
+      //   next: (posts: Array<PostType>) => {
+      //     this.posts = posts
+      //   },
+      //   error: (error: any) => {},
+      //   complete: () => {}
+      // }) 
   }
 
   ngOnDestroy(): void {

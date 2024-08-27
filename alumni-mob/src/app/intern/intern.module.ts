@@ -9,6 +9,7 @@ import { InternPageRoutingModule } from './intern-routing.module';
 import { InternPage } from './intern.page';
 import { InternInfoComponent } from './components/intern-info.component';
 import { SharedModule } from '../shared/shared.module';
+import { InternHeaderComponent } from '../shared/components/intern-header/intern-header.component';
 
 @NgModule({
   imports: [

@@ -8,7 +8,7 @@ import { PostType } from 'src/app/core/types/post/post-type';
 })
 export class PostContentComponent  implements OnInit {
   @Input()
-  post!: PostType
+  postContent!: PostType
 
   constructor() { }
 

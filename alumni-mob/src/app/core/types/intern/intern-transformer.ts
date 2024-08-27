@@ -30,5 +30,5 @@ export class InternTransformer {
 
     @Expose()
     public poe?: PoeType;
-name: any;
+    name: any;
 }
