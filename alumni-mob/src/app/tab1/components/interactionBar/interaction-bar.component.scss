@@ -1,0 +1,41 @@
+.divContainer {
+  width: 100%;
+  
+  display: flex;
+  justify-content: center;
+}
+.divContainerChild {
+    width: 95%;
+    height:100%;
+    display: flex;
+    justify-content: space-between;
+  }
+.border {
+  border-radius: 10px;
+  border: 1px solid black;
+}
+img {
+  width: 3%;
+  height: 3%;
+}
+
+/* Styles pour les écrans mobiles (max-width: 600px) */
+@media (min-width: 900px) and (max-width: 1200px) {
+    img{
+        width: 5%;
+        height: 5%;
+    }
+}
+@media (min-width: 601px) and (max-width: 900px) {
+    img{
+        width: 4%;
+        height: 4%;
+    }
+}
+@media (min-width: 400px) and (max-width: 600px) {
+    img{
+        width: 6%;
+        height: 6%;
+    }
+}
+
