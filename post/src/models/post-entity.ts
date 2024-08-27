@@ -1,4 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+// import { InternType } from './intern-type';
+// import { CommentType } from './comment-type';
 
 export enum Role {
   POST = 'post',
@@ -28,4 +30,10 @@ export class PostEntity {
 
   @Column()
   authorId: string;
+
+  // @Column()
+  // likes: InternType[];
+
+  // @Column()
+  // comments: CommentType[];
 }
