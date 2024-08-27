@@ -1,8 +1,9 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+  <ion-toolbar class="toolbarLayOut">
+    <div class="toolBarChild">
+      <img class="logoSize" src="/assets/aelion_logo.png">
+      <h1> Alumni </h1>
+    </div>
   </ion-toolbar>
 </ion-header>
 
@@ -11,17 +12,14 @@
     <ion-toolbar>
       <ion-item>
         <ion-title size="large">Tab 1</ion-title>
-        
-    </ion-item>
+      </ion-item>
     </ion-toolbar>
   </ion-header>
 
- <!--  <app-explore-container name="Tab 1 page"></app-explore-container> -->
+  <!--  <app-explore-container name="Tab 1 page"></app-explore-container> -->
 
   <app-post-list></app-post-list>
 
   <!-- <app-intern></app-intern> -->
   <app-post></app-post>
- 
-
 </ion-content>
