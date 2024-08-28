@@ -15,4 +15,9 @@ export class PostService {
     const pattern: any = { cmd: 'allPost' };
     return this._client.send<Array<PostType>>(pattern, {});
   }
+
+  findOne(id: string): Observable<PostType> {
+    const pattern: any = { cmd: 'onePost' };
+    return this._client.send<PostType>(pattern, id);
+  }
 }

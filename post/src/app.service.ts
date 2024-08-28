@@ -42,4 +42,24 @@ export class AppService {
       })
       .catch((error) => Logger.log(error));
   }
+
+  getOnePost(identifier: number): Promise<PostType> {
+    return this._repository
+      .findOne({ where: { id: identifier } })
+      .then(async (post) => {
+        const pattern = { cmd: 'oneIntern' };
+        const newPost: PostType = {
+          id: post.id.toString(),
+          title: post.title,
+          content: post.content,
+          media: post.media,
+          postedAt: post.postedAt,
+          category: PostCategory[post.category],
+          author: await lastValueFrom(
+            this._client.send<InternType>(pattern, post.authorId),
+          ),
+        };
+        return newPost;
+      });
+  }
 }

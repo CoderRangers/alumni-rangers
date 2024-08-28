@@ -25,13 +25,13 @@ export class InternController {
     this._service.findOne(id)
       .pipe(take(1))
       .subscribe({
-        next: (response: InternType | null) => {
+        next: (response: InternType | null) => {  
           if (response) {
             res.status(HttpStatus.OK).send(response)
           }
           else {
             res.status(404).send()
-          }
+          } 
         },
         error: (error: any) => {
           res.status(500).send(error)
