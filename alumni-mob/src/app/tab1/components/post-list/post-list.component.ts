@@ -15,11 +15,13 @@ export class PostListComponent  implements OnInit {
   constructor(private _postService: PostService) { }
 
   ngOnInit() {
-    this.posts = this._postService.findAllMock() // TODO: load only a few posts
+    // this.posts = this._postService.findAllMock()
+    this.posts = this._postService.findNext(3)
   }
 
   onIonInfinite(ev: InfiniteScrollCustomEvent) {
-    // TODO : load more posts with this._postService
+    const next3Posts = this._postService.findNext(3)
+    this.posts.concat(next3Posts)
     setTimeout(() => {
       (ev as InfiniteScrollCustomEvent).target.complete();
     }, 500);

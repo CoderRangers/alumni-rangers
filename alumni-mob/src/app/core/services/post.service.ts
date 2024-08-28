@@ -9,11 +9,25 @@ import { PostCategory, PostType } from '../types/post/post-type';
 export class PostService {
   private readonly URI = 'http://localhost:3000/post'
 
+  private _posts!: Array<PostType>
+  private _indexOfLastDisplayedPost: number = 0
+
   constructor(
     private _httpClient: HttpClient
-  ) { }
+  ) {
+    this._posts = this._populatePosts()
+  }
 
-  findAllMock(): Array<PostType> {
+  findNext(nbNextPosts: number): Array<PostType> {
+    let nextPosts: Array<PostType> = []
+    if(this._indexOfLastDisplayedPost + nbNextPosts <= this._posts.length) {
+      nextPosts = this._posts.slice(this._indexOfLastDisplayedPost, this._indexOfLastDisplayedPost + nbNextPosts)
+      this._indexOfLastDisplayedPost += nbNextPosts
+    }
+    return nextPosts
+  }
+
+  private _populatePosts(): Array<PostType> {
     const posts: Array<PostType> = [
       {
         id: 'a',
