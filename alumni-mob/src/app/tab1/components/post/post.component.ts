@@ -20,6 +20,8 @@ export class PostComponent implements OnInit, OnDestroy {
   /*public posts: Array<PostType> = []*/
   @Input()
   public post!: PostType
+  @Input()
+  public index!:number
 
   private _subscription!: Subscription
 
