@@ -5,7 +5,7 @@ import { CommentType } from "./comment-type"
 export enum PostCategory {
     jobOffer = "Offre d'emploi",
     news = "Actualités",
-    internshipOffer = "Offre de stage"
+    internshipOffer = "Offre de formation"
 
 }
 export type PostType = {
