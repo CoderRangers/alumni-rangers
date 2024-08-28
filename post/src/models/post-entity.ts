@@ -1,4 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { PostCategory } from './post-type';
 // import { InternType } from './intern-type';
 // import { CommentType } from './comment-type';
 
@@ -23,7 +24,7 @@ export class PostEntity {
   media: string;
 
   @Column()
-  category: string;
+  category: PostCategory;
 
   @Column()
   postedAt: Date;

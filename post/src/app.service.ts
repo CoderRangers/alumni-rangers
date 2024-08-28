@@ -17,7 +17,7 @@ export class AppService {
 
   getAllPosts(): Promise<any> {
     return this._repository
-      .find()
+      .find({ order: { postedAt: 'DESC' } })
       .then(async (posts) => {
         const newPosts: Array<PostType> = [];
         if (posts.length != 0) {
@@ -29,7 +29,7 @@ export class AppService {
               content: post.content,
               media: post.media,
               postedAt: post.postedAt,
-              category: PostCategory.news,
+              category: PostCategory[post.category],
               author: await lastValueFrom(
                 this._client.send<InternType>(pattern, post.authorId),
               ),
