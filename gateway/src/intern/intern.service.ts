@@ -21,9 +21,9 @@ export class InternService {
     return this._client.send<InternType[]>(pattern, {});
   }
 
-  findOne(id: number): Observable<InternType> {
+  findOne(id: string): Observable<InternType> {
     const pattern: any = { cmd: 'oneIntern' };
-    const payload: number = id;
+    const payload: string = id;
     // Logger.log('id: ' + id, 'service');
     return this._client.send<InternType>(pattern, payload); /*.pipe(
       tap((result: any) => {

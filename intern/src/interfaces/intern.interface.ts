@@ -8,7 +8,7 @@ export interface Intern extends Document {
   readonly gender: string;
   readonly emails: Array<string>;
   readonly phone: string;
-  readonly job: string;
+  readonly occupation: string;
   readonly company: CompanyType;
   readonly poe: PoeType;
 }

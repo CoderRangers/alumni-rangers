@@ -11,11 +11,11 @@ export class AppController {
 
   @MessagePattern({ cmd: 'addIntern' })
   async addIntern(intern: CreateInternDto) {
-    validate(intern).then(error => {
+    validate(intern).then((error) => {
       if (error.length) {
-        Logger.log(error)
+        Logger.log(error);
       }
-    })
+    });
     const addedIntern = await this.appService.createIntern(intern);
     return addedIntern;
   }

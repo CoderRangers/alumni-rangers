@@ -29,7 +29,10 @@ export class AppService {
     return newIntern.save();
   }
 
-  async updateIntern(internId: string, updateInternDto: UpdateInternDto): Promise<Intern> {
+  async updateIntern(
+    internId: string,
+    updateInternDto: UpdateInternDto,
+  ): Promise<Intern> {
     const existingIntern = await this.internModel.findByIdAndUpdate(
       internId,
       updateInternDto,
@@ -42,7 +45,7 @@ export class AppService {
   }
 
   async getAllIntern(): Promise<Intern[]> {
-    const internData = await this.internModel.find().sort({lastname: 1});
+    const internData = await this.internModel.find().sort({ lastname: 1 });
     if (!internData || internData.length == 0) {
       throw new NotFoundException('Interns data not found!');
     }

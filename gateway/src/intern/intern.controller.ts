@@ -21,7 +21,7 @@ export class InternController {
   }
 
   @Get(':id') // GET http://localhost:3000/api/v1/intern/{id}
-  findOne(@Param('id') id: number, @Res() res: Response): void {
+  findOne(@Param('id') id: string, @Res() res: Response): void {
     this._service.findOne(id)
       .pipe(take(1))
       .subscribe({

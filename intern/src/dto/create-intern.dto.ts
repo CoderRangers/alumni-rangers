@@ -13,7 +13,7 @@ export class CreateInternDto {
   @IsNotEmpty()
   readonly lastname: string;
 
-  @IsString({message: 'is not a string'})
+  @IsString({ message: 'is not a string' })
   @MaxLength(30)
   readonly gender: string;
 
@@ -26,7 +26,7 @@ export class CreateInternDto {
 
   @IsString()
   @MaxLength(30)
-  readonly job: string;
+  readonly occupation: string;
 
   readonly company: CompanyType;
 

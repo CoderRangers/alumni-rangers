@@ -20,7 +20,7 @@ export class Intern {
   phone: string;
 
   @Prop()
-  job: string;
+  occupation: string;
 
   @Prop({ type: CompanyType })
   company: CompanyType;
