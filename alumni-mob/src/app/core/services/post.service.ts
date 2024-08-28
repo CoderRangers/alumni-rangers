@@ -17,9 +17,9 @@ export class PostService {
     const posts: Array<PostType> = [
       {
         id: 'a',
-        title: 'Titre A',
-        content: 'Contenu A : bla bla bla',
-        media: '/assets/moto.jpeg',
+        title: 'Offre de travail',
+        content: 'Développeur Fullstack chez Ludwig qui aura comme mission la conception et le développement de nouvelles solutions e-commerces pour le groupe',
+        media: '',
         postedAt: new Date('2024-08-27T09:10:15'),
         author: 
         {
@@ -28,16 +28,16 @@ export class PostService {
           gender: "M",
           mails: ["mail3", "mail4"],
           phone: "0605040311",
-          occupation: "Pilier",
+          occupation: "Scrum Master",
           company: {
               id: 1,
-              name: "Stade Toulousain"
+              name: "CAPGEMINI"
               },
           poe: {
               id: 2,
               beginAt: new Date("2024/05/05"),
               endAt: new Date("2024/07/05"),
-              name: "Les avants",
+              name: "Développement d'application mobile",
               type: "POEI"
           }
       },
@@ -45,9 +45,9 @@ export class PostService {
       },
       {
         id: 'b',
-        title: 'Titre B',
-        content: 'Contenu B : bla bla bla',
-        media: 'https://picsum.photos/80/80?random',
+        title: 'Poe DEVOPS',
+        content: 'Préparation opérationnelle à l Emploi',
+        media: '/assets/logo-france-travail.jpg',
         postedAt: new Date('2024-08-26T13:32:03'),
         author: 
         {
@@ -56,16 +56,16 @@ export class PostService {
           gender: "M",
           mails: ["mail1", "mail2"],
           phone: "0605040311",
-          occupation: "demi de mélée",
+          occupation: "Développeur Fullstack",
           company: {
               id: 1,
-              name: "Stade Toulousain"
+              name: "CGDIM"
               },
           poe: {
               id: 1,
               beginAt: new Date("2024/05/05"),
               endAt: new Date("2024/07/05"),
-              name: "Les trois quarts",
+              name: "POEI DEV MOB",
               type: "POEI"
           }
       },
@@ -73,28 +73,28 @@ export class PostService {
       },
       {
         id: 'c',
-        title: 'Titre C',
-        content: 'Contenu C : bla bla bla',
-        media: 'https://picsum.photos/80/80?random',
+        title: 'Soutenance des stagiaires POEC dev mobile',
+        content: 'le développement d\'un reseau social privé pour le centre de formation AELION est enfin achevé par les efforts des stagiaires de centre et sous l\'encadrement de notre devéloppeur JEAN LUC AUBERT',
+        media: '/assets/aelion_logo.png',
         postedAt: new Date('2024-08-25T22:42:00'),
         author: 
         {
-          firstname: "Romain",
+          firstname: "Mathilde",
           lastname: "Ntamack",
           gender: "M",
           mails: ["mail5", "mail6"],
           phone: "0605040347",
-          occupation: "demi d'ouverture",
+          occupation: "Consultante fonctionnelle",
           company: {
               id: 1,
-              name: "Stade Toulousain"
+              name: "AELION"
               },
           poe: {
               id: 1,
               beginAt: new Date("2024/05/05"),
               endAt: new Date("2024/07/05"),
-              name: "Les trois quarts",
-              type: "POEI"
+              name: "POEC DEVELOPPEMENT",
+              type: "POEC"
           }
       },
         category: PostCategory.internshipOffer,
