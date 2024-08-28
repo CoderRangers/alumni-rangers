@@ -11,13 +11,32 @@
   }
 .border {
   border-radius: 10px;
-  // border: 1px solid black;
+  // 
+}
+.blackBorder{
+  border: 1px solid black;
+  border-radius: 10px;
 }
 img {
   width: 8%;
   height: 8%;
 }
-
+.textarealayOut{
+  margin-top: 5%;
+  width:100%;
+  //height:500%;
+}
+.formContainer{
+  width:100%;
+ // margin:2%;
+}
+.comment-form{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin:2%;
+}
 /* Styles pour les écrans mobiles (max-width: 600px) */
 @media (min-width: 900px) and (max-width: 1200px) {
     img{
