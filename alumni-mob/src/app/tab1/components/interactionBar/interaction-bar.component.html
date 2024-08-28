@@ -1,11 +1,16 @@
 <div class="divContainer border">
-  <div class="divContainerChild ">
+  <div class="divContainerChild">
     <img src="/assets/icon/like_icon.png" alt="" />
-    <img src="/assets/icon/com_icon.png" alt="" />
+    <img
+      src="/assets/icon/com_icon.png"
+      alt="comments"
+      (click)="toggleCommentForm()"
+    />
   </div>
 </div>
-
-<!-- <ion-item class="divContainer border">
-  <ion-img class="iconSize" src="/assets/like_icon.png" alt="like_icon"></ion-img>
-  <ion-img class="iconSize" src="/assets/com_icon.png" alt="like_icon"></ion-img>
-</ion-item> -->
+<div *ngIf="showCommentForm" class="comment-form">
+  <form>
+    <textarea placeholder="Write a comment..."></textarea>
+    <button type="submit">Submit</button>
+  </form>
+</div>

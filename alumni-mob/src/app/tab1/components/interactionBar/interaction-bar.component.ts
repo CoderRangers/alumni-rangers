@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./interaction-bar.component.scss'],
 })
 export class InteractionBarComponent  implements OnInit {
+  showCommentForm: boolean = false;
 
   constructor() { }
 
   ngOnInit() {}
+  toggleCommentForm() {
+    this.showCommentForm = !this.showCommentForm;
+  }
 
 }
