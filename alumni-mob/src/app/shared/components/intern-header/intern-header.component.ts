@@ -24,7 +24,7 @@ export class InternHeaderComponent   {
   }
 
   showDetail(id: number | undefined): void {
-    //console.log("click : " + id)
-    this._router.navigate(['intern',id?.toString()])    
+    console.log("click : " + id)
+    //this._router.navigate(['intern',id?.toString()])    
   }
 }
