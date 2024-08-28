@@ -21,7 +21,7 @@ export class PostListComponent  implements OnInit {
 
   onIonInfinite(ev: InfiniteScrollCustomEvent) {
     const next3Posts = this._postService.findNext(3)
-    this.posts.concat(next3Posts)
+    this.posts = this.posts.concat(next3Posts)
     setTimeout(() => {
       (ev as InfiniteScrollCustomEvent).target.complete();
     }, 500);

@@ -22,6 +22,9 @@ export class PostService {
     let nextPosts: Array<PostType> = []
     if(this._indexOfLastDisplayedPost + nbNextPosts <= this._posts.length) {
       nextPosts = this._posts.slice(this._indexOfLastDisplayedPost, this._indexOfLastDisplayedPost + nbNextPosts)
+      console.log(`PostService: _indexOfLastDisplayedPost: ${this._indexOfLastDisplayedPost}`)
+      console.log(`PostService: nbNextPosts: ${nbNextPosts}`)
+      console.log(`PostService: nextPosts: ${JSON.stringify(nextPosts)}`)
       this._indexOfLastDisplayedPost += nbNextPosts
     }
     return nextPosts
@@ -117,7 +120,7 @@ export class PostService {
         category: PostCategory.news,
       },
       {
-        id: 'c',
+        id: 'd',
         title: 'Soutenance des stagiaires POEC dev mobile',
         content: 'le développement d\'un reseau social privé pour le centre de formation AELION est enfin achevé par les efforts des stagiaires de centre et sous l\'encadrement de notre devéloppeur JEAN LUC AUBERT',
         media: '/assets/icon/aelion_logo.png',
@@ -146,7 +149,7 @@ export class PostService {
         category: PostCategory.news,
       },
       {
-        id: 'a',
+        id: 'e',
         title: 'Offre d\'emploi',
         content: 'Développeur Fullstack chez Ludwig qui aura comme mission la conception et le développement de nouvelles solutions e-commerces pour le groupe',
         media: '',
@@ -175,7 +178,7 @@ export class PostService {
         category: PostCategory.news,
       },
       {
-        id: 'k',
+        id: 'f',
         title: 'Vaccance',
         content: 'Bonjour la tribu, c\'est enfin les vaccance, toute l\'équipe Aelion tient à vous souhaiter de trés belle vaccance! Profitez de chaque instant et revenez plein d\'énergie et de beaux souvenirs',
         media: '',
