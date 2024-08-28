@@ -10,8 +10,8 @@ export enum Role {
   name: 'post',
 })
 export class PostEntity {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column({ length: 75 })
   title: string;

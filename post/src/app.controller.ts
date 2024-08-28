@@ -2,13 +2,14 @@ import { Controller } from '@nestjs/common';
 import { AppService } from './app.service';
 import { MessagePattern } from '@nestjs/microservices';
 import { PostEntity } from './models/post-entity';
+import { PostType } from './models/post-type';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @MessagePattern({ cmd: 'allPost' })
-  findAll(): Promise<Array<PostEntity>> {
+  findAll(): Promise<Array<PostType>> {
     return this.appService.getAllPosts();
   }
 }
