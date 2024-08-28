@@ -34,12 +34,9 @@ export class PostService {
     const posts: Array<PostType> = [
       {
         id: 'a',
-<<<<<<< Updated upstream
         title: 'Poste de développeur Fullstack',
         content: 'Développeur Fullstack chez Ludwig qui aura comme mission la conception et le développement de nouvelles solutions e-commerces pour le groupe.',
-=======
-        title: '',
-        content: '',
+
         media: '',
         postedAt: new Date('2024-08-27T09:10:15'),
         author: 
@@ -68,7 +65,7 @@ export class PostService {
         id: 'a',
         title: 'Poste a pourvoir chez Ludwig !!',
         content: 'Développeur Fullstack chez Ludwig qui aura comme mission la conception et le développement de nouvelles solutions e-commerces pour le groupe',
->>>>>>> Stashed changes
+
         media: '',
         postedAt: new Date('2024-08-27T09:10:15'),
         author: 
