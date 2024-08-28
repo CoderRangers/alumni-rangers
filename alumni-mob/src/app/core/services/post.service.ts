@@ -31,12 +31,13 @@ export class PostService {
     const posts: Array<PostType> = [
       {
         id: 'a',
-        title: 'Offre de travail',
+        title: 'Offre d\'emploi',
         content: 'Développeur Fullstack chez Ludwig qui aura comme mission la conception et le développement de nouvelles solutions e-commerces pour le groupe',
         media: '',
         postedAt: new Date('2024-08-27T09:10:15'),
         author: 
         {
+          id:1,
           firstname: "Cyril",
           lastname: "Baille",
           gender: "M",
@@ -60,11 +61,12 @@ export class PostService {
       {
         id: 'b',
         title: 'Poe DEVOPS',
-        content: 'Préparation opérationnelle à l Emploi',
+        content: 'Préparation opérationnelle à l\'Emploi',
         media: '/assets/logo-france-travail.jpg',
         postedAt: new Date('2024-08-26T13:32:03'),
         author: 
         {
+          id:2,
           firstname: "Antoine",
           lastname: "Dupont",
           gender: "M",
@@ -89,10 +91,11 @@ export class PostService {
         id: 'c',
         title: 'Soutenance des stagiaires POEC dev mobile',
         content: 'le développement d\'un reseau social privé pour le centre de formation AELION est enfin achevé par les efforts des stagiaires de centre et sous l\'encadrement de notre devéloppeur JEAN LUC AUBERT',
-        media: '/assets/aelion_logo.png',
+        media: '/assets/icon/aelion_logo.png',
         postedAt: new Date('2024-08-25T22:42:00'),
         author: 
         {
+          id:3,
           firstname: "Mathilde",
           lastname: "Ntamack",
           gender: "M",
@@ -111,7 +114,7 @@ export class PostService {
               type: "POEC"
           }
       },
-        category: PostCategory.internshipOffer,
+        category: PostCategory.news,
       },
     ]
     return posts
