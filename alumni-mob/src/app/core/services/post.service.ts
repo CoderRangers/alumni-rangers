@@ -34,8 +34,41 @@ export class PostService {
     const posts: Array<PostType> = [
       {
         id: 'a',
+<<<<<<< Updated upstream
         title: 'Poste de développeur Fullstack',
         content: 'Développeur Fullstack chez Ludwig qui aura comme mission la conception et le développement de nouvelles solutions e-commerces pour le groupe.',
+=======
+        title: '',
+        content: '',
+        media: '',
+        postedAt: new Date('2024-08-27T09:10:15'),
+        author: 
+        {
+          id:1,
+          firstname: "Cyril",
+          lastname: "Baille",
+          gender: "M",
+          mails: ["mail1@aelion.com"],
+          phone: "0605040311",
+          occupation: "Scrum Master",
+          company: {
+              id: 1,
+              name: "CAPGEMINI"
+              },
+          poe: {
+              id: 2,
+              beginAt: new Date("2024/05/05"),
+              endAt: new Date("2024/07/05"),
+              name: "Développement d'application mobile",
+              type: "POEI"
+          }
+      },
+        category: PostCategory.jobOffer,
+      },{
+        id: 'a',
+        title: 'Poste a pourvoir chez Ludwig !!',
+        content: 'Développeur Fullstack chez Ludwig qui aura comme mission la conception et le développement de nouvelles solutions e-commerces pour le groupe',
+>>>>>>> Stashed changes
         media: '',
         postedAt: new Date('2024-08-27T09:10:15'),
         author: 
