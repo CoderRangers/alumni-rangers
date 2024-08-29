@@ -7,6 +7,11 @@ import { PostType } from './models/post-type';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
+  @MessagePattern({ cmd: 'nextPost' })
+  findNext(index: number): Promise<Array<PostType>> {
+    return this.appService.getNbPost(index);
+  }
+
   @MessagePattern({ cmd: 'allPost' })
   findAll(): Promise<Array<PostType>> {
     return this.appService.getAllPosts();

@@ -13,8 +13,27 @@ export class PostController {
     return this._service.findAll().pipe(take(1));
   }
 
+  @Get(':index')
+  findNext(@Param('index') index: number, @Res() res: Response): void {
+    this._service
+      .findNext(index)
+      .pipe(take(1))
+      .subscribe({
+        next: (response: Array<PostType> | null) => {
+          if (response) {
+            res.status(HttpStatus.OK).send(response);
+          } else {
+            res.status(404).send();
+          }
+        },
+        error: (error: any) => {
+          res.status(500).send(error);
+        },
+      });
+  }
+
   @Get(':id')
-  finfOne(@Param('id') id: string, @Res() res: Response): void {
+  findOne(@Param('id') id: string, @Res() res: Response): void {
     this._service
       .findOne(id)
       .pipe(take(1))

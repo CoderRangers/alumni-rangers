@@ -14,9 +14,7 @@ export class PostService {
 
   constructor(
     private _httpClient: HttpClient
-  ) {
-    this._posts = this.findAll()
-  }
+  ) {}
 
   // findNext(nbNextPosts: number): Array<PostType> {
   //   let nextPosts: Array<PostType> = []
@@ -30,7 +28,17 @@ export class PostService {
   //   return nextPosts
   // }
 
-  
+/*   findNext(): Observable<Array<PostType>> {
+    let next3post = this._httpClient.get<Array<PostType>>(this.URI + `/${this._indexOfLastDisplayedPost}`);
+    console.log('index : ' + this._indexOfLastDisplayedPost)
+    this._indexOfLastDisplayedPost++;
+    return next3post;
+  } */
+  findNext(): Observable<Array<PostType>> {
+    let index = this._indexOfLastDisplayedPost;
+    this._indexOfLastDisplayedPost++;
+    return this._httpClient.get<Array<PostType>>(this.URI + `/${index}`);
+  }
 
   findAll(): Observable<Array<PostType>> {
     return this._httpClient.get<Array<PostType>>(this.URI)

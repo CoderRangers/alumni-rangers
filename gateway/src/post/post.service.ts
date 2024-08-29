@@ -10,6 +10,10 @@ export class PostService {
     @Inject('POST') private _client: ClientProxy
   ) {}
 
+  findNext(index: number): Observable<Array<PostType>> {
+    const pattern: any = { cmd: 'nextPost' };
+    return this._client.send<Array<PostType>>(pattern, index);
+  }
   
   findAll(): Observable<Array<PostType>> {
     const pattern: any = { cmd: 'allPost' };
