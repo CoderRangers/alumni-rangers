@@ -6,7 +6,7 @@ export type InternType = {
     lastname: string
     firstname: string
     gender: string
-    mails?: Array<string>
+    emails?: Array<string>
     phone: string
     occupation: string
     company: CompanyType
