@@ -21,12 +21,12 @@
         </ion-row>
       </ion-col>
       <ion-col size="1">
-        <ion-icon class="ion-float-right" id={{index}} name="ellipsis-vertical-outline"></ion-icon>
-          <ion-popover trigger={{index}} [dismissOnSelect]="true">
+        <ion-icon class="ion-float-right" [id]="intern._id" name="ellipsis-vertical-outline"></ion-icon>
+          <ion-popover trigger={{intern._id}} [dismissOnSelect]="true">
             <ng-template>
               <ion-content>
                 <ion-list>
-                  <ion-item (click)="showDetail(intern.id)" [button]="true" [detail]="false">Détail</ion-item>
+                  <ion-item (click)="showDetail(intern._id)" [button]="true" [detail]="false">Détail</ion-item>
                   <ion-item [button]="true" [detail]="false">Chat</ion-item>
                 </ion-list>
               </ion-content>
