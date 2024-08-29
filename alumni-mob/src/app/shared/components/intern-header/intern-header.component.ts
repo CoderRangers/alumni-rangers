@@ -23,8 +23,8 @@ export class InternHeaderComponent   {
   ngOnInnit(): void {
   }
 
-  showDetail(id: number | undefined): void {
+  showDetail(id: string | undefined): void {
     console.log("click : " + id)
-    //this._router.navigate(['intern',id?.toString()])    
+    this._router.navigate(['intern',id])    
   }
 }

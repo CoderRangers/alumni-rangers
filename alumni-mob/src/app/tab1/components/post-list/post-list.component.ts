@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InfiniteScrollCustomEvent } from '@ionic/angular';
+import { Observable, take } from 'rxjs';
 import { PostService } from 'src/app/core/services/post.service';
 import { PostType } from 'src/app/core/types/post/post-type';
 
@@ -15,13 +16,15 @@ export class PostListComponent  implements OnInit {
   constructor(private _postService: PostService) { }
 
   ngOnInit() {
-    // this.posts = this._postService.findAllMock()
-    this.posts = this._postService.findNext(3)
+    this._postService.findAll().pipe(take(1)).subscribe({next:(response:any)=>{
+        this.posts = response;
+    }})
+    //this.posts = this._postService.findNext(3)
   }
 
   onIonInfinite(ev: InfiniteScrollCustomEvent) {
-    const next3Posts = this._postService.findNext(3)
-    this.posts = this.posts.concat(next3Posts)
+   // const next3Posts = this._postService.findNext(3)
+   // this.posts = this.posts.concat(next3Posts)
     setTimeout(() => {
       (ev as InfiniteScrollCustomEvent).target.complete();
     }, 500);
