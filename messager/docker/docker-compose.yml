@@ -1,0 +1,11 @@
+services:
+    messager_db:
+        image: mongo:latest
+        container_name: messager-db
+        restart: unless-stopped
+        ports:
+            - 27117:27017
+        env_file: .env
+        volumes: 
+            - ./datas:/data/db
+            - ./entrypoint/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
