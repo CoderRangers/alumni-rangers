@@ -12,6 +12,7 @@ import { PostContentComponent } from './components/post-content/post-content.com
 import { PostListComponent } from './components/post-list/post-list.component';
 import { InteractionBarComponent } from './components/interactionBar/interaction-bar.component';
 import { SharedModule } from '../shared/shared.module';
+import { PostHeaderComponent } from './components/post-header/post-header.component';
 
 @NgModule({
   imports: [
@@ -24,6 +25,6 @@ import { SharedModule } from '../shared/shared.module';
     FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [Tab1Page, PostComponent, InternComponent, PostContentComponent, PostListComponent,InteractionBarComponent]
+  declarations: [Tab1Page, PostComponent, InternComponent, PostContentComponent, PostListComponent, InteractionBarComponent, PostHeaderComponent]
 })
 export class Tab1PageModule {}
