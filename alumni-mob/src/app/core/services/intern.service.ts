@@ -12,7 +12,7 @@ import { InternType } from '../types/intern/intern-type';
 export class InternService {
   private _interns: Array<InternType> = []
   private readonly URI: string = 'http://localhost:3000/api/v1/intern'
-  private _intern: InternTransformer | null = null;
+  private _intern: InternType | null = null;
 
   // constructor utilisé seulement pour de l'injection de dépendances. 
   constructor(
@@ -43,11 +43,11 @@ export class InternService {
     throw new Error(`Not implemented yet`)
   }
 
-  set intern(intern: InternTransformer) {
+  set intern(intern: InternType) {
     this._intern = intern
   }
 
-  get intern(): InternTransformer | null {
+  get intern(): InternType | null {
     return this._intern
   }
 }
