@@ -14,10 +14,16 @@ async function bootstrap() {
       },
     },
   );
-  app.useGlobalPipes(new ValidationPipe({exceptionFactory: (errors)=>{Logger.log(errors)}, 
-    skipNullProperties: true, 
-    skipMissingProperties: true, 
-    skipUndefinedProperties: true}));
+  app.useGlobalPipes(
+    new ValidationPipe({
+      exceptionFactory: (errors) => {
+        Logger.log(errors);
+      },
+      skipNullProperties: true,
+      skipMissingProperties: true,
+      skipUndefinedProperties: true,
+    }),
+  );
   await app.listen();
 }
 bootstrap();
