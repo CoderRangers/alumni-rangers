@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { InternType } from 'src/app/core/types/intern/intern-type';
+import { ChatComponent } from '../chat/chat.component';
+import { ModalController, PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-intern-header',
@@ -17,6 +19,8 @@ export class InternHeaderComponent   {
 
   constructor(
     private _router: Router,
+    private _popOverController: PopoverController,
+    private _modalController: ModalController,
   ) { }
 
   ngOnInnit(): void {
@@ -25,5 +29,15 @@ export class InternHeaderComponent   {
   showDetail(id: string | undefined): void {
     // console.log("click : " + id)
     this._router.navigate(['intern', id])
+  }
+
+  async onChatClick() {
+    this._popOverController.dismiss()
+    // Let's start with modalController
+    const chatModal = await this._modalController.create({
+      component: ChatComponent
+    })
+    chatModal.present()
+
   }
 }
