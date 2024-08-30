@@ -43,7 +43,7 @@ export class WsChatService {
   sendMessage(message: string): Observable<Array<any>> {
     const payload: ChatMessageType = {
       emitter: this._emitterId,
-      recipient: this._internService.intern?.id,
+      recipient: this._internService.intern?._id,
       datetime: new Date(),
       content: message,
     }
@@ -78,7 +78,7 @@ export class WsChatService {
       .filter(
           (message: any) => {
             console.log(`Analyzed message : ${JSON.stringify(message)}`)
-            return message.emitter === this._internService.intern?.id || message.recipient === this._internService.intern?.id
+            return message.emitter === this._internService.intern?._id || message.recipient === this._internService.intern?._id
           }
       )
       .sort((m1: any, m2: any) => m1.datetime - m2.datetime)
