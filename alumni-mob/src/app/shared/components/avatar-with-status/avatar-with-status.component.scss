@@ -1,0 +1,16 @@
+$bullet-size: 16px;
+
+.online-status {
+  width: $bullet-size;
+  height: $bullet-size;
+  border-radius: 50%;
+  background-color: red;
+  position: relative;
+  left: 45px;
+  top: 15px;
+  z-index: 1;
+
+  &.connected {
+    background-color: green;
+  }
+}
