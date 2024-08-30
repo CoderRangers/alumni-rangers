@@ -11,6 +11,9 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-intern-info></app-intern-info>
-
+  <!-- here, *ngIf delays the display of app-intern-info until the intern attribute (in intern.page.ts)
+   contains an InternType object. While waiting for app-intern-info to be displayed, display the ng-template,
+   which just says "Chargement des détails..." -->
+  <app-intern-info [intern]="intern" *ngIf="intern; else noContent"></app-intern-info>
+  <ng-template #noContent>Chargement des détails...</ng-template>
 </ion-content>

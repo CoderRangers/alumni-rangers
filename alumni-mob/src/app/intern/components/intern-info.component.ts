@@ -1,8 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { InternService } from 'src/app/core/services/intern.service';
-import { InternTransformer } from 'src/app/core/types/intern/intern-transformer';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { InternType } from 'src/app/core/types/intern/intern-type';
 
 @Component({
@@ -12,34 +8,10 @@ import { InternType } from 'src/app/core/types/intern/intern-type';
 })
 export class InternInfoComponent  implements OnInit {
 
-  private _subscription!: Subscription;
+  @Input()
   public intern!: InternType;
-  //private route = inject(ActivatedRoute);
-  private id:string | undefined;
 
-  constructor(private _service: InternService,
-    private route: ActivatedRoute,
-    private _router: Router
-  ) { }
+  constructor() { }
 
-  ngOnInit() {
-    this.route.paramMap.subscribe(async params => {
-      //console.log("param : "+ params.get('id'))
-      const id = params.get('id');
-    
-      if(id) {
-        this._subscription = this._service.findOne(id).subscribe({
-          next: (intern: InternType) => {
-            this.intern = intern
-            //console.log("intern info " + id)
-          },
-          error: (error: any) => {},
-          complete: () => {}
-        })
-      }
-      else {
-        this._router.navigate(['/tabs/tab2'])
-      }
-    });
-  }
+  ngOnInit() {}
 }

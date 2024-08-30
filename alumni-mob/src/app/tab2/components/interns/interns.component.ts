@@ -20,7 +20,7 @@ export class InternsComponent  implements OnInit, OnDestroy {
     this._subscription = this._service.findAll().subscribe({
       next: (interns: Array<InternType>) => {
         this.interns = interns
-        console.log("interns " + interns)
+        // console.log(`interns : ${JSON.stringify(interns)}`)
       },
       error: (error: any) => {},
       complete: () => {}

@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { InternTransformer } from 'src/app/core/types/intern/intern-transformer';
 import { InternType } from 'src/app/core/types/intern/intern-type';
 
 @Component({
@@ -24,7 +23,7 @@ export class InternHeaderComponent   {
   }
 
   showDetail(id: string | undefined): void {
-    console.log("click : " + id)
-    this._router.navigate(['intern',id])    
+    // console.log("click : " + id)
+    this._router.navigate(['intern', id])
   }
 }
