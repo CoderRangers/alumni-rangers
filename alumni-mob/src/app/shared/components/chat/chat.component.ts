@@ -17,6 +17,7 @@ export class ChatComponent  implements OnInit {
   public message: string = ''
   public recievedMessages: Array<SocketMessageType> = []
   public sendedMessages: Array<SocketMessageType> = []
+  public value: string = ''
 
   private _sid: string = ''
   public intern!: InternType
@@ -29,7 +30,9 @@ export class ChatComponent  implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log('init')
     this.intern = this._internService.intern!
+    console.log('chat on init : ' + this.intern._id)
 
     this._wsService.receiveMessage()
       .subscribe((filteredMessages: Array<any>) => {

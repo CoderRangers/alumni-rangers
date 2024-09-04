@@ -32,9 +32,9 @@ export class InternService {
 
   public findOne(id: string): Observable<InternType> {
     return this._httpClient.get<InternType>(this.URI+'/'+id)
-    /* .pipe(
+/*     .pipe(
       map((intern: any) => {
-        return plainToInstance(InternTransformer, intern)
+        return plainToInstance(InternType, intern)
       })
     ) */
   }

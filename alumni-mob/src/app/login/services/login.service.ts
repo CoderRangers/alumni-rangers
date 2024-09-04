@@ -10,22 +10,22 @@ export class LoginService {
   constructor() { }
 
   doLogin(credentials: any): Observable<HttpResponse<any>> {
-    if (credentials.login === 'admin' && credentials.password === 'admin') {
+    if (credentials.login === 'anthoine' && credentials.password === 'admin') {
       // return 200 ok
       return of(
         new HttpResponse<any>({
           status: 200,
-          body: { token: '66c592ebd4134255d8c7041a.b.c' }
+          body: { token: '66cee5f6ad0c7c5a1b396afb.b.c' }
         })
       )
     }
     else {
-      if (credentials.login === 'monica' && credentials.password === 'admin') {
+      if (credentials.login === 'cyril' && credentials.password === 'admin') {
         // Ici retourner un 200 ok
         return of(
           new HttpResponse<any>({
             status: 200,
-            body: { token: '66c879296aafaa4e3f4cb1c1.b.c' }
+            body: { token: '66cee252ad0c7c5a1b396af3.b.c' }
           })
         )
       }
