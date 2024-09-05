@@ -1,8 +1,18 @@
-import { Controller, Get, Logger, Param, Res } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpStatus,
+  Logger,
+  Param,
+  Post,
+  Res,
+} from '@nestjs/common';
 import { AccountService } from './account.service';
 import { Observable, take } from 'rxjs';
 import { AccountType } from './model/account-type';
 import { Response } from 'express';
+import { LogType } from './model/log-type';
 
 @Controller('account')
 export class AccountController {
@@ -31,6 +41,25 @@ export class AccountController {
         },
         error: (error: any) => {
           res.status(500).send(error);
+        },
+      });
+  }
+
+  @Post()
+  doLogin(@Body() credential: LogType, @Res() res: Response): void {
+    this.accountService
+      .login(credential.email, credential.pwd)
+      .pipe(take(1))
+      .subscribe({
+        next: (response: boolean) => {
+          if (response) {
+            res.status(HttpStatus.OK).send(response);
+          } else {
+            res.status(HttpStatus.BAD_REQUEST).send();
+          }
+        },
+        error: (error: any) => {
+          res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(error);
         },
       });
   }
