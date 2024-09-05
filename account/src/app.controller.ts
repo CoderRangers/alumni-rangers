@@ -19,4 +19,11 @@ export class AppController {
   getAllInterns(): Promise<Array<AccountType>> {
     return this.appService.getAllAccounts();
   }
+
+  @MessagePattern({ cmd: 'login' })
+  login(@Payload() data: any): Promise<boolean> {
+    const email: string = data.email;
+    const password: string = data.pwd;
+    return this.appService.canLogin(email, password);
+  }
 }

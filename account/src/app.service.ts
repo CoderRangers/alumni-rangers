@@ -24,4 +24,12 @@ export class AppService {
     // Logger.log('dbRequestResult: ' + JSON.stringify(dbRequestResult));
     return dbRequestResult;
   }
+
+  canLogin(mail: string, pwd: string): Promise<boolean> {
+    return this._repository.existsBy({
+      email: mail,
+      password: pwd,
+      isActivated: true,
+    });
+  }
 }
