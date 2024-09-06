@@ -8,9 +8,11 @@ import {
   SetMetadata,
   Request,
   Res,
+  UseGuards,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { Response } from 'express';
+import { AuthGuard } from './auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -34,7 +36,7 @@ export class AuthController {
       });
   }
 
-  //@UseGuards(AuthGuard)
+  @UseGuards(AuthGuard)
   @Get('profile')
   getProfile(@Request() req) {
     return req.user; // simulate some request returning some data
