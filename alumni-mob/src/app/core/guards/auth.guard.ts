@@ -14,6 +14,7 @@ export class AuthGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): MaybeAsync<GuardResult> {
     if (this._storageService.retrieve('auth'))
+      // TODO: check that the value corresponding to 'auth' in localStorage is a valid JWT
       return true
     
     this._router.navigate(['/','login'])
