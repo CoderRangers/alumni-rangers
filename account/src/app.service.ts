@@ -26,10 +26,12 @@ export class AppService {
   }
 
   canLogin(mail: string, pwd: string): Promise<AccountType> {
-    return this._repository.findOneBy({
-      email: mail,
-      password: pwd,
-      isActivated: true,
-    });
+    if (mail !== undefined && pwd !== undefined) {
+      return this._repository.findOneBy({
+        email: mail,
+        password: pwd,
+        isActivated: true,
+      });
+    }
   }
 }
