@@ -17,9 +17,9 @@ export class AccountService {
     return this._client.send<AccountType>(pattern, { email });
   }
 
-  login(email: string, pwd: string): Observable<boolean> {
+  login(email: string, pwd: string): Observable<AccountType> {
     const pattern: any = { cmd: 'login' };
     const payload: any = { email: email, pwd: pwd };
-    return this._client.send<boolean>(pattern, payload);
+    return this._client.send<AccountType>(pattern, payload);
   }
 }

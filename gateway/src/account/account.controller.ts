@@ -51,7 +51,7 @@ export class AccountController {
       .login(credential.email, credential.pwd)
       .pipe(take(1))
       .subscribe({
-        next: (response: boolean) => {
+        next: (response: AccountType) => {
           if (response) {
             res.status(HttpStatus.OK).send(response);
           } else {

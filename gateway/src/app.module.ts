@@ -9,14 +9,13 @@ import { PostModule } from './post/post.module';
 //import { PoeModule } from './poe/poe.module';
 //import { PoeEntity } from './poe/models/poe-entity';
 //import { ConfigModule, ConfigService } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
+import { AccountModule } from './account/account.module';
 
 //const envfile = 'env/' + process.env.NEST_ENV;
 
 @Module({
-  imports: [
-    InternModule,
-    PostModule,
-  ],
+  imports: [InternModule, PostModule, AuthModule, AccountModule],
   controllers: [AppController],
   providers: [AppService],
 })
