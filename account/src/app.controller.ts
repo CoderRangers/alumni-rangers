@@ -21,7 +21,7 @@ export class AppController {
   }
 
   @MessagePattern({ cmd: 'login' })
-  login(@Payload() data: any): Promise<boolean> {
+  login(@Payload() data: any): Promise<AccountType> {
     const email: string = data.email;
     const password: string = data.pwd;
     return this.appService.canLogin(email, password);

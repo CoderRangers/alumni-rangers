@@ -25,8 +25,8 @@ export class AppService {
     return dbRequestResult;
   }
 
-  canLogin(mail: string, pwd: string): Promise<boolean> {
-    return this._repository.existsBy({
+  canLogin(mail: string, pwd: string): Promise<AccountType> {
+    return this._repository.findOneBy({
       email: mail,
       password: pwd,
       isActivated: true,
