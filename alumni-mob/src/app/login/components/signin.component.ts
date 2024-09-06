@@ -36,69 +36,73 @@ export class SigninComponent implements OnInit {
     });
   }
 
-  //   onSubmit(): void {
-  //     // console.log(`Bout to send ${JSON.stringify(this.form.value)}`)
-  //     this._service.login(this.form.value)
-  //       .pipe(
-  //         take(1)
-  //       )
-  //       .subscribe({
-  //         next: async(response: string) => {
-  //           if (response.status == 200) {
-  //             this._storage.store('auth', response.body.token)
-  //             this._router.navigate(['tabs','tab1'])
-  //               .then(() => {
-  //                 console.log('Routing complete')
-  //                 this._wsService.connect()
-  //                 this._wsService.receiveIdentity()
-  //                 .subscribe((identity: any) => {
-  //                     console.log(`got ${identity.socketId} from Socket Server`)
-  //                     const userId: string = ((response.body.token) as string).split('.')[0]
-  //                     const message: any = {
-  //                       socketId: identity.socketId,
-  //                       id: userId
-  //                     }
-  //                     this._wsService.sendIdentity(message)
-  //                   }
-  //                 )
-  //               })
-  //             this.form.reset()
-  //           }
-  //           else {
-  //             const toast = await this._toastController.create({
-  //               message: response.body.message,
-  //               duration: 2000,
-  //               position: 'middle',
-  //               buttons: [
-  //                 {
-  //                   text: 'Réessayer',
-  //                 }
-  //               ]
-  //             })
-  //             /* // equivalent du await au dessus
-  //             let legacyToastPromise
-  //             this._toastController.create({
-  //               message: response.body.message,
-  //               duration: 2000,
-  //               position: 'middle',
-  //               buttons: [
-  //                 {
-  //                   text: 'Réessayer',
-  //                 }
-  //               ]
-  //             }).then((toast) => legacyToastPromise = toast)
-  //             */
+    onSubmit(): void {
+      // console.log(`Bout to send ${JSON.stringify(this.form.value)}`)
+      const value = { username : this.form.value.login, password :this.form.value.password };
+      this._service.login(value)
+        .pipe(
+          take(1)
+        )
+        .subscribe({
+          next: async(response: HttpResponse<any>) => {
+            // console.log('response : ' + JSON.stringify(response))
+            if (response) {
+              const res = JSON.stringify(response).split('"')
+              console.log(res)
+              this._storage.store('auth', res[3])
+              this._router.navigate(['tabs','tab1'])
+/*                 .then(() => {
+                  console.log('Routing complete')
+                  this._wsService.connect()
+                  this._wsService.receiveIdentity()
+                  .subscribe((identity: any) => {
+                      console.log(`got ${identity.socketId} from Socket Server`)
+                      const userId: string = ((response.body.token) as string).split('.')[0]
+                      const message: any = {
+                        socketId: identity.socketId,
+                        id: userId
+                      }
+                      this._wsService.sendIdentity(message)
+                    }
+                  )
+                }) */
+              this.form.reset()
+            }
+            else {
+              const toast = await this._toastController.create({
+                message: response,
+                duration: 2000,
+                position: 'middle',
+                buttons: [
+                  {
+                    text: 'Réessayer',
+                  }
+                ]
+              })
+              /* // equivalent du await au dessus
+              let legacyToastPromise
+              this._toastController.create({
+                message: response.body.message,
+                duration: 2000,
+                position: 'middle',
+                buttons: [
+                  {
+                    text: 'Réessayer',
+                  }
+                ]
+              }).then((toast) => legacyToastPromise = toast)
+              */
 
-  //             await toast.present()
-  //             toast.onWillDismiss()
-  //               .then(() => this.form.reset())
-  //           }
-  //         },
-  //         error: (error: any) => {
-  //           console.log(`ko, je dois afficher un toast ${JSON.stringify(error)}`)
-  //         }
-  //       })
-  //   }
+              await toast.present()
+              toast.onWillDismiss()
+                .then(() => this.form.reset())
+            }
+          },
+          error: (error: any) => {
+            console.log(`ko, je dois afficher un toast ${JSON.stringify(error)}`)
+          }
+        })
+    }
 
   // }
 
@@ -143,27 +147,27 @@ export class SigninComponent implements OnInit {
   //   }
   // }
 
-  onSubmit(): void {
-    // Envoie les informations d'identification à la gateway
-    const value = { email : this.form.value.login, pwd :this.form.value.password };
-    this._service
-      .login(value)
-      .pipe(take(1))
-      .subscribe({
-        next: async (response: any) => {
-          console.log(response, value);
-        },
-        error: (error: any) => {
-          // Affiche un toast en cas d'erreur
-          console.log(`Erreur lors de la connexion: ${JSON.stringify(error)}`);
-          const toast = this._toastController.create({
-            message: "Une erreur s'est produite lors de la connexion.",
-            duration: 2000,
-            position: 'middle',
-            buttons: [{ text: 'Réessayer' }],
-          });
-          toast.then((t) => t.present());
-        },
-      });
-  }
+  // onSubmit(): void {
+  //   // Envoie les informations d'identification à la gateway
+  //   const value = { email : this.form.value.login, pwd :this.form.value.password };
+  //   this._service
+  //     .login(value)
+  //     .pipe(take(1))
+  //     .subscribe({
+  //       next: async (response: any) => {
+  //         console.log(response, value);
+  //       },
+  //       error: (error: any) => {
+  //         // Affiche un toast en cas d'erreur
+  //         console.log(`Erreur lors de la connexion: ${JSON.stringify(error)}`);
+  //         const toast = this._toastController.create({
+  //           message: "Une erreur s'est produite lors de la connexion.",
+  //           duration: 2000,
+  //           position: 'middle',
+  //           buttons: [{ text: 'Réessayer' }],
+  //         });
+  //         toast.then((t) => t.present());
+  //       },
+  //     });
+  // }
 }

@@ -6,7 +6,7 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root',
 })
 export class LoginService {
-  private apiUrl = 'http://localhost:3000/account'; 
+  private apiUrl = 'http://localhost:3000/auth'; 
   constructor(
     private _httpClient: HttpClient
   ) {}
@@ -48,11 +48,11 @@ export class LoginService {
   //   );
   // }
 
-  login(credentials: any):Observable<string> {
+  login(credentials: any):Observable<HttpResponse<any>> {
     console.log(credentials)
     // Envoie les informations d'identification à la gateway
-    return this._httpClient.post<string>(
-      `${this.apiUrl}`,
+    return this._httpClient.post<HttpResponse<any>>(
+      `${this.apiUrl}/login`,
       credentials
     );
   }
