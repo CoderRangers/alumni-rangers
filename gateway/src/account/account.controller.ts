@@ -55,7 +55,7 @@ export class AccountController {
           if (response) {
             res.status(HttpStatus.OK).send(response);
           } else {
-            res.status(HttpStatus.BAD_REQUEST).send();
+            res.status(HttpStatus.UNAUTHORIZED).send();
           }
         },
         error: (error: any) => {
