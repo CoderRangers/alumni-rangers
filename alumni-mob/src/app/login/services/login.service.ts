@@ -48,10 +48,10 @@ export class LoginService {
   //   );
   // }
 
-  login(credentials: any):Observable<HttpResponse<any>> {
+  login(credentials: any):Observable<{ access_token: string}> {
     console.log(credentials)
     // Envoie les informations d'identification à la gateway
-    return this._httpClient.post<HttpResponse<any>>(
+    return this._httpClient.post<{ access_token: string}>(
       `${this.apiUrl}/login`,
       credentials
     );

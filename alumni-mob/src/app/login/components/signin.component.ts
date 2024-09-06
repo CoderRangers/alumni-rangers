@@ -44,12 +44,10 @@ export class SigninComponent implements OnInit {
           take(1)
         )
         .subscribe({
-          next: async(response: HttpResponse<any>) => {
-            // console.log('response : ' + JSON.stringify(response))
-            if (response) {
-              const res = JSON.stringify(response).split('"')
-              console.log(res)
-              this._storage.store('auth', res[3])
+          next: async(response: { access_token : string}) => {
+            console.log('response : ', response)
+            if (response.access_token) {
+              this._storage.store('auth', response.access_token);
               this._router.navigate(['tabs','tab1'])
 /*                 .then(() => {
                   console.log('Routing complete')
@@ -70,7 +68,7 @@ export class SigninComponent implements OnInit {
             }
             else {
               const toast = await this._toastController.create({
-                message: response,
+                message: "erreur",
                 duration: 2000,
                 position: 'middle',
                 buttons: [
