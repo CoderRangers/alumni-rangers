@@ -45,7 +45,7 @@ export class InternController {
       take(1)
     )
     .subscribe({
-      next: (response: CreateInternDto) => {
+      next: (response: CreateInternDto) => {  
         if (response) {
           res.status(HttpStatus.OK).send(response)
         }
