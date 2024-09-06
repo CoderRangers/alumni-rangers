@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { take } from 'rxjs';
+import { lastValueFrom } from 'rxjs';
 import { AccountService } from 'src/account/account.service';
-import { AccountType } from 'src/account/model/account-type';
+// import { AccountType } from 'src/account/model/account-type';
 import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
@@ -12,20 +12,13 @@ export class AuthService {
   ) {}
 
   async signIn(email: string, pwd: string): Promise<any> {
-    this._accountService
-      .login(email, pwd)
-      .pipe(take(1))
-      .subscribe({
-        next: async (account: AccountType | null) => {
-          if (account === null) {
-            return null;
-          } else {
-            const payload = { sub: account.id, username: account.email };
-            return {
-              access_token: await this.jwtService.signAsync(payload),
-            };
-          }
-        },
-      });
+    const account = await lastValueFrom(this._accountService.login(email, pwd));
+    if (account) {
+      const payload = { sub: account.id, username: account.email };
+      const access_token = await this.jwtService.signAsync(payload);
+      return {
+        access_token,
+      };
+    }
   }
 }
