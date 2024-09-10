@@ -8,6 +8,7 @@ import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { StorageService } from 'src/app/core/services/storage.service';
 import { WsChatService } from 'src/app/core/services/ws-chat.service';
+import { LoginType } from 'src/app/core/types/login/login-type';
 
 @Component({
   selector: 'app-signin',
@@ -38,14 +39,13 @@ export class SigninComponent implements OnInit {
 
     onSubmit(): void {
       // console.log(`Bout to send ${JSON.stringify(this.form.value)}`)
-      const value = { username : this.form.value.login, password :this.form.value.password };
+      const value: LoginType = { email: this.form.value.login, pwd: this.form.value.password };
       this._service.login(value)
         .pipe(
           take(1)
         )
         .subscribe({
           next: async(response: { access_token : string}) => {
-            console.log('response : ', response)
             if (response.access_token) {
               this._storage.store('auth', response.access_token);
               this._router.navigate(['tabs','tab1'])

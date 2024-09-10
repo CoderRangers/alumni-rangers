@@ -1,6 +1,7 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { LoginType } from 'src/app/core/types/login/login-type';
 
 @Injectable({
   providedIn: 'root',
@@ -48,8 +49,7 @@ export class LoginService {
   //   );
   // }
 
-  login(credentials: any):Observable<{ access_token: string}> {
-    console.log(credentials)
+  login(credentials: LoginType):Observable<{ access_token: string}> {
     // Envoie les informations d'identification à la gateway
     return this._httpClient.post<{ access_token: string}>(
       `${this.apiUrl}/login`,

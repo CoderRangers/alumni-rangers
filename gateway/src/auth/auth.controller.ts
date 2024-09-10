@@ -13,6 +13,7 @@ import {
 import { AuthService } from './auth.service';
 import { Response } from 'express';
 import { AuthGuard } from './auth.guard';
+import { LogType } from 'src/account/model/log-type';
 
 @Controller('auth')
 export class AuthController {
@@ -21,9 +22,9 @@ export class AuthController {
   @SetMetadata('isPublic', true)
   @HttpCode(HttpStatus.OK)
   @Post('login')
-  signIn(@Body() signInDto: Record<string, any>, @Res() res: Response) {
+  signIn(@Body() signInDto: LogType, @Res() res: Response) {
     this.authService
-      .signIn(signInDto.username, signInDto.password)
+      .signIn(signInDto.email, signInDto.pwd)
       .then((response) => {
         if (response) {
           res.status(HttpStatus.OK).send(response);
