@@ -4,4 +4,5 @@ export type AccountType = {
   password: string;
   role: 'intern' | 'admin' | 'superadmin';
   isActivated: boolean;
+  internId: string;
 };
