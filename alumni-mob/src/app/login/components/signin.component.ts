@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { StorageService } from 'src/app/core/services/storage.service';
 import { WsChatService } from 'src/app/core/services/ws-chat.service';
 import { LoginType } from 'src/app/core/types/login/login-type';
+import { TokenType } from 'src/app/core/types/login/token-type';
 
 @Component({
   selector: 'app-signin',
@@ -45,7 +46,7 @@ export class SigninComponent implements OnInit {
           take(1)
         )
         .subscribe({
-          next: async(response: { access_token : string}) => {
+          next: async(response: TokenType) => {
             if (response.access_token) {
               this._storage.store('auth', response.access_token);
               this._router.navigate(['tabs','tab1'])
