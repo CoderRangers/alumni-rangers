@@ -2,10 +2,10 @@ import { Module } from '@nestjs/common';
 import { InternService } from './intern.service';
 import { InternController } from './intern.controller';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { JwtService } from '@nestjs/jwt';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
-  providers: [InternService, JwtService],
+  providers: [InternService],
   controllers: [InternController],
   imports: [
     ClientsModule.register([
@@ -18,6 +18,7 @@ import { JwtService } from '@nestjs/jwt';
         },
       },
     ]),
+    AuthModule,
   ],
 })
 export class InternModule {}

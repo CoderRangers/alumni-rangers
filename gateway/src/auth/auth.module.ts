@@ -31,6 +31,6 @@ const envfile = 'env/' + process.env.NEST_ENV;
   ],
   controllers: [AuthController],
   providers: [AuthService, AuthGuard],
-  exports: [AuthService, JwtModule],
+  exports: [AuthService, AuthGuard, JwtModule],
 })
 export class AuthModule {}
