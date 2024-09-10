@@ -47,6 +47,7 @@ export class AccountController {
 
   @Post()
   doLogin(@Body() credential: LogType, @Res() res: Response): void {
+    console.log(credential);
     this.accountService
       .login(credential.email, credential.pwd)
       .pipe(take(1))
