@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { lastValueFrom } from 'rxjs';
 import { AccountService } from 'src/account/account.service';
 // import { AccountType } from 'src/account/model/account-type';
@@ -31,5 +31,37 @@ export class AuthService {
   getInternId(token): string {
     const user = this.jwtService.decode(token);
     return user.id;
+  }
+
+  async tokenCheck(token: any): Promise<boolean> {
+    let isTokenValid = false;
+    /* Logger.log(
+      `AuthService.tokenCheck(token): token: ${JSON.stringify(token)}`,
+    ); */
+    try {
+      let tokenPayload!: any;
+      await this.jwtService.verifyAsync(token).then((payload) => {
+        /* Logger.log(
+            `AuthService.tokenCheck(token): payload: ${JSON.stringify(payload)}`,
+          ); */
+        tokenPayload = payload;
+        if (tokenPayload !== undefined) {
+          isTokenValid = true;
+        }
+      });
+      /* Logger.log(
+        `AuthService.tokenCheck(token): tokenPayload: ${JSON.stringify(tokenPayload)}`,
+      ); */
+    } catch (error) {
+      // Different types of exceptions expected:
+      // - TokenExpiredError
+      // - JsonWebTokenError: invalid token: when the encoded JWT header has been altered
+      // - JsonWebTokenError: invalid signature: when the encoded JWT signature has been altered
+      // - SyntaxError: when the encoded JWT payload has been altered
+      Logger.log(
+        `AuthService.tokenCheck(token): Exception when verifying a JWT: ${error} , token: ${token}`,
+      );
+    }
+    return isTokenValid;
   }
 }

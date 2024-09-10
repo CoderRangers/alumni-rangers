@@ -41,4 +41,9 @@ export class AuthController {
   getProfile(@Request() req) {
     return req.user; // simulate some request returning some data
   }
+
+  @Get('token-check')
+  tokenCheck(@Body() data: any) {
+    return this.authService.tokenCheck(data.token);
+  }
 }
