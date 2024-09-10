@@ -1,12 +1,14 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Res } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Res, UseGuards } from '@nestjs/common';
 import { InternService } from './intern.service';
 import { InternType } from './models/intern.type';
 import { Observable, take } from 'rxjs';
 import { Response } from 'express';
 import { CreateInternDto } from './models/create-intern.dto';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller('api/v1/intern')
+@UseGuards(AuthGuard)
 export class InternController {
   constructor(
     private _service: InternService
@@ -38,7 +40,6 @@ export class InternController {
         }
       })
   }
-
   @Post() // POST http://localhost:3000/api/v1/intern/
   addIntern(@Body() intern: CreateInternDto, @Res() res: Response): void {
     this._service.addIntern(intern).pipe(

@@ -7,22 +7,24 @@ import {
   Param,
   Post,
   Res,
+  UseGuards,
 } from '@nestjs/common';
 import { AccountService } from './account.service';
 import { Observable, take } from 'rxjs';
 import { AccountType } from './model/account-type';
 import { Response } from 'express';
 import { LogType } from './model/log-type';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller('account')
 export class AccountController {
   constructor(private readonly accountService: AccountService) {}
-
+  @UseGuards(AuthGuard)
   @Get()
   findAll(): Observable<Array<AccountType>> {
     return this.accountService.findAll().pipe(take(1));
   }
-
+  @UseGuards(AuthGuard)
   @Get(':email')
   findOne(@Param('email') email: string, @Res() res: Response) {
     const typeEmail: string = email;
@@ -46,6 +48,7 @@ export class AccountController {
   }
 
   @Post()
+  @UseGuards(AuthGuard)
   doLogin(@Body() credential: LogType, @Res() res: Response): void {
     console.log(credential);
     this.accountService

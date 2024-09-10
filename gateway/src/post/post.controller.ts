@@ -1,10 +1,19 @@
-import { Controller, Get, HttpStatus, Param, Res } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  HttpStatus,
+  Param,
+  Res,
+  UseGuards,
+} from '@nestjs/common';
 import { PostService } from './post.service';
 import { PostType } from './models/post.type';
 import { Observable, take } from 'rxjs';
 import { Response } from 'express';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller('post')
+@UseGuards(AuthGuard)
 export class PostController {
   constructor(private _service: PostService) {}
 
