@@ -27,6 +27,7 @@ export class AccountEntity {
 
   @Column()
   isActivated: boolean;
+
   @Column()
-  internID: string;
+  internId: string;
 }
