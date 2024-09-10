@@ -9,6 +9,7 @@ import {
   Request,
   Res,
   UseGuards,
+  Logger,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { Response } from 'express';
@@ -43,8 +44,11 @@ export class AuthController {
     return req.user; // simulate some request returning some data
   }
 
-  @Get('token-check')
+  @Post('token-check')
   tokenCheck(@Body() data: any) {
-    return this.authService.tokenCheck(data.token);
+    /* Logger.log(
+      `AuthController.tokenCheck(data): data: ${JSON.stringify(data)}`,
+    ); */
+    return this.authService.tokenCheck(data.access_token);
   }
 }
