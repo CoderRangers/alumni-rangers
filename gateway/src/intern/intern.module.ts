@@ -2,9 +2,10 @@ import { Module } from '@nestjs/common';
 import { InternService } from './intern.service';
 import { InternController } from './intern.controller';
 import { ClientsModule, Transport } from '@nestjs/microservices';
+import { JwtService } from '@nestjs/jwt';
 
 @Module({
-  providers: [InternService],
+  providers: [InternService, JwtService],
   controllers: [InternController],
   imports: [
     ClientsModule.register([
