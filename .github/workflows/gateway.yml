@@ -28,3 +28,7 @@ jobs:
     # install the gateway's dependencies
     - name: npm install
       run: npm install
+      working-directory: ./gateway/
+    # verify the current working directory
+    - name: pwd and ls
+      run: pwd && ls -lhp
