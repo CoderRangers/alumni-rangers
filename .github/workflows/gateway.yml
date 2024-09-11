@@ -4,21 +4,21 @@ on:
   push:
     branches: [ "main" ]
 
-defaults:
-  run:
-    working-directory: ./gateway/
+#defaults:
+  #run:
+    #working-directory: ./gateway/
 
 jobs:
   build:
     # runner for the job
     runs-on: ubuntu-latest 
     steps:
-    # verify the current working directory
-    - name: pwd
-      run: pwd
     # get the code
     - name: checkout
       uses: actions/checkout@v4.1.7
+    # verify the current working directory
+    - name: pwd and ls
+      run: pwd && ls -lhp
     # install nodejs
     - name: Setup Node.js
       uses: actions/setup-node@v4.0.3
