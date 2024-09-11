@@ -4,9 +4,9 @@ on:
   push:
     branches: [ "main" ]
 
-#defaults:
-  #run:
-    #working-directory: ./gateway/
+defaults:
+  run:
+    working-directory: ./gateway/
 
 jobs:
   build:
@@ -25,11 +25,9 @@ jobs:
     # install the gateway's dependencies
     - name: npm install
       run: npm install
-      working-directory: ./gateway/
     # build the gateway code
     - name: npm build
       run: npm run build
-      working-directory: ./gateway/
     ## run all the jest tests
     #- name: run all tests
       #run: npm run test
