@@ -26,14 +26,14 @@ jobs:
     - name: npm install
       run: npm install
       working-directory: ./gateway/
-    ## build the gateway code
-    #- name: npm build
-      #run: npm run build
-      #working-directory: ./gateway/
-    # run all the jest tests
-    - name: run all tests
-      run: npm run test
+    # build the gateway code
+    - name: npm build
+      run: npm run build
       working-directory: ./gateway/
+    ## run all the jest tests
+    #- name: run all tests
+      #run: npm run test
+      #working-directory: ./gateway/
       
   #test:
     #runs-on: ubuntu-latest
