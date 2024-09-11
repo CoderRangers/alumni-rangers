@@ -16,9 +16,6 @@ jobs:
     # get the code
     - name: checkout
       uses: actions/checkout@v4.1.7
-    # verify the current working directory
-    - name: pwd and ls
-      run: pwd && ls -lhp
     # install nodejs
     - name: Setup Node.js
       uses: actions/setup-node@v4.0.3
@@ -29,6 +26,21 @@ jobs:
     - name: npm install
       run: npm install
       working-directory: ./gateway/
-    # verify the current working directory
-    - name: pwd and ls
-      run: pwd && ls -lhp
+    # build the gateway code
+    - name: npm build
+      run: npm run build
+      working-directory:  ./gateway/
+      
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    defaults:
+      run:
+        working-directory: ./gateway/
+    steps:
+      # verify the current working directory
+      - name: pwd and ls
+        run: pwd && ls -lhp
+      # run all the jest tests
+      - name: run all tests
+        run: npm run test
