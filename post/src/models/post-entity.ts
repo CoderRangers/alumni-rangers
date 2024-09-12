@@ -1,11 +1,14 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { PostCategory } from './post-type';
+import { InternType } from './intern-type';
+import { CommentType } from './comment-type';
 // import { InternType } from './intern-type';
 // import { CommentType } from './comment-type';
 
 export enum Role {
-  POST = 'post',
-  ADMIN = 'admin',
+  jobOffer = "Offre d'emploi",
+  news = 'Actualités',
+  internshipOffer = 'Offre de stage',
 }
 @Entity({
   name: 'post',
@@ -32,9 +35,9 @@ export class PostEntity {
   @Column()
   authorId: string;
 
-  // @Column()
-  // likes: InternType[];
+  @Column()
+  likes: InternType[];
 
-  // @Column()
-  // comments: CommentType[];
+  @Column()
+  comments: CommentType[];
 }
