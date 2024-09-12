@@ -18,7 +18,7 @@ export class AppController {
   }
 
   @MessagePattern({ cmd: 'onePost' })
-  findOne(id: number): Promise<PostType> {
+  findOne(id: string): Promise<PostType> {
     return this.appService.getOnePost(id);
   }
 }

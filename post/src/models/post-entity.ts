@@ -15,7 +15,7 @@ export enum Role {
 })
 export class PostEntity {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: string;
 
   @Column({ length: 75 })
   title: string;
@@ -35,9 +35,9 @@ export class PostEntity {
   @Column()
   authorId: string;
 
-  @Column()
+  @Column({ type: 'json' })
   likes: InternType[];
 
-  @Column()
+  @Column({ type: 'json' })
   comments: CommentType[];
 }

@@ -30,7 +30,7 @@ export class AppService {
           const pattern = { cmd: 'oneIntern' };
           for (const post of posts) {
             const actualPost: PostType = {
-              id: post.id.toString(),
+              id: post.id,
               title: post.title,
               content: post.content,
               media: post.media,
@@ -58,7 +58,7 @@ export class AppService {
           const pattern = { cmd: 'oneIntern' };
           for (const post of posts) {
             const actualPost: PostType = {
-              id: post.id.toString(),
+              id: post.id,
               title: post.title,
               content: post.content,
               media: post.media,
@@ -77,13 +77,13 @@ export class AppService {
       .catch((error) => Logger.log(error));
   }
 
-  getOnePost(identifier: number): Promise<PostType> {
+  getOnePost(identifier: string): Promise<PostType> {
     return this._repository
       .findOne({ where: { id: identifier } })
       .then(async (post) => {
         const pattern = { cmd: 'oneIntern' };
         const newPost: PostType = {
-          id: post.id.toString(),
+          id: post.id,
           title: post.title,
           content: post.content,
           media: post.media,

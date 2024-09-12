@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConnectModule } from './connect.module';
 import { ClientsModule, Transport } from '@nestjs/microservices';
+import { InitDbService } from './services/init-db.service';
 
 @Module({
   imports: [
@@ -19,6 +20,6 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
     ]),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, InitDbService],
 })
 export class AppModule {}

@@ -1,0 +1,58 @@
+name: post micro-service CI/CD
+
+on:
+  push:
+    # trigger this workflow after a new commit has been pushed on branch feature/authentication-jwt
+    branches: [ "feature/authentication-jwt" ]
+
+defaults:
+  run:
+    working-directory: ./post/
+
+jobs:
+  unit-tests:
+    environment: dev
+    # runner for the job
+    runs-on: ubuntu-latest 
+    # Docker Hub image that `unit-tests` executes in
+    container: node:20
+
+    # Service containers to run with `unit-test`
+    services:
+        # Label used to access the service container
+        post_database:
+            # Docker Hub image
+            image: mariadb:latest
+            #container_name: post_container
+            ports:
+                - 3307:3306
+            # Provide the credentials and other info for mariadb
+            env:
+                MARIADB_ROOT_PASSWORD: ${{ secrets.POST_MARIADB_ROOT_PASSWORD }}
+                MARIADB_USER: ${{ vars.POST_MARIADB_USER }}
+                MARIADB_PASSWORD: ${{ secrets.POST_MARIADB_PASSWORD }}
+                MARIADB_DATABASE: ${{ vars.POST_MARIADB_DATABASE }}
+
+    steps:
+    # get the code, as is on the branch feature/authentication-jwt
+    - name: checkout
+      uses: actions/checkout@v4.1.7
+    # install the post micro-service's dependencies
+    - name: npm install
+      run: npm install
+    # run all the jest tests
+    - name: run all tests
+      run: npm run test
+      env:
+        INIT_DB_WITH_MOCK: ${{ vars.INIT_DB_WITH_MOCK }}
+      
+  #test:
+    #runs-on: ubuntu-latest
+    #needs: build
+    #defaults:
+      #run:
+        #working-directory: ./gateway/
+    #steps:
+      ## verify the current working directory
+      #- name: pwd and ls
+        #run: pwd && ls -lhp
