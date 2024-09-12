@@ -1,8 +1,9 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { map, Observable, of, take } from 'rxjs';
+import { StorageService } from 'src/app/core/services/storage.service';
 import { LoginType } from 'src/app/core/types/login/login-type';
-import { TokenType } from 'src/app/core/types/login/token-type';
+import { TokenInfoType, TokenType } from 'src/app/core/types/login/token-type';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,8 @@ import { TokenType } from 'src/app/core/types/login/token-type';
 export class LoginService {
   private apiUrl = 'http://localhost:3000/auth'; 
   constructor(
-    private _httpClient: HttpClient
+    private _httpClient: HttpClient,
+    private _storageService: StorageService
   ) {}
 
   doLogin(credentials: any): Observable<HttpResponse<any>> {
@@ -56,6 +58,10 @@ export class LoginService {
       `${this.apiUrl}/login`,
       credentials
     );
+  }
+
+  tokenInfo(): Observable<TokenInfoType> {
+    return this._httpClient.get<any>(`${this.apiUrl}/info`)
   }
 }
 

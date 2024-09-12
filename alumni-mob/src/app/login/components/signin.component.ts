@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 import { StorageService } from 'src/app/core/services/storage.service';
 import { WsChatService } from 'src/app/core/services/ws-chat.service';
 import { LoginType } from 'src/app/core/types/login/login-type';
-import { TokenType } from 'src/app/core/types/login/token-type';
+import { TokenType, TokenInfoType } from 'src/app/core/types/login/token-type';
 
 @Component({
   selector: 'app-signin',
@@ -50,6 +50,25 @@ export class SigninComponent implements OnInit {
             if (response.access_token) {
               this._storage.store('auth', response.access_token);
               this._router.navigate(['tabs','tab1'])
+              .then(() => {
+                this._service.tokenInfo().pipe(take(1))
+                .subscribe({
+                  next: (tokenInfo: TokenInfoType) => {
+                    this._wsService.connect(tokenInfo.internId);
+                    this._wsService.receiveIdentity()
+                      .subscribe((identity: any) => {
+                      console.log(`got ${identity.socketId} from Socket Server`)
+                      const userId: string = tokenInfo.internId;
+                      const message: any = {
+                        socketId: identity.socketId,
+                        id: userId
+                      }
+                      this._wsService.sendIdentity(message)
+                    }
+                  )
+                  } 
+                })
+              })
 /*                 .then(() => {
                   console.log('Routing complete')
                   this._wsService.connect()
@@ -102,71 +121,4 @@ export class SigninComponent implements OnInit {
           }
         })
     }
-
-  // }
-
-  //   onSubmit(): void {
-  //     // Envoie les informations d'identification à la gateway
-  //     this._service
-  //       .login(this.form.value)
-  //       .pipe(take(1))
-  //       .subscribe({
-  //         next: async (response: any) => {
-  //           // Stocke le token et navigue vers le tableau principal
-  //           this._storage.store('auth', response.body.token);
-  //           await this._router.navigate(['tabs', 'tab1']);
-
-  //           console.log('Routing complete');
-  //           this._wsService.connect();
-  //           this._wsService.receiveIdentity().subscribe((identity: any) => {
-  //             console.log(`got ${identity.socketId} from Socket Server`);
-  //             const userId: string = response.body.token.split('.')[0];
-  //             const message: any = {
-  //               socketId: identity.socketId,
-  //               id: userId,
-  //             };
-  //             this._wsService.sendIdentity(message);
-  //           });
-
-  //           // Réinitialise le formulaire après la connexion
-  //           this.form.reset();
-  //         },
-  //         error: (error: any) => {
-  //           // Affiche un toast en cas d'erreur
-  //           console.log(`Erreur lors de la connexion: ${JSON.stringify(error)}`);
-  //           const toast = this._toastController.create({
-  //             message: "Une erreur s'est produite lors de la connexion.",
-  //             duration: 2000,
-  //             position: 'middle',
-  //             buttons: [{ text: 'Réessayer' }],
-  //           });
-  //           toast.then((t) => t.present());
-  //         },
-  //       });
-  //   }
-  // }
-
-  // onSubmit(): void {
-  //   // Envoie les informations d'identification à la gateway
-  //   const value = { email : this.form.value.login, pwd :this.form.value.password };
-  //   this._service
-  //     .login(value)
-  //     .pipe(take(1))
-  //     .subscribe({
-  //       next: async (response: any) => {
-  //         console.log(response, value);
-  //       },
-  //       error: (error: any) => {
-  //         // Affiche un toast en cas d'erreur
-  //         console.log(`Erreur lors de la connexion: ${JSON.stringify(error)}`);
-  //         const toast = this._toastController.create({
-  //           message: "Une erreur s'est produite lors de la connexion.",
-  //           duration: 2000,
-  //           position: 'middle',
-  //           buttons: [{ text: 'Réessayer' }],
-  //         });
-  //         toast.then((t) => t.present());
-  //       },
-  //     });
-  // }
 }

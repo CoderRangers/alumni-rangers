@@ -3,6 +3,7 @@ import { lastValueFrom } from 'rxjs';
 import { AccountService } from 'src/account/account.service';
 // import { AccountType } from 'src/account/model/account-type';
 import { JwtService } from '@nestjs/jwt';
+import { TokenInfoType } from './model/token-info-type';
 
 @Injectable()
 export class AuthService {
@@ -17,7 +18,11 @@ export class AuthService {
         this._accountService.login(email, pwd),
       );
       if (account) {
-        const payload = { sub: account.id, username: account.email };
+        const payload: TokenInfoType = {
+          id: account.id,
+          email: account.email,
+          internId: account.internId,
+        };
         const access_token = this.jwtService.sign(payload);
         resolve({
           access_token,
@@ -28,9 +33,11 @@ export class AuthService {
   }
 
   // TODO create tokenType, add internId in AccountType and Db, add request on authController to acces at the internId
-  getInternId(token): string {
-    const user = this.jwtService.decode(token);
-    return user.id;
+  getTokenInfo(token: string): TokenInfoType {
+    Logger.log(token);
+    const tokenInfo: TokenInfoType = this.jwtService.decode(token);
+    Logger.log(tokenInfo);
+    return tokenInfo;
   }
 
   async tokenCheck(token: any): Promise<boolean> {

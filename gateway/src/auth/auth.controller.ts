@@ -41,7 +41,13 @@ export class AuthController {
   @UseGuards(AuthGuard)
   @Get('profile')
   getProfile(@Request() req) {
+    Logger.log(req.user);
     return req.user; // simulate some request returning some data
+  }
+
+  @Get('info')
+  getTokenInfo(@Body() data: any) {
+    return this.authService.getTokenInfo(data.access_token);
   }
 
   @Post('token-check')

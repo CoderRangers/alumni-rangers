@@ -4,6 +4,7 @@ import { BehaviorSubject, map, Observable, of } from 'rxjs';
 import { InternService } from './intern.service';
 import { StorageService } from './storage.service';
 import { ChatMessageType } from '../types/chat/chat-message.type';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,8 @@ export class WsChatService {
 
   constructor(private _socket: Socket,
     private _internService: InternService,
-    private _storageService: StorageService
+    private _storageService: StorageService,
+    private _httpClient: HttpClient
   ) { }
 
   public get sid(): string {
@@ -27,10 +29,8 @@ export class WsChatService {
     this._sid = value;
   }
 
-  connect(): void {
-    const auth: string | null = this._storageService.retrieve('auth')
-    if (auth)
-      this._emitterId = auth.split('.')[0]
+  connect(id: string): void {
+    this._emitterId = id;
     this._socket.connect((error: any) => {
       console.error(`Something went wrong while connecting to socket : ${error}`)
     })
