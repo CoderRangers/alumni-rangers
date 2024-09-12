@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PostEntity } from 'src/models/post-entity';
 import { PostCategory, PostType } from 'src/models/post-type';
@@ -12,6 +12,7 @@ export class InitDbService {
     @InjectRepository(PostEntity)
     private _repository: Repository<PostEntity>,
   ) {
+    Logger.log(`InitDbService.constructor(): useInitDb: ${useInitDb}`);
     if (useInitDb == 'true') {
       this._populateDbWitMocks();
     }
