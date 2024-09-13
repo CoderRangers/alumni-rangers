@@ -25,7 +25,7 @@ const mockAuthor: InternType = {
 
 const mockPostEntity: Array<any> = [
   {
-    id: 1,
+    id: '1',
     title: 'First Post',
     content: 'This is the content of the first post.',
     media: 'http://example.com/media1.jpg',
@@ -65,60 +65,60 @@ const mockPostType: Array<PostType> = [
   },
 ];
 
-// describe('AppService', () => {
-//   let appService: AppService;
-//   let mockProxy: jest.Mocked<ClientProxy>;
-//   let mockRepo: jest.Mocked<Repository<PostEntity>>;
-
-//   beforeEach(async () => {
-//     mockProxy = {
-//       send: jest.fn(),
-//     } as unknown as jest.Mocked<ClientProxy>;
-
-//     mockRepo = {
-//       find: jest.fn(),
-//       findOne: jest.fn(),
-//     } as unknown as jest.Mocked<Repository<PostEntity>>;
-
-//     appService = new AppService(mockRepo, mockProxy);
-//   });
-
-//   it('getAllPosts', async () => {
-//     // intercept http request and return fake value
-//     mockRepo.find.mockResolvedValue(mockPostEntity);
-//     mockProxy.send.mockReturnValue(of(mockAuthor));
-
-//     const result = await appService.getAllPosts();
-//     console.log(mockPostType);
-//     console.log(result);
-//     expect(result).toBe(mockPostType);
-//   });
-// });
-
-describe('appService', () => {
+describe('AppService', () => {
   let appService: AppService;
-  let mockProxy: jasmine.SpyObj<ClientProxy>;
-  let mockRepo: jasmine.SpyObj<Repository<PostEntity>>;
+  let mockProxy: jest.Mocked<ClientProxy>;
+  let mockRepo: jest.Mocked<Repository<PostEntity>>;
 
   beforeEach(async () => {
-    mockProxy = jasmine.createSpyObj('ClientProxy', ['send']);
-    mockRepo = jasmine.createSpyObj('Repository<PostEntity>', [
-      'find',
-      'findOne',
-    ]);
+    mockProxy = {
+      send: jest.fn(),
+    } as unknown as jest.Mocked<ClientProxy>;
+
+    mockRepo = {
+      find: jest.fn(),
+      findOne: jest.fn(),
+    } as unknown as jest.Mocked<Repository<PostEntity>>;
 
     appService = new AppService(mockRepo, mockProxy);
   });
-  //tester la mise en place du service avec tobeTruthy
-  it('service test', () => {
-    expect(appService).toBeTruthy();
-  });
 
-  // it('getAllPosts', async () => {
-  //   // intercept http request and return fake value
-  //   mockRepo.find.and.resolveTo(mockPostEntity);
-  //   mockProxy.send.and.returnValue(of(mockAuthor));
-  //   const result = await appService.getAllPosts();
-  //   expect(result).toBe(mockPostType);
-  // });
+  it('getAllPosts', async () => {
+    // intercept http request and return fake value
+    mockRepo.find.mockResolvedValue(mockPostEntity);
+    mockProxy.send.mockReturnValue(of(mockAuthor));
+
+    const result = await appService.getAllPosts();
+    console.log('result expected' + JSON.stringify(mockPostType));
+    console.log('result obtained by the getAllPosts' + JSON.stringify(result));
+    expect(result).toEqual(mockPostType);
+  });
 });
+
+// describe('appService', () => {
+//   let appService: AppService;
+//   let mockProxy: jasmine.SpyObj<ClientProxy>;
+//   let mockRepo: jasmine.SpyObj<Repository<PostEntity>>;
+
+//   beforeEach(async () => {
+//     mockProxy = jasmine.createSpyObj('ClientProxy', ['send']);
+//     mockRepo = jasmine.createSpyObj('Repository<PostEntity>', [
+//       'find',
+//       'findOne',
+//     ]);
+
+//     appService = new AppService(mockRepo, mockProxy);
+//   });
+//tester la mise en place du service avec tobeTruthy
+// it('service test', () => {
+//   expect(appService).toBeTruthy();
+// });
+
+//   it('getAllPosts', async () => {
+//     // intercept http request and return fake value
+//     mockRepo.find.and.resolveTo(mockPostEntity);
+//     mockProxy.send.and.returnValue(of(mockAuthor));
+//     const result = await appService.getAllPosts();
+//     expect(result).toBe(mockPostType);
+//   });
+// });
