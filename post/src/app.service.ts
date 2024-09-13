@@ -64,6 +64,8 @@ export class AppService {
               media: post.media,
               postedAt: post.postedAt,
               category: PostCategory[post.category],
+              likes: post.likes,
+              comments: post.comments,
               author: await lastValueFrom(
                 this._client.send<InternType>(pattern, post.authorId),
               ),
