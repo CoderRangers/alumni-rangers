@@ -23,6 +23,12 @@ jobs:
       run: npm install
     - name: Build the post micro-service
       run: npm run build
+    - name: Cache the compiled post micro-service files
+      id: cache-post
+      uses: actions/cache@v4
+      with:
+        path: ./post/
+        key: post-${{ github.ref_name }}-${{ github.sha }}
       
   unit-tests:
     # The build job must have finished successfuly before starting this job
@@ -47,11 +53,17 @@ jobs:
                 MARIADB_DATABASE: ${{ vars.POST_MARIADB_DATABASE }}
 
     steps:
-      # Get the code, as is on the branch feature/authentication-jwt
-      - name: Checkout the code
-        uses: actions/checkout@v4.1.7
-      - name: Install the post micro-service's dependencies
-        run: npm install
+      ## Get the code, as is on the branch feature/authentication-jwt
+      #- name: Checkout the code
+        #uses: actions/checkout@v4.1.7
+      #- name: Install the post micro-service's dependencies
+        #run: npm install
+      - name: Restore all the post micro-service files
+        #id: cache-primes-restore
+        uses: actions/cache/restore@v4
+        with:
+          path: ./post/
+          key: post-${{ github.ref_name }}-${{ github.sha }}
       - name: Run all the jest tests for post
         run: npm run test
         env:
