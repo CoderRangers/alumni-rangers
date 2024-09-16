@@ -45,7 +45,7 @@ export class AuthController {
     return req.user; // simulate some request returning some data
   }
 
-  @Get('info')
+  @Post('info')
   getTokenInfo(@Body() data: any) {
     return this.authService.getTokenInfo(data.access_token);
   }

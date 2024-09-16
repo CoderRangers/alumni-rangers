@@ -61,7 +61,8 @@ export class LoginService {
   }
 
   tokenInfo(): Observable<TokenInfoType> {
-    return this._httpClient.get<any>(`${this.apiUrl}/info`)
+    const token: TokenType = this._storageService.retrieve('auth')
+    return this._httpClient.post<any>(`${this.apiUrl}/info`, { access_token: token })
   }
 }
 

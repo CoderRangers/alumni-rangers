@@ -34,9 +34,7 @@ export class AuthService {
 
   // TODO create tokenType, add internId in AccountType and Db, add request on authController to acces at the internId
   getTokenInfo(token: string): TokenInfoType {
-    Logger.log(token);
     const tokenInfo: TokenInfoType = this.jwtService.decode(token);
-    Logger.log(tokenInfo);
     return tokenInfo;
   }
 
