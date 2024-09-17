@@ -17,7 +17,10 @@ export class CompanyFeedbackEntity {
   @Column()
   feedbackTitle: string;
 
-  @Column()
+  @Column({
+    type: 'enum',
+    enum: CompanyRating,
+  })
   rating: CompanyRating;
 
   @Column()
@@ -38,7 +41,10 @@ export class CompanyFeedbackEntity {
   @Column()
   salaryHigh?: number;
 
-  @Column()
+  @Column({
+    type: 'enum',
+    enum: SalaryFormat,
+  })
   salaryFormat?: SalaryFormat;
 
   @Column()
