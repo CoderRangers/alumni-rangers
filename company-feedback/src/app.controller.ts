@@ -1,12 +1,15 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
 import { AppService } from './app.service';
+import { MessagePattern } from '@nestjs/microservices';
+import { CompanyFeedbackType } from './models/company-feedback.type';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @MessagePattern({ cmd: 'createCompanyFeedback' })
+  async findAll(): Promise<CompanyFeedbackType[]> {
+    const feedbackData = await this.appService.getAllFeedback();
+    return feedbackData;
   }
 }

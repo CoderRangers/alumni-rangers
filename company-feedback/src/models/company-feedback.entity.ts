@@ -2,6 +2,7 @@ import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { CompanyRating } from './company-rating.type';
 import { CompanyType } from './company.type';
 import { CompanyEntity } from './company.entity';
+import { SalaryFormat } from './salary-format.type';
 
 @Entity({
   name: 'company-feedback',
@@ -36,6 +37,9 @@ export class CompanyFeedbackEntity {
 
   @Column()
   salaryHigh?: number;
+
+  @Column()
+  salaryFormat?: SalaryFormat;
 
   @Column()
   postedAt: Date;

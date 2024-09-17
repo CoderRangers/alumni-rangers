@@ -13,7 +13,7 @@ export type CompanyFeedbackType = {
   jobEndDate: Date;
   salaryLow?: number;
   salaryHigh?: number;
-  salaryFormat: SalaryFormat;
+  salaryFormat?: SalaryFormat;
   postedAt: Date;
   lastname: string;
   firstname: string;
