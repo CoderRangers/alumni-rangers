@@ -1,21 +1,9 @@
-export enum CompanyCategory {
-  largeGroup = 'Grand groupe',
-  smallAndMediumCompany = 'PME',
-  startUp = 'Start-up',
-  others = 'Autre',
-}
-
-export enum CompanyRating {
-  veryNegative = 'Très négatif',
-  slightlyNegative = 'Plutôt négatif',
-  neutral = 'Neutre',
-  slightlyPositive = 'Plutôt positif',
-  veryPositive = 'Positif',
-}
+import { CompanyRating } from './company-rating.type';
+import { CompanyType } from './company.type';
 
 export type CompanyFeedbackType = {
-  company: string;
-  companyType: CompanyCategory;
+  id?: string;
+  company: CompanyType;
   feedbackTitle: string;
   rating: CompanyRating;
   feedbackText: string;
