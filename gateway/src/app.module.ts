@@ -11,11 +11,18 @@ import { PostModule } from './post/post.module';
 //import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { AccountModule } from './account/account.module';
+import { CompanyFeedbackModule } from './company-feedback/company-feedback.module';
 
 //const envfile = 'env/' + process.env.NEST_ENV;
 
 @Module({
-  imports: [InternModule, PostModule, AuthModule, AccountModule],
+  imports: [
+    InternModule,
+    PostModule,
+    AuthModule,
+    AccountModule,
+    CompanyFeedbackModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
