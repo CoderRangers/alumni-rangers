@@ -1,5 +1,6 @@
 import { CompanyRating } from './company-rating.type';
 import { CompanyType } from './company.type';
+import { SalaryFormat } from './salary-format.type';
 
 export type CompanyFeedbackType = {
   id?: string;
@@ -12,6 +13,7 @@ export type CompanyFeedbackType = {
   jobEndDate: Date;
   salaryLow?: number;
   salaryHigh?: number;
+  salaryFormat: SalaryFormat;
   postedAt: Date;
   lastname: string;
   firstname: string;

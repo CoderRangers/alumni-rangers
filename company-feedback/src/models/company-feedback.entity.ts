@@ -1,6 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { CompanyRating } from './company-rating.type';
 import { CompanyType } from './company.type';
+import { CompanyEntity } from './company.entity';
 
 @Entity({
   name: 'company-feedback',
@@ -9,7 +10,7 @@ export class CompanyFeedbackEntity {
   @PrimaryGeneratedColumn()
   id: string;
 
-  @Column()
+  @ManyToOne(() => CompanyEntity, (company) => company)
   company: CompanyType;
 
   @Column()

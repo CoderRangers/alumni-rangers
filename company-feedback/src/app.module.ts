@@ -3,6 +3,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { CompanyEntity } from './models/company.entity';
+import { CompanyFeedbackEntity } from './models/company-feedback.entity';
 
 const envfile = process.env.EXEC_MODE; // first step acces the content of the EXEC_MODE environment variable
 @Module({
@@ -21,10 +23,10 @@ const envfile = process.env.EXEC_MODE; // first step acces the content of the EX
         password: _configService.get<string>('DB_PASSWORD'),
         database: _configService.get<string>('DB_DATABASE'),
         synchronize: _configService.get<boolean>('ORM_OPTIONS_SYNC'), // at each execution of gateway, (re)create the post_repository database
-        // entities: [AccountEntity],
+        entities: [CompanyEntity, CompanyFeedbackEntity],
       }),
     }),
-    // TypeOrmModule.forFeature([AccountEntity]),
+    TypeOrmModule.forFeature([CompanyEntity, CompanyFeedbackEntity]),
   ],
   controllers: [AppController],
   providers: [AppService],
