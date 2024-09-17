@@ -1,0 +1,10 @@
+services:
+  db_company_feedback:
+    image: mariadb:latest
+    container_name: company_feedback_db_container
+    ports:
+      - 3309:3306
+    volumes:
+      - ./datas:/var/lib/mysql
+    env_file:
+      - .env  
