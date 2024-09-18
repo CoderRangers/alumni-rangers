@@ -1,26 +1,45 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { CreateCompanyFeedbackDto } from './dto/create-company-feedback.dto';
 import { UpdateCompanyFeedbackDto } from './dto/update-company-feedback.dto';
+import { ClientProxy } from '@nestjs/microservices';
+import { Observable } from 'rxjs';
+import { CompanyFeedbackType } from './models/company-feedback.type';
 
 @Injectable()
 export class CompanyFeedbackService {
-  create(createCompanyFeedbackDto: CreateCompanyFeedbackDto) {
-    return 'This action adds a new companyFeedback';
+  constructor(@Inject('COMPANY-FEEDBACK') private _client: ClientProxy) {}
+
+  create(
+    createCompanyFeedbackDto: CreateCompanyFeedbackDto,
+  ): Observable<CreateCompanyFeedbackDto> {
+    const pattern: any = { cmd: 'createCompanyFeedback' };
+    return this._client.send<CreateCompanyFeedbackDto>(
+      pattern,
+      createCompanyFeedbackDto,
+    );
   }
 
-  findAll() {
-    return `This action returns all companyFeedback`;
+  findAll(): Observable<Array<CompanyFeedbackType>> {
+    const pattern: any = { cmd: 'findAllCompanyFeedback' };
+    return this._client.send<Array<CompanyFeedbackType>>(pattern, {});
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} companyFeedback`;
+  findOne(id: string): Observable<CompanyFeedbackType> {
+    const pattern: any = { cmd: 'findOneCompanyFeedback' };
+    return this._client.send<CompanyFeedbackType>(pattern, id);
   }
 
-  update(id: number, updateCompanyFeedbackDto: UpdateCompanyFeedbackDto) {
-    return `This action updates a #${id} companyFeedback`;
+  update(
+    id: string,
+    updateCompanyFeedbackDto: UpdateCompanyFeedbackDto,
+  ): Observable<UpdateCompanyFeedbackDto> {
+    const pattern: any = { cmd: 'updateCompanyFeedback' };
+    const payload: any = { id: id, updateDto: updateCompanyFeedbackDto };
+    return this._client.send<UpdateCompanyFeedbackDto>(pattern, payload);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} companyFeedback`;
+  remove(id: string): Observable<CreateCompanyFeedbackDto> {
+    const pattern: any = { cmd: 'removeCompanyFeedback' };
+    return this._client.send<CreateCompanyFeedbackDto>(pattern, id);
   }
 }

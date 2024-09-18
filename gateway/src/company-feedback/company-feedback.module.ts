@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { CompanyFeedbackService } from './company-feedback.service';
 import { CompanyFeedbackController } from './company-feedback.controller';
 import { ClientsModule, Transport } from '@nestjs/microservices';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
         },
       },
     ]),
+    AuthModule,
   ],
   controllers: [CompanyFeedbackController],
   providers: [CompanyFeedbackService],
