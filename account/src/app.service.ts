@@ -4,6 +4,20 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { AccountEntity } from './models/account-entity';
 import { Repository } from 'typeorm';
 
+/**
+ * Here we are in account service. This class instantiates
+ * a repository for account entity with a constructor.
+ * The purpose of this service is to use the differents methods
+ * provided by the repository to manipulate data.
+ * We inject the repo and we create a propriety to apply the methods.
+ *
+ * This service handles request to database in order to
+ * obtain by example : the list of account using the repository.
+ * We can also query the database to check whether a user can log in
+ * if his or her account is activated,
+ * and whether the credentials exist.
+ */
+
 @Injectable()
 export class AppService {
   constructor(

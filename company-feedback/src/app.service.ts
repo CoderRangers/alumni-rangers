@@ -13,4 +13,8 @@ export class AppService {
   getAllFeedback(): Promise<CompanyFeedbackType[]> {
     return this._repository.find();
   }
+
+  getOneFeedback(idFeedback: string): Promise<CompanyFeedbackEntity> {
+    return this._repository.findOneBy({ id: idFeedback });
+  }
 }
