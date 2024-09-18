@@ -13,7 +13,7 @@ fi
 if [  $# -eq 0 ]
 then
 	# if no arguments, run all the pieces of the backend
-	ALL_BACKEND_PARTS="account gateway intern messager post"
+	ALL_BACKEND_PARTS="account gateway intern messager post company-feedback"
 	# Stop all pieces of the backend (and any other running Node.js program, if any)
 	echo "STEP 1: Stopping all running Node.js programs, if any"
 	killall -q node
