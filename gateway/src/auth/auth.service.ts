@@ -1,17 +1,32 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { lastValueFrom } from 'rxjs';
 import { AccountService } from 'src/account/account.service';
-// import { AccountType } from 'src/account/model/account-type';
 import { JwtService } from '@nestjs/jwt';
 import { TokenInfoType } from './model/token-info-type';
 
+/**
+ * This service is used to connect user safely
+ * and generate token auth
+ */
+
 @Injectable()
 export class AuthService {
+  /**
+   * dependence injection in constructor's parameters of AuthService class
+   * @param _accountService is required to ensure that user is an intern from aélion
+   * @param jwtService is a dependency which generate a token automatically
+   */
   constructor(
     private _accountService: AccountService,
     private jwtService: JwtService,
   ) {}
 
+  /**
+   * verify if credentials are conformed and generate token
+   * @param email user's mail used for login
+   * @param pwd user's password used for login
+   * @returns if user can log generate and return a token
+   */
   async signIn(email: string, pwd: string): Promise<any> {
     return new Promise(async (resolve, reject) => {
       const account = await lastValueFrom(
@@ -32,12 +47,21 @@ export class AuthService {
     });
   }
 
-  // TODO create tokenType, add internId in AccountType and Db, add request on authController to acces at the internId
+  /**
+   * decode information from a token
+   * @param token a jwt Token
+   * @returns an TokenInfoType object
+   */
   getTokenInfo(token: string): TokenInfoType {
     const tokenInfo: TokenInfoType = this.jwtService.decode(token);
     return tokenInfo;
   }
 
+  /**
+   * verify validity and authenticity of an auth token
+   * @param token a jwt Token
+   * @returns a promise of boolean
+   */
   async tokenCheck(token: any): Promise<boolean> {
     let isTokenValid = false;
     /* Logger.log(
