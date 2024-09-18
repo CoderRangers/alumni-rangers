@@ -1,0 +1,22 @@
+ion-header {
+    width: 100%;
+    background-color: aqua;
+}
+
+.marginTop{
+    margin-top:1%;
+}
+.blackColor{
+    color:black;
+}
+#postContent{
+    width:80%;
+    //border:black 1px solid;
+}
+
+/* Styles pour les écrans mobiles (max-width: 600px) */
+@media (min-width: 925px) and (max-width: 2000px) {
+    .postContainer{
+        width:600px;
+    }
+}

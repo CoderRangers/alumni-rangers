@@ -8,9 +8,17 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">tab4</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+  <ion-item>
+    <ion-input label="" placeholder="Entrer le nom d'entreprise" [value]="inputModel" (ionInput)="onInput($event)" #ionInputEl [clearInput]="true"></ion-input>
+  </ion-item>
+
+    <ion-list class="list">
+      <ion-item class="item" *ngFor="let company of filteredComp">
+        <app-company *ngIf="company.id !== undefined" class="comp" [company]="company" (click)="onClick(company.id)"></app-company>
+      </ion-item>
+    </ion-list>
+<!--     <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll> -->
 </ion-content>

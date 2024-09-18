@@ -1,0 +1,36 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>
+
+      <ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="3">
+              <ion-avatar>
+                <img *ngIf="company.logo === ''" alt="Company's logo" src="https://ionicframework.com/docs/img/demos/avatar.svg"/>
+                <img *ngIf="company.logo !== ''" alt="Company's logo" src={{company.logo}}/>
+              </ion-avatar>
+            </ion-col>
+            <ion-col>
+              <ion-row>
+                <ion-label
+                  >{{ company.name }}
+                </ion-label>
+              </ion-row>
+              <ion-row>
+                <ion-note
+                  >{{ company.type}}</ion-note>
+              </ion-row>
+              <ion-row>
+                <ion-label
+                  >Avis global : {{ company.medianRating}}
+                </ion-label>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    
+    </ion-card-title>
+  </ion-card-header>
+</ion-card>
