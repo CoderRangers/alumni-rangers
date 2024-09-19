@@ -27,8 +27,12 @@ export class Tab4Page implements OnInit {
     this.filteredComp = this.companys.filter((comp) => comp.name.toLowerCase().includes(value.toLowerCase()));
   }
 
-  onClick(companyId: string) {
+  selectCompany(companyId: string) {
     console.log(`click ${companyId}`);
+  }
+
+  addFeedback() {
+    console.log('add feedback');
   }
 
   private populate(): CompanyType[] {
@@ -64,32 +68,4 @@ export class Tab4Page implements OnInit {
       }
     ];
   }
-
-/*   private populate(): void {
-      let company = {
-        id: '1', 
-        name: 'Cap Gemini', 
-        companyType: 'Grand Groupe',
-        medianRating: 'neutre',
-        logo: ''
-      }
-      this.companys.push(company);
-      company = {
-        id: '2', 
-        name: 'CGI', 
-        companyType: 'Grand Groupe',
-        medianRating: 'neutre',
-        logo: ''
-      }
-      this.companys.push(company);
-      company = {
-        id: '3', 
-        name: 'Chez coco', 
-        companyType: 'start up',
-        medianRating: 'Plutot positif', 
-        logo: ''
-      }
-      this.companys.push(company); 
-  } */
-
 }

@@ -15,10 +15,16 @@
 
     <ion-list class="list">
       <ion-item class="item" *ngFor="let company of filteredComp">
-        <app-company *ngIf="company.id !== undefined" class="comp" [company]="company" (click)="onClick(company.id)"></app-company>
+        <app-company *ngIf="company.id !== undefined" class="comp" [company]="company" (click)="selectCompany(company.id)"></app-company>
       </ion-item>
     </ion-list>
 <!--     <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
       <ion-infinite-scroll-content></ion-infinite-scroll-content>
     </ion-infinite-scroll> -->
+
+    <ion-fab slot="fixed" vertical="bottom" horizontal="end" (click)="addFeedback()">
+      <ion-fab-button>
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
 </ion-content>
