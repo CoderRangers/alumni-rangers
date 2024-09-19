@@ -38,13 +38,14 @@ export class Tab4Page implements OnInit {
         name: 'Google',
         type: CompanyCategory.largeGroup,
         medianRating: CompanyRating.slightlyPositive,
-        logo: ''
+        logo: '/assets/icon/logo-de-vecteur-google-chrome-passent-le-moteur-recherche-au-bichromate-potasse-du-pour-les-marques-célèbres-internationales-189260093.webp'
       },
       {
         id: '2',
         name: 'Apple',
         type: CompanyCategory.largeGroup,
-        medianRating: CompanyRating.veryNegative
+        medianRating: CompanyRating.veryNegative,
+        logo: '/assets/Le-logo-Apple-500x281.jpg'
       },
       // ... Ajoutez ici les 2 autres éléments
       {
@@ -52,13 +53,14 @@ export class Tab4Page implements OnInit {
         name: 'Tesla',
         type: CompanyCategory.smallAndMediumCompany,
         medianRating: CompanyRating.neutral,
-        logo: 'https://example.com/tesla-logo.png'
+        logo: '/assets/icon/Logo-Tesla-noir.jpg'
       },
       {
         id: '4',
         name: 'Starbucks',
         type: CompanyCategory.startUp,
-        medianRating: CompanyRating.veryPositive
+        medianRating: CompanyRating.veryPositive,
+        logo: "/assets/icon/starbucks logo current.webp"
       }
     ];
   }
