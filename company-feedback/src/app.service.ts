@@ -32,4 +32,8 @@ export class AppService {
   getOneFeedback(idFeedback: string): Promise<CompanyFeedbackEntity> {
     return this._repository.findOneBy({ id: idFeedback });
   }
+
+  removeFeedback(idFeedback: string): Promise<CompanyFeedbackEntity> {
+    return this._repository.delete({ id: idFeedback });
+  }
 }
