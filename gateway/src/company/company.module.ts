@@ -1,23 +1,11 @@
 import { Module } from '@nestjs/common';
 import { CompanyService } from './company.service';
 import { CompanyController } from './company.controller';
-import { ClientsModule, Transport } from '@nestjs/microservices';
 import { AuthModule } from 'src/auth/auth.module';
+import { SharedModule } from 'src/shared/shared.module';
 
 @Module({
-  imports: [
-    ClientsModule.register([
-      {
-        name: 'COMPANY-FEEDBACK',
-        transport: Transport.TCP,
-        options: {
-          host: '127.0.0.1',
-          port: 3400,
-        },
-      },
-    ]),
-    AuthModule,
-  ],
+  imports: [SharedModule, AuthModule],
   controllers: [CompanyController],
   providers: [CompanyService],
 })
