@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { CompanyRating } from './company-rating.type';
-import { CompanyType } from './company.type';
+//import { CompanyType } from './company.type';
 import { CompanyEntity } from './company.entity';
 import { SalaryFormat } from './salary-format.type';
 
@@ -12,7 +12,7 @@ export class CompanyFeedbackEntity {
   id: string;
 
   @ManyToOne(() => CompanyEntity, (company) => company)
-  company: CompanyType;
+  company: CompanyEntity;
 
   @Column()
   feedbackTitle: string;

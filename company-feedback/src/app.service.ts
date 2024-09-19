@@ -10,8 +10,23 @@ export class AppService {
     @InjectRepository(CompanyFeedbackEntity)
     private _repository: Repository<CompanyFeedbackEntity>,
   ) {}
-  getAllFeedback(): Promise<CompanyFeedbackType[]> {
-    return this._repository.find();
+  async getAllFeedback(): Promise<CompanyFeedbackType[]> {
+    const feedbacks = await this._repository.find({
+      relations: ['company'],
+    });
+
+    return feedbacks.map((feedback) => ({
+      ...feedback,
+      company: feedback.company
+        ? {
+            id: feedback.company.id,
+            name: feedback.company.name,
+            type: feedback.company.type,
+            medianRating: feedback.company.medianRating,
+            logo: feedback.company.logo,
+          }
+        : null,
+    }));
   }
 
   getOneFeedback(idFeedback: string): Promise<CompanyFeedbackEntity> {
