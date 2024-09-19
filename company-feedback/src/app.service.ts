@@ -6,6 +6,9 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class AppService {
+  // How many new feedbacks to load when reaching the bottom of an infinite scroll list
+  private _nbFeedbacks = 3;
+
   constructor(
     @InjectRepository(CompanyFeedbackEntity) //it works without add companyEntity.... weird !
     private _repository: Repository<CompanyFeedbackEntity>,
@@ -52,6 +55,15 @@ export class AppService {
         logo: feedback.company.logo,
       },
     };
+  }
+
+  /* Find the next _nbFeedbacks feedbacks, in ante-chronological order, starting from index */
+  getNextFeedbacks(index: number): Promise<CompanyFeedbackEntity[]> {
+    return this._repository.find({
+      order: { jobEndDate: 'DESC' },
+      take: this._nbFeedbacks,
+      skip: this._nbFeedbacks * index,
+    });
   }
 
   removeFeedback(idFeedback: string): Promise<CompanyFeedbackEntity> {

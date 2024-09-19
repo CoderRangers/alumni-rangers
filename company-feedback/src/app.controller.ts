@@ -20,6 +20,12 @@ export class AppController {
     return oneFeedback;
   }
 
+  @MessagePattern({ cmd: 'findNextCompanyFeedback' })
+  async findNext(@Payload() index: number): Promise<CompanyFeedbackType[]> {
+    const feedbacks = await this.appService.getNextFeedbacks(index);
+    return feedbacks;
+  }
+
   @MessagePattern({ cmd: 'removeCompanyFeedback' })
   async deleteCompanyFeeedback(id: string) {
     return this.appService.removeFeedback(id);
