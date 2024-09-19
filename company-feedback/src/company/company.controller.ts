@@ -2,6 +2,7 @@ import { Controller } from '@nestjs/common';
 import { CompanyService } from './company.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { CompanyType } from 'src/models/company.type';
+import { CompanyEntity } from 'src/models/company.entity';
 
 @Controller()
 export class CompanyController {
@@ -16,5 +17,9 @@ export class CompanyController {
   async findOne(@Payload() companyId: string): Promise<CompanyType> {
     const oneCompany = await this.companyService.getOnecompany(companyId);
     return oneCompany;
+  }
+  @MessagePattern({ cmd: 'createCompany' })
+  newCompany(companyData: CompanyType): Promise<CompanyEntity> {
+    return this.companyService.insertCompany(companyData);
   }
 }
