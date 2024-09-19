@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { CompanyCategory, CompanyType } from '../core/types/company-feedback/company-feed.type';
 import { CompanyRating } from '../core/types/company-feedback/company-rating.type';
 import { IonInput } from '@ionic/angular';
+import { CompanyService } from '../core/services/company.service';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-tab4',
@@ -14,11 +16,17 @@ export class Tab4Page implements OnInit {
   public filteredComp!: Array<CompanyType>
   public inputModel = '';
 
-  constructor() { }
+  constructor(private _companyService: CompanyService) { }
 
   ngOnInit() {
-    this.companys = this.populate();
-    this.filteredComp = this.companys    
+    this._companyService.findAll()
+    .pipe(take(1))
+    .subscribe({
+      next: (response: any) => {
+        this.companys = response;
+        this.filteredComp = this.companys;
+      },
+    });  
   }
 
   @ViewChild('ionInputEl', { static: true }) ionInputEl!: IonInput;

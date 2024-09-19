@@ -9,7 +9,7 @@ import { CompanyType } from '../types/company-feedback/company-feed.type';
 export class CompanyService {
   private readonly URI = 'http://localhost:3000/company'
 
-  private _posts!: Observable <Array<CompanyType>>
+  private _company!: Observable <Array<CompanyType>>
 
   constructor(
     private _httpClient: HttpClient
