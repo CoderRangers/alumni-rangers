@@ -6,6 +6,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CompanyEntity } from './models/company.entity';
 import { CompanyFeedbackEntity } from './models/company-feedback.entity';
 import { CompanyModule } from './company/company.module';
+import { CompanyController } from './company/company.controller';
+import { CompanyService } from './company/company.service';
 
 const envfile = process.env.EXEC_MODE; // first step acces the content of the EXEC_MODE environment variable
 @Module({
@@ -30,7 +32,7 @@ const envfile = process.env.EXEC_MODE; // first step acces the content of the EX
     TypeOrmModule.forFeature([CompanyEntity, CompanyFeedbackEntity]),
     CompanyModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, CompanyController],
+  providers: [AppService, CompanyService],
 })
 export class AppModule {}

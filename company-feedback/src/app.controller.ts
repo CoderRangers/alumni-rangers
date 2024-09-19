@@ -19,8 +19,8 @@ export class AppController {
     return oneFeedback;
   }
 
-  @MessagePattern({ cmd: 'removeCompanyFeedback' })
-  async removeCompanyFeeedback(id: string) {
-    return this.appService.removeFeedback(id);
-  }
+  // @MessagePattern({ cmd: 'removeCompanyFeedback' })
+  // async removeCompanyFeeedback(id: string) {
+  //   return this.appService.removeFeedback(id);
+  // }
 }

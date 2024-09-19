@@ -3,13 +3,13 @@ import { CompanyService } from './company.service';
 import { MessagePattern } from '@nestjs/microservices';
 import { CompanyType } from 'src/models/company.type';
 
-@Controller('company')
+@Controller()
 export class CompanyController {
   constructor(private readonly companyService: CompanyService) {}
 
-  @MessagePattern({ cmd: 'findAllCompany' })
+  @MessagePattern({ cmd: 'findAllCompanies' })
   async findAll(): Promise<CompanyType[]> {
-    const feedbackData = await this.companyService.getAllCompanies();
-    return feedbackData;
+    const companyData = await this.companyService.getAllCompanies();
+    return companyData;
   }
 }
