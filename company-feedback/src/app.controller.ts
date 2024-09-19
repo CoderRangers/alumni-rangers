@@ -26,6 +26,16 @@ export class AppController {
     return feedbacks;
   }
 
+  @MessagePattern({ cmd: 'findAllCompanyFeedbacksOfOneCompany' })
+  async findAllFeedbacksOfOneCompany(
+    @Payload() companyId: string,
+  ): Promise<CompanyFeedbackType> {
+    // TODO
+    // const oneFeedback = await this.appService.getOneFeedback(companyId);
+    // return oneFeedback;
+    return null;
+  }
+
   @MessagePattern({ cmd: 'removeCompanyFeedback' })
   async deleteCompanyFeeedback(@Payload() id: string) {
     return this.appService.removeFeedback(id);
