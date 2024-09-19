@@ -14,4 +14,10 @@ export class CompanyService {
   getAllCompanies(): Promise<CompanyType[]> {
     return this._repository.find();
   }
+
+  getOnecompany(idCompany: string): Promise<CompanyType> {
+    return this._repository.findOne({
+      where: { id: idCompany },
+    });
+  }
 }
