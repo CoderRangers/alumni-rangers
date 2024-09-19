@@ -7,7 +7,7 @@
     width: 95%;
     height:100%;
     display: flex;
-    justify-content: space-between;
+    
   }
 .border {
   border-radius: 10px;
@@ -17,9 +17,12 @@
   border: 1px solid black;
   border-radius: 10px;
 }
+
 img {
   width: 8%;
   height: 8%;
+  margin-top: 5%;
+  margin: 4px;
 }
 .textarealayOut{
   margin-top: 5%;

@@ -12,11 +12,11 @@
       </div>
     </ion-row>
     <ion-row>
-      <ion-item id="postContent">
+      <ion-item id="postContent" lines="none">
         {{ postContent.content }}
       </ion-item>
     </ion-row>
-    <ion-item class="marginTop">
+    <ion-item class="marginTop" lines="none">
       <ion-note
         >Publié le {{ postContent.postedAt | date : "dd/MM/yyyy" }} à
         {{ postContent.postedAt | date : "shortTime" }}
