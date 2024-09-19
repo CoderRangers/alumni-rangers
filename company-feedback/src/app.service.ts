@@ -100,7 +100,9 @@ export class AppService {
     try {
       const result = await this._repository.insert(feedbackData);
       const insertedId = result.identifiers[0].id;
-      const savedFeedback = await this._repository.findOne(insertedId);
+      const savedFeedback = await this._repository.findOne({
+        where: { id: insertedId },
+      });
       return savedFeedback;
     } catch (error) {
       Logger.log(error);
