@@ -85,15 +85,11 @@ export class AppService {
   async insertFeedback(
     feedbackData: CompanyFeedbackType,
   ): Promise<CompanyFeedbackEntity> {
-    // Utilisez la méthode insert pour ajouter un nouveau feedback
     try {
       const result = await this._repository.insert(feedbackData);
-      // Le résultat contient des informations sur l'insertion
-      // Récupérer l'ID du feedback inséré
       const insertedId = result.identifiers[0].id;
       const savedFeedback = await this._repository.findOne(insertedId);
-      // Rechercher l'entité insérée pour retourner l'objet complet
-      return savedFeedback; // Retournez l'entité sauvegardée
+      return savedFeedback;
     } catch (error) {
       Logger.log(error);
     }
