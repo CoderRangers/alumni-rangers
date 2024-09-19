@@ -12,6 +12,7 @@ import { PostModule } from './post/post.module';
 import { AuthModule } from './auth/auth.module';
 import { AccountModule } from './account/account.module';
 import { CompanyFeedbackModule } from './company-feedback/company-feedback.module';
+import { CompanyModule } from './company/company.module';
 
 //const envfile = 'env/' + process.env.NEST_ENV;
 
@@ -22,6 +23,7 @@ import { CompanyFeedbackModule } from './company-feedback/company-feedback.modul
     AuthModule,
     AccountModule,
     CompanyFeedbackModule,
+    CompanyModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -10,8 +10,8 @@ import {
   MaxLength,
 } from 'class-validator';
 import { CompanyRating } from '../models/company-rating.type';
-import { CompanyType } from '../models/company.type';
 import { SalaryFormat } from '../models/salary-format.type';
+import { CompanyType } from 'src/intern/models/company.type';
 
 export class CreateCompanyFeedbackDto {
   @IsOptional()

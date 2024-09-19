@@ -1,5 +1,5 @@
+import { CompanyType } from 'src/intern/models/company.type';
 import { CompanyRating } from './company-rating.type';
-import { CompanyType } from './company.type';
 import { SalaryFormat } from './salary-format.type';
 
 export type CompanyFeedbackType = {
