@@ -1,4 +1,4 @@
-import { CompanyRating } from './company-rating.type';
+import { CompanyRating } from 'src/company-feedback/models/company-rating.type';
 
 export enum CompanyCategory {
   largeGroup = 'Grand groupe',
