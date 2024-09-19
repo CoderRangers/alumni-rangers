@@ -29,6 +29,11 @@ export class CompanyFeedbackService {
     return this._client.send<CompanyFeedbackType>(pattern, id);
   }
 
+  findNext(index: number): Observable<Array<CompanyFeedbackType>> {
+    const pattern: any = { cmd: 'findNextCompanyFeedback' };
+    return this._client.send<Array<CompanyFeedbackType>>(pattern, index);
+  }
+
   update(
     id: string,
     updateCompanyFeedbackDto: UpdateCompanyFeedbackDto,

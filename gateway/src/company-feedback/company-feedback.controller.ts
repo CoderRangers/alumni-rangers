@@ -35,6 +35,11 @@ export class CompanyFeedbackController {
     return this.companyFeedbackService.findOne(id);
   }
 
+  @Get(':index')
+  findNext(@Param('index') index: number) {
+    return this.companyFeedbackService.findNext(index);
+  }
+
   @Put(':id')
   update(
     @Param('id') id: string,
