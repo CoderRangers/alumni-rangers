@@ -1,26 +1,40 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { CreateCompanyDto } from './dto/create-company.dto';
 import { UpdateCompanyDto } from './dto/update-company.dto';
+import { ClientProxy } from '@nestjs/microservices';
+import { Observable } from 'rxjs';
+import { CompanyType } from './models/company.type';
 
 @Injectable()
 export class CompanyService {
-  create(createCompanyDto: CreateCompanyDto) {
-    return 'This action adds a new company';
+  constructor(@Inject('COMPANY-FEEDBACK') private _client: ClientProxy) {}
+
+  create(createCompanyDto: CreateCompanyDto): Observable<CreateCompanyDto> {
+    const pattern: any = { cmd: 'createCompany' };
+    return this._client.send<CreateCompanyDto>(pattern, createCompanyDto);
   }
 
-  findAll() {
-    return `This action returns all company`;
+  findAll(): Observable<Array<CompanyType>> {
+    const pattern: any = { cmd: 'findAllCompanies' };
+    return this._client.send<Array<CompanyType>>(pattern, {});
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} company`;
+  findOne(id: string): Observable<CompanyType> {
+    const pattern: any = { cmd: 'findOneCompany' };
+    return this._client.send<CompanyType>(pattern, id);
   }
 
-  update(id: number, updateCompanyDto: UpdateCompanyDto) {
-    return `This action updates a #${id} company`;
+  update(
+    id: string,
+    updateCompanyDto: UpdateCompanyDto,
+  ): Observable<UpdateCompanyDto> {
+    const pattern: any = { cmd: 'updateCompany' };
+    const payload: any = { id: id, updateDto: updateCompanyDto };
+    return this._client.send<UpdateCompanyDto>(pattern, payload);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} company`;
+  remove(id: string): Observable<CreateCompanyDto> {
+    const pattern: any = { cmd: 'removeCompany' };
+    return this._client.send<CreateCompanyDto>(pattern, id);
   }
 }
