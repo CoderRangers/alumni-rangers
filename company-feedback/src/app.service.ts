@@ -80,7 +80,6 @@ export class AppService {
     idFeedback: string,
     updatedData: Partial<CompanyFeedbackEntity>,
   ): Promise<CompanyFeedbackEntity> {
-    // Rechercher l'entité à mettre à jour
     const feedback = this._repository.findOne({
       where: { id: idFeedback },
     });

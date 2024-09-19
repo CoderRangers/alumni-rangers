@@ -27,21 +27,20 @@ export class AppController {
   }
 
   @MessagePattern({ cmd: 'removeCompanyFeedback' })
-  async deleteCompanyFeeedback(id: string) {
+  async deleteCompanyFeeedback(@Payload() id: string) {
     return this.appService.removeFeedback(id);
   }
 
   @MessagePattern({ cmd: 'updateCompanyFeedback' })
-  async changeCompanyFeedback(
-    idFeedback: string,
-    updatedData: Partial<CompanyFeedbackEntity>,
-  ): Promise<CompanyFeedbackEntity> {
+  async changeCompanyFeedback(@Payload() data): Promise<CompanyFeedbackEntity> {
+    const idFeedback: string = data.id;
+    const updatedData: Partial<CompanyFeedbackEntity> = data.updateDto;
     return this.appService.updateFeedback(idFeedback, updatedData);
   }
 
   @MessagePattern({ cmd: 'createCompanyFeedback' })
   newCompanyFeedback(
-    feedbackData: CompanyFeedbackType,
+    @Payload() feedbackData: CompanyFeedbackType,
   ): Promise<CompanyFeedbackEntity> {
     return this.appService.insertFeedback(feedbackData);
   }
