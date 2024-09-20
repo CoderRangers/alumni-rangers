@@ -21,5 +21,6 @@ export class FeedbackFormStep6Component  implements OnInit {
     this._feedbackFormModals.modalIds.forEach((modalId) => {
       this.modalCtrl.dismiss(null, "", modalId);
     })
+    this._feedbackFormModals.modalIds = [];
   }
 }
