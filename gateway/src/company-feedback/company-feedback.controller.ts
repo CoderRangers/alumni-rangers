@@ -42,9 +42,7 @@ export class CompanyFeedbackController {
 
   @Get('/company/:id')
   findAllFeedbacksOfOneCompany(@Param('id') id: string) {
-    // TODO
-    // return this.companyFeedbackService.findOne(id);
-    return null;
+    return this.companyFeedbackService.findAllFeedbacksOfOneCompany(id);
   }
 
   @Put(':id')
