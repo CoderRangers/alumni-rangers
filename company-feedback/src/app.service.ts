@@ -79,6 +79,25 @@ export class AppService {
     });
   }
 
+  /** Find the next _nbFeedbacks feedbacks regarding a single company,
+   * in ante-chronological order, starting from index */
+  getNextFeedbacksOfOneCompany(
+    companyId: string,
+    index: number,
+  ): Promise<CompanyFeedbackEntity[]> {
+    return this._repository.find({
+      relations: {
+        company: true,
+      },
+      where: {
+        company: { id: companyId },
+      },
+      order: { jobEndDate: 'DESC' },
+      take: this._nbFeedbacks,
+      skip: this._nbFeedbacks * index,
+    });
+  }
+
   removeFeedback(idFeedback: string): Promise<CompanyFeedbackEntity> {
     const feedback = this._repository.findOne({
       where: { id: idFeedback },

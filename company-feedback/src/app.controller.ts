@@ -33,6 +33,15 @@ export class AppController {
     return this.appService.getAllFeedbacksOfOneCompany(companyId);
   }
 
+  @MessagePattern({ cmd: 'findNextFeedbacksOfOneCompany' })
+  async findNextFeedbacksOfOneCompany(
+    @Payload() data: any,
+  ): Promise<CompanyFeedbackType[]> {
+    const companyId: string = data.id;
+    const index: number = +data.index;
+    return this.appService.getNextFeedbacksOfOneCompany(companyId, index);
+  }
+
   @MessagePattern({ cmd: 'removeCompanyFeedback' })
   async deleteCompanyFeeedback(@Payload() id: string) {
     return this.appService.removeFeedback(id);

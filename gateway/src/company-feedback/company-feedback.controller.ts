@@ -45,6 +45,17 @@ export class CompanyFeedbackController {
     return this.companyFeedbackService.findAllFeedbacksOfOneCompany(id);
   }
 
+  @Get('/company/:id/next/:index')
+  findNextFeedbacksOfOneCompany(
+    @Param('id') companyId: string,
+    @Param('index') index: number,
+  ) {
+    return this.companyFeedbackService.findNextFeedbacksOfOneCompany(
+      companyId,
+      index,
+    );
+  }
+
   @Put(':id')
   update(
     @Param('id') id: string,

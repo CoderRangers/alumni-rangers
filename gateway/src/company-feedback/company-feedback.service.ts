@@ -36,6 +36,15 @@ export class CompanyFeedbackService {
     return this._client.send<Array<CompanyFeedbackType>>(pattern, id);
   }
 
+  findNextFeedbacksOfOneCompany(
+    companyId: string,
+    index: number,
+  ): Observable<Array<CompanyFeedbackType>> {
+    const pattern: any = { cmd: 'findNextFeedbacksOfOneCompany' };
+    const payload = { id: companyId, index: index };
+    return this._client.send<Array<CompanyFeedbackType>>(pattern, payload);
+  }
+
   findNext(index: number): Observable<Array<CompanyFeedbackType>> {
     const pattern: any = { cmd: 'findNextCompanyFeedback' };
     return this._client.send<Array<CompanyFeedbackType>>(pattern, index);
