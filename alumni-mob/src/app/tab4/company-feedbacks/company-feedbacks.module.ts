@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { CompanyFeedbacksPageRoutingModule } from './company-feedbacks-routing.module';
 
 import { CompanyFeedbacksPage } from './company-feedbacks.page';
+import { FeedbackComponent } from './component/feedback/feedback.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { CompanyFeedbacksPage } from './company-feedbacks.page';
     IonicModule,
     CompanyFeedbacksPageRoutingModule
   ],
-  declarations: [CompanyFeedbacksPage]
+  declarations: [CompanyFeedbacksPage, FeedbackComponent]
 })
 export class CompanyFeedbacksPageModule {}

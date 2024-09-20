@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs';
 import { CompanyService } from 'src/app/core/services/company.service';
+import { FeedbackService } from 'src/app/core/services/feedback.service';
 import { CompanyType } from 'src/app/core/types/company-feedback/company-feed.type';
+import { CompanyFeedbackType } from 'src/app/core/types/company-feedback/company-feedback.type';
 
 @Component({
   selector: 'app-company-feedbacks',
@@ -11,9 +13,11 @@ import { CompanyType } from 'src/app/core/types/company-feedback/company-feed.ty
 })
 export class CompanyFeedbacksPage implements OnInit {
   public company?: CompanyType;
+  public listFeedback!: Array<CompanyFeedbackType>;
 
   constructor(private _route: ActivatedRoute,
     private _companyService: CompanyService,
+    private _feedBackService: FeedbackService,
     private _router: Router
   ) { }
 
@@ -25,6 +29,12 @@ export class CompanyFeedbacksPage implements OnInit {
         .subscribe((comp) => {
           this.company = comp;
         })
+        this._feedBackService.findFeedbacksOfOneCompany(id).pipe(take(1))
+          .subscribe({
+            next: (response: any) => {
+              this.listFeedback = response;
+            }
+          })
       }
       else {
         this._router.navigateByUrl('tabs/tab4');

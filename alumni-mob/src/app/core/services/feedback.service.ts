@@ -14,15 +14,19 @@ export class FeedbackService {
   ) { }
 
   public findAll(): Observable<Array<CompanyFeedbackType>> {
-    return this._httpClient.get<Array<CompanyFeedbackType>>(this.URI)
+    return this._httpClient.get<Array<CompanyFeedbackType>>(this.URI);
   }
 
   public findOne(id: string): Observable<CompanyFeedbackType> {
-    return this._httpClient.get<CompanyFeedbackType>(this.URI+'/'+id)
+    return this._httpClient.get<CompanyFeedbackType>(this.URI+'/'+id);
+  }
+
+  public findFeedbacksOfOneCompany(id:string): Observable<CompanyFeedbackType> {
+    return this._httpClient.get<CompanyFeedbackType>(this.URI+'/company/'+id);
   }
 
   public create(feedback: CompanyFeedbackType): Observable<CompanyFeedbackType> {
-    return this._httpClient.post<CompanyFeedbackType>(this.URI, feedback)
+    return this._httpClient.post<CompanyFeedbackType>(this.URI, feedback);
   }
 
   public update(id: string, data: CompanyFeedbackType): Observable<CompanyFeedbackType> {
