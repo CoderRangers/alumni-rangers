@@ -57,23 +57,25 @@ export class CompanyService {
     this._repository.update({ id: idCompany }, updatedData);
     return { ...newCompany, ...updatedData };
   }
-  removeCompany(companyId: string) {
-    this.getOnecompany(companyId).then(() => {
-      this.removeFeedbacks(companyId);
-      this.removeCompany(companyId);
-    });
-  }
-  removeFeedbacks(companyId: string) {
-    const deleteFeedback = [];
-    const feedbacks = this._feedbackService
-      .getAllFeedbacksOfOneCompany(companyId)
-      .then((feedbackCompany) => {
-        for (let i = 0; i < feedbackCompany.length; i++) {
-          Logger.log(JSON.stringify(feedbackCompany[i]));
-          deleteFeedback.push(feedbackCompany[i]);
-          this._feedbackService.removeFeedback(feedbackCompany[i].id);
-        }
-        return deleteFeedback;
-      });
-  }
+
+  /* code in microservice is not executed anymore gateway send no element in sequence and crash*/
+
+  // removeCompany(companyId: string) {
+  //   this.getOnecompany(companyId).then(() => {
+  //     this.removeFeedbacks(companyId);
+  //     this.removeCompany(companyId);
+  //   });
+  // }
+  // removeFeedbacks(companyId: string) {
+  //   const deleteFeedback = [];
+  //   const feedbacks = this._feedbackService
+  //     .getAllFeedbacksOfOneCompany(companyId)
+  //     .then((feedbackCompany) => {
+  //       for (let i = 0; i < feedbackCompany.length; i++) {
+  //         Logger.log(JSON.stringify(feedbackCompany[i]));
+  //         deleteFeedback.push(feedbackCompany[i]);
+  //         this._feedbackService.removeFeedback(feedbackCompany[i].id);
+  //       }
+  //       return deleteFeedback;
+  //     });
 }

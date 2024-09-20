@@ -28,8 +28,8 @@ export class CompanyController {
     const updatedData: Partial<CompanyEntity> = data.updateDto;
     return this.companyService.updateCompany(idCompany, updatedData);
   }
-  @MessagePattern({ cmd: 'removeCompany' })
-  async deleteCompany(@Payload() id: string) {
-    return this.companyService.removeCompany(id);
-  }
+  // @MessagePattern({ cmd: 'removeCompany' })
+  // async deleteCompany(@Payload() id: string) {
+  //   return this.companyService.removeCompany(id);
+  // }
 }
