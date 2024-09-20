@@ -5,9 +5,9 @@
     </ion-item>
     <ion-item>
       <ion-input formControlName="password" type="password" placeholder="Votre mot de passe">
-        <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+        <ion-input-password-toggle class="togglecolor" slot="end"></ion-input-password-toggle>
       </ion-input>
     </ion-item>
-      <ion-button type="submit" [disabled]="form.invalid" shape="round">GO !</ion-button>
+      <ion-button class="btncolor" type="submit" [disabled]="form.invalid" shape="round">Se connecter</ion-button>
   </ion-list>
 </form>

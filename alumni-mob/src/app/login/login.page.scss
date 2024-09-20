@@ -1,0 +1,28 @@
+.logoSize{
+    width:8%;
+    height:8%;
+    
+}
+.toolbarLayOut{
+    display:flex;
+    //border:1px solid black;
+}
+.toolBarChild{
+    width: 100%;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    background-color: #2d3041;
+   
+}
+.border{
+    //border:1px solid black;
+    justify-content: flex-end;
+}
+.styleHead{
+    color: #ffffff ;
+    font-family: 'Georgia' , serif;
+    font-size: 26px;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
