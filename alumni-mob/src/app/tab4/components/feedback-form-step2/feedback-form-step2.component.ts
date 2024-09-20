@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { FeedbackFormModalsService } from '../../services/feedback-form-modals.service';
 
 @Component({
   selector: 'app-feedback-form-step2',
@@ -8,16 +9,18 @@ import { ModalController } from '@ionic/angular';
 })
 export class FeedbackFormStep2Component  implements OnInit {
 
-  constructor(private modalCtrl: ModalController) {}
+  constructor(private modalCtrl: ModalController, private _feedbackFormModals: FeedbackFormModalsService) {}
 
   ngOnInit() {}
 
-  cancel() {
+  previous() {
     return this.modalCtrl.dismiss(null, 'cancel');
   }
 
-  confirm() {
-    // return this.modalCtrl.dismiss(null, 'confirm');
+  next() {
+    this._feedbackFormModals.modalIds.forEach((modalId) => {
+      this.modalCtrl.dismiss(null, "", modalId);
+    })
   }
 
 }

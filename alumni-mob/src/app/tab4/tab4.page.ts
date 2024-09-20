@@ -10,6 +10,7 @@ import { take } from 'rxjs';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { FeedbackFormStep1Component } from './components/feedback-form-step1/feedback-form-step1.component';
+import { FeedbackFormModalsService } from './services/feedback-form-modals.service';
 
 @Component({
   selector: 'app-tab4',
@@ -24,7 +25,8 @@ export class Tab4Page implements OnInit {
   constructor(
     private _companyService: CompanyService,
     private _router: Router,
-    private modalController: ModalController
+    private _modalController: ModalController,
+    private _feedbackFormModals: FeedbackFormModalsService,
   ) {}
 
   ngOnInit() {
@@ -52,13 +54,16 @@ export class Tab4Page implements OnInit {
   }
 
   async dismiss() {
-    await this.modalController.dismiss();
+    await this._modalController.dismiss();
   }
 
   async addFeedback() {
-    const modal = await this.modalController.create({
+    const newModalId = 'feedback-form-step-1'
+    const modal = await this._modalController.create({
       component: FeedbackFormStep1Component,
+      id: newModalId,
     });
+    this._feedbackFormModals.modalIds.push(newModalId)
     modal.present();
   }
 }

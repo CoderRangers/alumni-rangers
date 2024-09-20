@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { FeedbackFormStep2Component } from '../feedback-form-step2/feedback-form-step2.component';
+import { FeedbackFormModalsService } from '../../services/feedback-form-modals.service';
 
 @Component({
   selector: 'app-feedback-form-step1',
@@ -9,14 +10,17 @@ import { FeedbackFormStep2Component } from '../feedback-form-step2/feedback-form
 })
 export class FeedbackFormStep1Component  implements OnInit {
 
-  constructor(private modalCtrl: ModalController) {}
+  constructor(private modalCtrl: ModalController, private _feedbackFormModals: FeedbackFormModalsService) {}
 
   ngOnInit() {}
 
   async openStep2Modal() {
+    const newModalId = 'feedback-form-step-2'
     const modal = await this.modalCtrl.create({
       component: FeedbackFormStep2Component,
+      id: newModalId,
     });
+    this._feedbackFormModals.modalIds.push(newModalId)
     modal.present();
 
     const { data, role } = await modal.onWillDismiss();
@@ -30,7 +34,7 @@ export class FeedbackFormStep1Component  implements OnInit {
     return this.modalCtrl.dismiss(null, 'cancel');
   }
 
-  confirm() {
+  next() {
     this.openStep2Modal();
     // return this.modalCtrl.dismiss(null, 'confirm');
   }
