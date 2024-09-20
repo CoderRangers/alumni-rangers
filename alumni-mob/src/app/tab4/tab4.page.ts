@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { FeedbackFormStep1Component } from './components/feedback-form-step1/feedback-form-step1.component';
 import { FeedbackFormModalsService } from './services/feedback-form-modals.service';
+import { FeedbackService } from '../core/services/feedback.service';
 
 @Component({
   selector: 'app-tab4',
@@ -24,6 +25,7 @@ export class Tab4Page implements OnInit {
 
   constructor(
     private _companyService: CompanyService,
+    private _feedbackService: FeedbackService,
     private _router: Router,
     private _modalController: ModalController,
     private _feedbackFormModals: FeedbackFormModalsService,
@@ -50,6 +52,7 @@ export class Tab4Page implements OnInit {
   }
 
   selectCompany(companyId: string) {
+    this._feedbackService.indexOfLastDisplayedFeedback = 0;
     this._router.navigate(['tabs', 'tab4', 'company-feedbacks', companyId]);
   }
 
