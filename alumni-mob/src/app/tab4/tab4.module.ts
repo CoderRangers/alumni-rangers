@@ -8,6 +8,8 @@ import { Tab4PageRoutingModule } from './tab4-routing.module';
 
 import { Tab4Page } from './tab4.page';
 import { CompanyComponent } from './components/company/company.component';
+import { FeedbackFormStep1Component } from './components/feedback-form-step1/feedback-form-step1.component';
+import { FeedbackFormStep2Component } from './components/feedback-form-step2/feedback-form-step2.component';
 
 @NgModule({
   imports: [
@@ -16,6 +18,6 @@ import { CompanyComponent } from './components/company/company.component';
     IonicModule,
     Tab4PageRoutingModule
   ],
-  declarations: [Tab4Page, CompanyComponent]
+  declarations: [Tab4Page, CompanyComponent, FeedbackFormStep1Component, FeedbackFormStep2Component]
 })
 export class Tab4PageModule {}
