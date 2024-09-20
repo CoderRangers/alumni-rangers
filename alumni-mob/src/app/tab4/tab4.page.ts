@@ -48,7 +48,6 @@ export class Tab4Page implements OnInit {
   }
 
   selectCompany(companyId: string) {
-    console.log(`click ${companyId}`);
     this._router.navigate(['tabs', 'tab4', 'company-feedbacks', companyId]);
   }
 

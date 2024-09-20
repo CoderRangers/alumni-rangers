@@ -16,13 +16,20 @@
             <ion-label>{{ feedback.jobTitle }}</ion-label>
           </ion-row>
           <ion-row>
-            <ion-label> de {{feedback.jobStartDate | date: 'dd/MM/yyy'}} à {{feedback.jobEndDate | date: 'dd/MM/yyy'}}</ion-label>
+            <ion-note>du {{feedback.jobStartDate | date: 'dd/MM/yyy'}} au {{feedback.jobEndDate | date: 'dd/MM/yyy'}}</ion-note>
           </ion-row>
           <ion-row>
-            <ion-label><h2>{{feedback.feedbackTitle}}</h2></ion-label>
+            <ion-title>{{feedback.feedbackTitle}}</ion-title>
           </ion-row>
           <ion-row>
             <ion-label>{{feedback.feedbackText}}</ion-label>
+          </ion-row>
+          <ion-row *ngIf="feedback.salaryLow !== null">
+            <ion-note *ngIf="feedback.salaryLow && feedback.salaryHigh === null">Salaire : {{feedback.salaryLow}}€ {{feedback.salaryFormat}}</ion-note>
+            <ion-note *ngIf="feedback.salaryLow && feedback.salaryHigh">Salaire : entre {{feedback.salaryLow}}€ et {{feedback.salaryHigh}}€ {{feedback.salaryFormat}}</ion-note>
+          </ion-row>
+          <ion-row>
+            <ion-note>Posté le {{feedback.postedAt | date: 'dd/MM/yyy'}}</ion-note>
           </ion-row>
         </ion-grid>
       </ion-item>
