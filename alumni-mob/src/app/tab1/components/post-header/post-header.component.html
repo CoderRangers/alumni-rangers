@@ -5,7 +5,7 @@
         <ion-row>
           <ion-col size="3">
             <ion-avatar>
-              <img
+              <img class="img"
                 alt="Silhouette of a person's head"
                 src="https://ionicframework.com/docs/img/demos/avatar.svg"
               />
@@ -13,19 +13,16 @@
           </ion-col>
           <ion-col>
             <ion-row>
-              <ion-label
-                >{{ intern.firstname }} {{ intern.lastname }}
+              <ion-label class="postAuthur">{{ intern.firstname }} {{ intern.lastname }}
               </ion-label>
             </ion-row>
             <ion-row>
-              <ion-label
-                >{{ intern.occupation }} chez
+              <ion-label class="postOccup">{{ intern.occupation }} chez
                 {{ intern.company.name }}</ion-label
               >
             </ion-row>
             <ion-row>
-              <ion-note
-                >{{ intern.poe.name }} ({{
+              <ion-note class="postPoe">{{ intern.poe.name }} ({{
                   intern.poe.beginAt | date : "dd/MM/yyy"
                 }}
                 - {{ intern.poe.endAt | date : "dd/MM/yyy" }})</ion-note

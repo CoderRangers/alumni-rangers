@@ -14,8 +14,11 @@
     color:black;
 }
 #postContent{
-    width:80%;
-    //border:black 1px solid;
+        color: #000000 ;
+        font-family: 'Georgia' , serif;
+        font-size: 20px;
+        font-weight: 300;
+        letter-spacing: 1px;
 }
 
 /* Styles pour les écrans mobiles (max-width: 600px) */
@@ -23,4 +26,17 @@
     .postContainer{
         width:600px;
     }
+}
+.postTitle{
+    color: #344977 ;
+    font-family: 'Georgia' , serif;
+    font-size: 20px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+.postDate{
+    color: #2b2b2b ;
+    font-family: 'Georgia' , serif;
+    font-size: 10px;
+    font-weight: 200;
 }

@@ -7,8 +7,10 @@
           <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
         </ion-avatar>
         <ion-list>
-          <ion-label>{{ intern.firstname }} {{ intern.lastname }} </ion-label>
+          <h1 class="postAuthur"> 
+          <ion-label>{{ intern.firstname }} {{ intern.lastname }}</ion-label>
           <ion-label>{{ intern.occupation }} chez {{ intern.company.name }}</ion-label>
+        </h1>
           <ion-note>{{ intern.poe.name }} ({{ intern.poe.beginAt | date: 'dd/MM/yyy'}} - {{ intern.poe.endAt | date: 'dd/MM/yyy' }})</ion-note>
         </ion-list>
         <ion-icon name="person-outline"></ion-icon>
