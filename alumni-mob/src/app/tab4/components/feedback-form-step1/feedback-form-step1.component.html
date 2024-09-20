@@ -27,7 +27,8 @@
     </ion-item>
   </ion-list>
   
-  <ion-item *ngIf="inputModel && filteredComp.length === 0"> 
-    <ion-button>Suivant ></ion-button>
-  </ion-item>
+  <ion-card *ngIf="inputModel && filteredComp.length === 0"> 
+    <p>Cette entreprise n'est pas recensé dans nos bases de données</p>
+    <ion-button shape="round"> Créer l'entreprise ></ion-button>
+    </ion-card>
 </ion-content>
