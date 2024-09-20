@@ -22,4 +22,14 @@ export class CompanyController {
   newCompany(companyData: CompanyType): Promise<CompanyEntity> {
     return this.companyService.insertCompany(companyData);
   }
+  @MessagePattern({ cmd: 'updateCompany' })
+  async changeCompany(@Payload() data): Promise<CompanyEntity> {
+    const idCompany: string = data.id;
+    const updatedData: Partial<CompanyEntity> = data.updateDto;
+    return this.companyService.updateCompany(idCompany, updatedData);
+  }
+  @MessagePattern({ cmd: 'removeCompany' })
+  async deleteCompany(@Payload() id: string) {
+    return this.companyService.removeCompany(id);
+  }
 }

@@ -36,4 +36,29 @@ export class CompanyService {
       Logger.log('on en est là');
     }
   }
+  updateCompany(
+    idCompany: string,
+    updatedData: Partial<CompanyEntity>,
+  ): Promise<CompanyEntity> {
+    const company = this._repository.findOne({
+      where: { id: idCompany },
+    });
+
+    if (!company) {
+      throw new Error(`Feedback with id ${idCompany} not found`);
+    }
+
+    this._repository.update({ id: idCompany }, updatedData);
+
+    return { ...company, ...updatedData };
+  }
+  removeCompany(idCompany: string): Promise<CompanyEntity> {
+    const company = this._repository.findOne({
+      where: { id: idCompany },
+    });
+
+    this._repository.delete({ id: idCompany });
+    // Feedback contains either a promise of the deleted record, or a promise of null
+    return company;
+  }
 }
