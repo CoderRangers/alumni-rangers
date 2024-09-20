@@ -56,7 +56,7 @@ export class FeedbackFormStep1Component implements OnInit {
     this._feedbackFormModals.modalIds.push(newModalId)
     modal.present();
 
-    const { data, role } = await modal.onWillDismiss();
+    // const { data, role } = await modal.onWillDismiss();
 
     /* if (role === 'confirm') {
       this.message = `Hello, ${data}!`;
@@ -69,7 +69,6 @@ export class FeedbackFormStep1Component implements OnInit {
 
   next() {
     this.openStep2Modal();
-    // return this.modalCtrl.dismiss(null, 'confirm');
   }
 }
 

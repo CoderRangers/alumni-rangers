@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { FeedbackFormModalsService } from '../../services/feedback-form-modals.service';
-import { FeedbackFormStep3Component } from '../feedback-form-step3/feedback-form-step3.component';
+import { FeedbackFormStep6Component } from '../feedback-form-step6/feedback-form-step6.component';
 
 @Component({
-  selector: 'app-feedback-form-step2',
-  templateUrl: './feedback-form-step2.component.html',
-  styleUrls: ['./feedback-form-step2.component.scss'],
+  selector: 'app-feedback-form-step5',
+  templateUrl: './feedback-form-step5.component.html',
+  styleUrls: ['./feedback-form-step5.component.scss'],
 })
-export class FeedbackFormStep2Component  implements OnInit {
+export class FeedbackFormStep5Component  implements OnInit {
 
   constructor(private modalCtrl: ModalController, private _feedbackFormModals: FeedbackFormModalsService) {}
 
@@ -19,17 +19,16 @@ export class FeedbackFormStep2Component  implements OnInit {
   }
 
   next() {
-    this.openStep3Modal()
+    this.openStep6Modal()
   }
 
-  async openStep3Modal() {
-    const newModalId = 'feedback-form-step-3'
+  async openStep6Modal() {
+    const newModalId = 'feedback-form-step-6'
     const modal = await this.modalCtrl.create({
-      component: FeedbackFormStep3Component,
+      component: FeedbackFormStep6Component,
       id: newModalId,
     });
     this._feedbackFormModals.modalIds.push(newModalId)
     modal.present();
   }
-
 }
