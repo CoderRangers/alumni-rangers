@@ -15,8 +15,11 @@
 
 <ion-content [fullscreen]="true">
   <ion-list class="list">
-    <ion-item class="item" *ngFor="let feedback of listFeedback">
-      <app-feedback *ngIf="feedback.id !== undefined" class="comp" [feedback]="feedback"></app-feedback>
+    <ion-item class="item" *ngFor="let feedback of listFeedback ; let i = index">
+      <app-feedback *ngIf="feedback.id !== undefined" class="comp" [feedback]="feedback" [index]="i"></app-feedback>
     </ion-item>
   </ion-list>
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

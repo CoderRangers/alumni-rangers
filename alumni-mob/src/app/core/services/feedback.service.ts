@@ -8,6 +8,7 @@ import { CompanyFeedbackType } from '../types/company-feedback/company-feedback.
 })
 export class FeedbackService {
   private readonly URI = 'http://localhost:3000/feedback';
+  private _indexOfLastDisplayedFeedback: number = 0;
 
   constructor(
     private _httpClient: HttpClient
@@ -35,5 +36,11 @@ export class FeedbackService {
 
   public delete(id: string): Observable<CompanyFeedbackType> {
     return this._httpClient.delete<CompanyFeedbackType>(this.URI+'/'+id);
+  }
+
+  public findNext(id: string): Observable<Array<CompanyFeedbackType>> {
+    let index = this._indexOfLastDisplayedFeedback;
+    this._indexOfLastDisplayedFeedback++;
+    return this._httpClient.get<Array<CompanyFeedbackType>>(this.URI + `/company/${id}/next/${index}`);
   }
 }

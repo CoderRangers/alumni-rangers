@@ -9,7 +9,9 @@ import { CompanyFeedbackType } from 'src/app/core/types/company-feedback/company
 export class FeedbackComponent  implements OnInit {
 
   @Input()
-  public feedback!: CompanyFeedbackType
+  public feedback!: CompanyFeedbackType;
+  @Input()
+  public index!:number;
 
   constructor() { }
 
