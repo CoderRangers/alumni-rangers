@@ -65,6 +65,7 @@ export class CompanyFeedbacksPage implements OnInit {
   }
 
   back() {
+    this._feedBackService.indexOfLastDisplayedFeedback = 0;
     this._router.navigateByUrl('tabs/tab4');
   }
 }

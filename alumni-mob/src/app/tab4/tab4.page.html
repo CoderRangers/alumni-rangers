@@ -14,7 +14,7 @@
   </ion-item>
 
     <ion-list class="list">
-      <ion-item class="item" *ngFor="let company of filteredComp">
+      <ion-item class="item" *ngFor="let company of filteredComp" [button]="true">
         <app-company *ngIf="company.id !== undefined" class="comp" [company]="company" (click)="selectCompany(company.id)"></app-company>
       </ion-item>
     </ion-list>
