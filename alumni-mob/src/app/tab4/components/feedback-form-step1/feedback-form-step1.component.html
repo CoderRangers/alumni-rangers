@@ -12,6 +12,22 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <!-- <ion-button expand="block" (click)="openStep2Modal()">Open step 2</ion-button> -->
-  <p>feedback-form-step1 works!</p>
+  <ion-item>
+    <ion-input  
+      placeholder="Entrer le nom d'entreprise"
+      [(ngModel)]="inputModel" 
+      (ionInput)="onInput($event)" 
+      [clearInput]="true"
+    ></ion-input>
+  </ion-item>
+  
+  <ion-list *ngIf="inputModel && filteredComp.length > 0"> 
+    <ion-item *ngFor="let company of filteredComp">
+      {{ company.name }}
+    </ion-item>
+  </ion-list>
+  
+  <ion-item *ngIf="inputModel && filteredComp.length === 0"> 
+    <ion-button>Suivant ></ion-button>
+  </ion-item>
 </ion-content>
