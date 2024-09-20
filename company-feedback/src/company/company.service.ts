@@ -1,14 +1,18 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { AppService } from 'src/app.service';
+import { CompanyFeedbackType } from 'src/models/company-feedback.type';
 import { CompanyEntity } from 'src/models/company.entity';
 import { CompanyType } from 'src/models/company.type';
-import { Repository } from 'typeorm';
+import { Feature, Repository } from 'typeorm';
 
 @Injectable()
 export class CompanyService {
   constructor(
     @InjectRepository(CompanyEntity)
     private _repository: Repository<CompanyEntity>,
+    private _feedbackService: AppService,
   ) {}
 
   getAllCompanies(): Promise<CompanyType[]> {
@@ -47,18 +51,29 @@ export class CompanyService {
     if (!company) {
       throw new Error(`Feedback with id ${idCompany} not found`);
     }
-
-    this._repository.update({ id: idCompany }, updatedData);
-
-    return { ...company, ...updatedData };
-  }
-  removeCompany(idCompany: string): Promise<CompanyEntity> {
-    const company = this._repository.findOne({
+    const newCompany = this._repository.findOne({
       where: { id: idCompany },
     });
-
-    this._repository.delete({ id: idCompany });
-    // Feedback contains either a promise of the deleted record, or a promise of null
-    return company;
+    this._repository.update({ id: idCompany }, updatedData);
+    return { ...newCompany, ...updatedData };
+  }
+  removeCompany(companyId: string) {
+    this.getOnecompany(companyId).then(() => {
+      this.removeFeedbacks(companyId);
+      this.removeCompany(companyId);
+    });
+  }
+  removeFeedbacks(companyId: string) {
+    const deleteFeedback = [];
+    const feedbacks = this._feedbackService
+      .getAllFeedbacksOfOneCompany(companyId)
+      .then((feedbackCompany) => {
+        for (let i = 0; i < feedbackCompany.length; i++) {
+          Logger.log(JSON.stringify(feedbackCompany[i]));
+          deleteFeedback.push(feedbackCompany[i]);
+          this._feedbackService.removeFeedback(feedbackCompany[i].id);
+        }
+        return deleteFeedback;
+      });
   }
 }
