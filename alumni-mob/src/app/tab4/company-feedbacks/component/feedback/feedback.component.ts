@@ -13,8 +13,15 @@ export class FeedbackComponent  implements OnInit {
   @Input()
   public index!:number;
 
+  public hide: boolean = true;
+
   constructor() { }
 
+  // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngOnInit() {}
+
+  showAll() {
+    this.hide = !this.hide;
+  }
 
 }

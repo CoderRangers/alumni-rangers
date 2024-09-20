@@ -41,7 +41,6 @@ export class FeedbackService {
   public findNext(id: string): Observable<Array<CompanyFeedbackType>> {
     let index = this._indexOfLastDisplayedFeedback;
     this._indexOfLastDisplayedFeedback++;
-    console.log(this.URI + `/company/${id}/next/${index}`)
     return this._httpClient.get<Array<CompanyFeedbackType>>(this.URI + `/company/${id}/next/${index}`);
   }
 
