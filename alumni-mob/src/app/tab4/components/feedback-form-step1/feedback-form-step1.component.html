@@ -1,3 +1,16 @@
-<p>
-  feedback-form-step1 works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="cancel()">Annuler</ion-button>
+    </ion-buttons>
+    <ion-title>Nouvel Avis - étape 1</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirm()" [strong]="true">Suivant</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- <ion-button expand="block" (click)="openStep2Modal()">Open step 2</ion-button> -->
+  <p>feedback-form-step1 works!</p>
+</ion-content>
