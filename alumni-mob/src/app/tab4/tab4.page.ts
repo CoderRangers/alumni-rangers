@@ -4,6 +4,7 @@ import { CompanyRating } from '../core/types/company-feedback/company-rating.typ
 import { IonInput } from '@ionic/angular';
 import { CompanyService } from '../core/services/company.service';
 import { take } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab4',
@@ -16,7 +17,7 @@ export class Tab4Page implements OnInit {
   public filteredComp!: Array<CompanyType>
   public inputModel = '';
 
-  constructor(private _companyService: CompanyService) { }
+  constructor(private _companyService: CompanyService, private _router: Router) { }
 
   ngOnInit() {
     this._companyService.findAll()
@@ -37,6 +38,7 @@ export class Tab4Page implements OnInit {
 
   selectCompany(companyId: string) {
     console.log(`click ${companyId}`);
+    this._router.navigate(['tabs','tab4','company-feedbacks', companyId]);
   }
 
   addFeedback() {

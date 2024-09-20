@@ -8,6 +8,11 @@ const routes: Routes = [
     path: '',
     component: Tab4Page,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'company-feedbacks',
+    loadChildren: () => import('./company-feedbacks/company-feedbacks.module').then( m => m.CompanyFeedbacksPageModule),
+    canActivate: [AuthGuard]
   }
 ];
 
