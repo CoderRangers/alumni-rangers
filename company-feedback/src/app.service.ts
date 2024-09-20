@@ -66,6 +66,19 @@ export class AppService {
     });
   }
 
+  getAllFeedbacksOfOneCompany(
+    companyId: string,
+  ): Promise<CompanyFeedbackEntity[]> {
+    return this._repository.find({
+      relations: {
+        company: true,
+      },
+      where: {
+        company: { id: companyId },
+      },
+    });
+  }
+
   removeFeedback(idFeedback: string): Promise<CompanyFeedbackEntity> {
     const feedback = this._repository.findOne({
       where: { id: idFeedback },
