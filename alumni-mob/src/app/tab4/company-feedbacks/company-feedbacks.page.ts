@@ -28,21 +28,24 @@ export class CompanyFeedbacksPage implements OnInit {
       const id = params.get('id');
       if(id) {
         this.idCompany = id;
-        this._companyService.findOne(id).pipe(take(1))
-        .subscribe((comp) => {
-          this.company = comp;
-        })
-        this._feedBackService.findNext(id).pipe(take(1))
-          .subscribe({
-            next: (response: any) => {
-              this.listFeedback = response;
-            }
-          })
       }
       else {
         this._router.navigateByUrl('tabs/tab4');
       }
     })
+    this._companyService.findOne(this.idCompany).pipe(take(1))
+      .subscribe((comp) => {
+        this.company = comp;
+      })
+      console.log('on init before');
+      this._feedBackService.findNext(this.idCompany).pipe(take(1))
+        .subscribe({
+          next: (response: any) => {
+            this.listFeedback = response;
+          }
+        })
+      console.log('on init after');
+    console.log(this.listFeedback);
   }
 
   onIonInfinite(ev: InfiniteScrollCustomEvent) {
