@@ -16,7 +16,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-list class="list">
+  <ion-list class="styleCentent">
     <ion-item class="item" *ngFor="let feedback of listFeedback ; let i = index">
       <app-feedback *ngIf="feedback.id !== undefined" class="comp" [feedback]="feedback" [index]="i"></app-feedback>
     </ion-item>

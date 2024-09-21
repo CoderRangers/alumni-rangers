@@ -47,7 +47,14 @@
     display: block;
     width: 100%;
 }
-
 .btncolor {
     --background: var(--ion-color-btn);
   }
+
+.styleCentent{
+    color: #0d0d0d ;
+    font-family: 'Georgia' , serif;
+    font-size: 26px;
+    font-weight: 300;
+    letter-spacing: 2px;
+}

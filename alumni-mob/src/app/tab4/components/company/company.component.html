@@ -1,11 +1,11 @@
 <ion-card>
   <ion-card-header>
-    <ion-card-title>
+    <ion-card-title class="styleCard">
 
       <ion-item lines="none">
         <ion-grid>
           <ion-row>
-            <ion-col size="3">
+            <ion-col size="1.5">
               <ion-avatar>
                 <img *ngIf="company.logo === ''" alt="Company's logo" src="https://ionicframework.com/docs/img/demos/avatar.svg"/>
                 <img *ngIf="company.logo !== ''" alt="Company's logo" src={{company.logo}}/>
