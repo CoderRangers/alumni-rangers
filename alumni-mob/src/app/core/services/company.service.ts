@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { CompanyType } from '../types/company-feedback/company-feed.type';
 
@@ -24,7 +24,14 @@ export class CompanyService {
   }
 
   public create(company: CompanyType): Observable<CompanyType> {
-    return this._httpClient.post<CompanyType>(this.URI, company)
+    console.log('Creating company:', company);
+    return this._httpClient.post<CompanyType>(this.URI, company).pipe(
+      tap(response => console.log('Company created:', response)),
+      catchError(error => {
+        console.error('Error creating company:', error);
+        throw error;
+      })
+    );
   }
 
   public update(id: string, data: CompanyType): Observable<CompanyType> {
