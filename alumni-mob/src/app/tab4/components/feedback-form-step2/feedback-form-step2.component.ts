@@ -57,7 +57,7 @@ export class FeedbackFormStep2Component implements OnInit {
     try {
       await firstValueFrom(this.companyService.create(company));
       this.showToast('L\'entreprise a bien été créée en base de données', 'success');
-      this.openStep3Modal();
+      this.openStep3Modal(company);
     } catch (error) {
       this.showToast('Échec de la requête', 'danger');
     }
@@ -72,11 +72,14 @@ export class FeedbackFormStep2Component implements OnInit {
     toast.present();
   }
 
-  async openStep3Modal() {
+  async openStep3Modal(company: CompanyType) {
     const newModalId = 'feedback-form-step-3';
     const modal = await this.modalCtrl.create({
       component: FeedbackFormStep3Component,
       id: newModalId,
+      componentProps: {
+        company: company
+      }
     });
     this._feedbackFormModals.modalIds.push(newModalId);
     modal.present();
