@@ -2,11 +2,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonInput, ModalController } from '@ionic/angular';
 import { FeedbackFormStep2Component } from '../feedback-form-step2/feedback-form-step2.component';
 import { FeedbackFormModalsService } from '../../services/feedback-form-modals.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { CompanyType } from 'src/app/core/types/company-type';
+import { CompanyType } from 'src/app/core/types/company-feedback/company-feed.type';
 import { take } from 'rxjs';
 import { CompanyService } from 'src/app/core/services/company.service';
 import { FeedbackFormStep3Component } from '../feedback-form-step3/feedback-form-step3.component';
+import { RefreshCompaniesService } from '../../services/refresh-company.service';
 
 @Component({
   selector: 'app-feedback-form-step1',
@@ -23,7 +23,8 @@ export class FeedbackFormStep1Component implements OnInit {
   constructor(
     private _feedbackFormModals: FeedbackFormModalsService,
     private modalCtrl: ModalController,
-    private _companyService: CompanyService
+    private _companyService: CompanyService,
+    private _companyRefreshService: RefreshCompaniesService
   ) {}
 
   ngOnInit(): void {
@@ -36,6 +37,11 @@ export class FeedbackFormStep1Component implements OnInit {
           this.filteredComp = this.companys;
         },
       });
+
+    this._companyRefreshService.companies$.subscribe(companies => {
+      this.companys = companies;
+      this.filteredComp = this.companys;
+    });
   }
   @ViewChild('ionInputEl', { static: true }) ionInputEl!: IonInput;
   onInput(ev: any) {
@@ -75,6 +81,8 @@ export class FeedbackFormStep1Component implements OnInit {
   next() {
     if(this.nextButtonColor == 'medium'){
       this.openStep2Modal();
+      this.cleanInput();
+
     }else{
       this.openStep3Modal();
       this.cleanInput()
@@ -90,6 +98,11 @@ export class FeedbackFormStep1Component implements OnInit {
     this.selectedCompany = company;
     this.nextButtonColor = 'primary';
   }
-  
+  refreshCompany() {
+    this._companyService.findAll().pipe(take(1)).subscribe(companies => {
+      this._companyRefreshService.refreshCompanies(companies);
+    });
+  }
 }
+
 

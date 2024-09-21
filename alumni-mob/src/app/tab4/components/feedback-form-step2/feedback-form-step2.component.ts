@@ -7,6 +7,8 @@ import { CompanyService } from 'src/app/core/services/company.service';
 import { CompanyType, CompanyCategory } from 'src/app/core/types/company-feedback/company-feed.type';
 import { CompanyRating } from 'src/app/core/types/company-feedback/company-rating.type';
 import { firstValueFrom } from 'rxjs';
+import { RefreshCompaniesService } from '../../services/refresh-company.service';
+
 
 @Component({
   selector: 'app-feedback-form-step2',
@@ -24,7 +26,8 @@ export class FeedbackFormStep2Component implements OnInit {
     private _feedbackFormModals: FeedbackFormModalsService,
     private fb: FormBuilder,
     private companyService: CompanyService,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private _companyRefreshService: RefreshCompaniesService
   ) {}
 
   ngOnInit() {
@@ -58,6 +61,7 @@ export class FeedbackFormStep2Component implements OnInit {
       await firstValueFrom(this.companyService.create(company));
       this.showToast('L\'entreprise a bien été créée en base de données', 'success');
       this.openStep3Modal(company);
+      this._companyRefreshService.refreshCompanies(await firstValueFrom(this.companyService.findAll()));
     } catch (error) {
       this.showToast('Échec de la requête', 'danger');
     }
