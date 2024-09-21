@@ -11,7 +11,47 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <p>
-    feedback-form-step3 works!
-  </p>
+  <form [formGroup]="jobInfoForm" (ngSubmit)="onSubmit()">
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked"><h1>Quel était votre poste chez {{ companyName }} ?</h1></ion-label>
+        <ion-input formControlName="jobTitle" [clearInput]="true"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked"><h1>Quand avez-vous travaillé chez {{ companyName }} ?</h1></ion-label>
+        <ion-grid>
+          <ion-row class="ion-justify-content-between">
+            <ion-col><ion-input formControlName="startDate" type="date" label="Début" labelPlacement="start"></ion-input></ion-col>
+            <ion-col><ion-input formControlName="endDate" type="date" label="Fin" labelPlacement="start" [disabled]="jobInfoForm.value.stillOnTheJob"></ion-input></ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-toggle formControlName="stillOnTheJob" [enableOnOffLabels]="true" (ionChange)="endDateToggle($event)">Êtes-vous toujours à ce poste ?</ion-toggle>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked"><h1>(Facultatif) Si cela vous semble pertinent, indiquez le salaire que vous touchiez</h1></ion-label>
+        <ion-grid>
+          <ion-row>
+            <ion-col><ion-input formControlName="salaryLow" label="Salaire de" type="number"></ion-input></ion-col>
+            <ion-col><ion-input formControlName="salaryHigh" label="à" type="number" [disabled]="jobInfoForm.value.salaryNotARange"></ion-input></ion-col>
+            <ion-col><ion-toggle formControlName="salaryNotARange" [enableOnOffLabels]="true">Montant exact</ion-toggle></ion-col>
+          </ion-row>
+        </ion-grid>
+        
+        
+        <ion-select formControlName="salaryFormat" label="Salaire exprimé en annuel/mensuel ? En brut/net ?" labelPlacement="floating">
+          <ion-select-option *ngFor="let format of salaryFormats" [value]="format">{{ format }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- <ion-item>
+        <ion-input formControlName="password" type="password" placeholder="Votre mot de passe">
+          <ion-input-password-toggle class="togglecolor" slot="end"></ion-input-password-toggle>
+        </ion-input>
+      </ion-item> -->
+    </ion-list>
+
+    <ion-button class="btncolor" type="submit" [disabled]="jobInfoForm.invalid" shape="round">Suivant</ion-button>
+  </form>
 </ion-content>
