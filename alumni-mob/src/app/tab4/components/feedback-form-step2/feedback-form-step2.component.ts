@@ -15,7 +15,7 @@ import { firstValueFrom } from 'rxjs';
 })
 export class FeedbackFormStep2Component implements OnInit {
   public form: FormGroup = new FormGroup({})
-  public companyName: string  = ""
+  public companyName: string  = "" //ici on peut déclarer companyName qu'on a reçu de la modal précedente
   public companyTypes = Object.values(CompanyCategory);
   public companyRatings = Object.values(CompanyRating);
 
@@ -29,7 +29,7 @@ export class FeedbackFormStep2Component implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      name: [this.companyName, Validators.required],
+      name: [this.companyName, Validators.required],//quand on initialise le formulaire sur le champ name on lui passe la valeur
       type: ['', Validators.required],
       medianRating: ['', Validators.required],
       logo: ['']
@@ -67,7 +67,8 @@ export class FeedbackFormStep2Component implements OnInit {
     const toast = await this.toastController.create({
       message,
       duration: 5000,
-      color
+      color,
+      position:'top'
     });
     toast.present();
   }
