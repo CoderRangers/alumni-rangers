@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { CompanyType } from 'src/app/core/types/company-type';
 import { take } from 'rxjs';
 import { CompanyService } from 'src/app/core/services/company.service';
+import { FeedbackFormStep3Component } from '../feedback-form-step3/feedback-form-step3.component';
 
 @Component({
   selector: 'app-feedback-form-step1',
@@ -16,6 +17,8 @@ export class FeedbackFormStep1Component implements OnInit {
   public companys!: Array<CompanyType>;
   public filteredComp!: Array<CompanyType>;
   public inputModel = '';
+  public selectedCompany: any = null;
+  public nextButtonColor: string = 'medium'
 
   constructor(
     private _feedbackFormModals: FeedbackFormModalsService,
@@ -53,12 +56,40 @@ export class FeedbackFormStep1Component implements OnInit {
     this._feedbackFormModals.modalIds.push(newModalId);
     modal.present();
   }
+  async openStep3Modal() {
+    const newModalId = 'feedback-form-step-3';
+    const modal = await this.modalCtrl.create({
+      component: FeedbackFormStep3Component,
+      id: newModalId,
+      componentProps: { 
+        companyName: this.inputModel
+      }
+    });
+    this._feedbackFormModals.modalIds.push(newModalId);
+    modal.present();
+  }
   cancel() {
     return this.modalCtrl.dismiss(null, 'cancel');
   }
 
   next() {
-    this.openStep2Modal();
+    if(this.nextButtonColor == 'medium'){
+      this.openStep2Modal();
+    }else{
+      this.openStep3Modal();
+      this.cleanInput()
+    }
+    
   }
+  cleanInput(){
+    this.inputModel = ""
+    this.nextButtonColor = "medium"
+  }
+  selectCompany(company: any) {
+    this.inputModel = company.name;
+    this.selectedCompany = company;
+    this.nextButtonColor = 'primary';
+  }
+  
 }
 

@@ -6,7 +6,7 @@
     </ion-buttons>
     <ion-title>Nouvel Avis - étape 1</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="next()" [strong]="true">Suivant</ion-button>
+      <ion-button [color]="nextButtonColor" (click)="next()" [strong]="true">Suivant</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -22,7 +22,7 @@
   </ion-item>
   
   <ion-list *ngIf="inputModel && filteredComp.length > 0"> 
-    <ion-item *ngFor="let company of filteredComp">
+    <ion-item *ngFor="let company of filteredComp" (click)="selectCompany(company)">
       {{ company.name }}
     </ion-item>
   </ion-list>
