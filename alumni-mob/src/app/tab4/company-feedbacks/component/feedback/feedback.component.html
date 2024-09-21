@@ -3,23 +3,24 @@
     <ion-card-title>
       <ion-grid>
         <ion-row>
-          <ion-col>{{ feedback.firstname }} {{feedback.lastname}}</ion-col>
-          <ion-col>Avis : {{ feedback.rating }}</ion-col>
+          <ion-col class="styleFeed">{{ feedback.firstname }} {{feedback.lastname}}
+          <ion-card-subtitle class="styleJob">{{ feedback.jobTitle }} <br> du {{feedback.jobStartDate | date: 'dd/MM/yyy'}} au {{feedback.jobEndDate | date: 'dd/MM/yyy'}}</ion-card-subtitle>
+        <ion-card-subtitle class="styleJob" *ngIf="feedback.salaryLow !== null">
+            <ion-note *ngIf="feedback.salaryLow && feedback.salaryHigh === null">Salaire : {{feedback.salaryLow}}€ {{feedback.salaryFormat}}</ion-note>
+            <ion-note *ngIf="feedback.salaryLow && feedback.salaryHigh">Salaire: {{feedback.salaryLow}}€ et {{feedback.salaryHigh}}€ {{feedback.salaryFormat}}</ion-note>
+        </ion-card-subtitle>  
+        </ion-col>
+          <ion-col class="styleRating">Avis:{{ feedback.rating }}</ion-col>
         </ion-row>
       </ion-grid>
     </ion-card-title>
-    <ion-card-subtitle>{{ feedback.jobTitle }} du {{feedback.jobStartDate | date: 'dd/MM/yyy'}} au {{feedback.jobEndDate | date: 'dd/MM/yyy'}}</ion-card-subtitle>
-    <ion-card-title>{{ feedback.feedbackTitle }}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    <ion-label *ngIf="hide && feedback.feedbackText.length > 60">{{feedback.feedbackText.substring(0, 60)}}  ...</ion-label>
-    <ion-label *ngIf="!hide || feedback.feedbackText.length <= 60">{{feedback.feedbackText}}</ion-label>
+    <ion-card-title class="styleFeed">{{ feedback.feedbackTitle }}</ion-card-title>
+    <ion-label class="styleFeedText" *ngIf="hide && feedback.feedbackText.length > 60">{{feedback.feedbackText.substring(0, 60)}}  ...</ion-label>
+    <ion-label class="styleFeedText" *ngIf="!hide || feedback.feedbackText.length <= 60">{{feedback.feedbackText}}</ion-label>
     <div class="footer" *ngIf="!hide">
-      <div *ngIf="feedback.salaryLow !== null">
-        <ion-note *ngIf="feedback.salaryLow && feedback.salaryHigh === null">Salaire : {{feedback.salaryLow}}€ {{feedback.salaryFormat}}</ion-note>
-        <ion-note *ngIf="feedback.salaryLow && feedback.salaryHigh">Salaire : entre {{feedback.salaryLow}}€ et {{feedback.salaryHigh}}€ {{feedback.salaryFormat}}</ion-note>
-      </div>
-      <ion-note>Posté le {{feedback.postedAt | date: 'dd/MM/yyy'}}</ion-note>
+      <ion-note class="styleNote">Posté le {{feedback.postedAt | date: 'dd/MM/yyy'}}</ion-note>
     </div>
   </ion-card-content>
 
