@@ -46,8 +46,8 @@ export class FeedbackFormStep1Component implements OnInit {
     const modal = await this.modalCtrl.create({
       component: FeedbackFormStep2Component,
       id: newModalId,
-      componentProps: {
-        companyName: this.inputModel
+      componentProps: { // ici on passe une propriété qu'on peut récuperer par la prochaine modal
+        companyName: this.inputModel //on la nomme companyName et on lui assigne ce que contient l'input de recherche === rendez-vous dans step2.ts
       }
     });
     this._feedbackFormModals.modalIds.push(newModalId);
