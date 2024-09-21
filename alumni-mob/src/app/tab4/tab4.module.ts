@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -20,7 +20,8 @@ import { FeedbackFormStep6Component } from './components/feedback-form-step6/fee
     CommonModule,
     FormsModule,
     IonicModule,
-    Tab4PageRoutingModule
+    Tab4PageRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [Tab4Page, CompanyComponent, FeedbackFormStep1Component, FeedbackFormStep2Component, FeedbackFormStep3Component, FeedbackFormStep4Component, FeedbackFormStep5Component, FeedbackFormStep6Component]
 })
