@@ -11,7 +11,11 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <p>
-    feedback-form-step6 works!
-  </p>
+  <app-feedback class="comp" [feedback]="companyFeedback" [index]="0"></app-feedback>
+
+  <ion-checkbox labelPlacement="start" alignment="center" (ionChange)="toggleCharterRespect($event)">Je confirme que retour d'expérience respecte la charte</ion-checkbox>
+
+  <br/>
+
+  <ion-button type="button" (click)="finish()" [disabled]="!charterRespected">Demander la publication par l'équipe de modération</ion-button>
 </ion-content>

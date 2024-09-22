@@ -16,6 +16,7 @@ import { FeedbackComponent } from './component/feedback/feedback.component';
     IonicModule,
     CompanyFeedbacksPageRoutingModule
   ],
-  declarations: [CompanyFeedbacksPage, FeedbackComponent]
+  declarations: [CompanyFeedbacksPage, FeedbackComponent],
+  exports: [FeedbackComponent]
 })
 export class CompanyFeedbacksPageModule {}

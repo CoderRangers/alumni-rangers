@@ -4,14 +4,32 @@
       <ion-button color="medium" (click)="previous()"><ion-icon name="arrow-back"></ion-icon></ion-button>
     </ion-buttons>
     <ion-title>Nouvel Avis - étape 5</ion-title>
-    <ion-buttons slot="end">
+    <!-- <ion-buttons slot="end">
       <ion-button (click)="next()" [strong]="true">Suivant</ion-button>
-    </ion-buttons>
+    </ion-buttons> -->
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <p>
-    feedback-form-step5 works!
-  </p>
+  <form [formGroup]="feedbackMainContentForm" (ngSubmit)="onSubmit()">
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked"><h1>Titre</h1></ion-label>
+        <ion-input formControlName="feedbackTitle" placeholder="Résumé de votre retour d'expérience"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-select formControlName="rating" label="Note de votre expérience" labelPlacement="floating">
+          <ion-select-option *ngFor="let rating of companyRatings" [value]="rating">{{ rating }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked"><h1>Description</h1></ion-label>
+        <ion-textarea formControlName="feedbackText" [autoGrow]="true" placeholder="Décrivez votre expérience"></ion-textarea>
+      </ion-item>
+    </ion-list>
+
+    <ion-button type="submit" [disabled]="feedbackMainContentForm.invalid" shape="round">Suivant</ion-button>
+  </form>
 </ion-content>

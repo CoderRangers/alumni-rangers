@@ -41,7 +41,7 @@ export class FeedbackFormStep4Component  implements OnInit {
     modal.present();
   }
 
-  toggleCharterAgreement($event: IonCheckboxCustomEvent<CheckboxChangeEventDetail<any>>) {
+  toggleCharterAgreement(event: IonCheckboxCustomEvent<CheckboxChangeEventDetail<any>>) {
     if(!this.charterAgreedTo) {
       this.charterAgreedTo = true
     } else {
