@@ -20,36 +20,59 @@
 
       <ion-item>
         <ion-label position="stacked"><h1>Quand avez-vous travaillé chez {{ companyName }} ?</h1></ion-label>
+        <ion-toggle formControlName="stillOnTheJob" [enableOnOffLabels]="true" (ionChange)="endDateToggle($event)">Vous êtes toujours à ce poste</ion-toggle>
         <ion-grid>
           <ion-row class="ion-justify-content-between">
             <ion-col><ion-input formControlName="startDate" type="date" label="Début" labelPlacement="start"></ion-input></ion-col>
             <ion-col><ion-input formControlName="endDate" type="date" label="Fin" labelPlacement="start" [disabled]="jobInfoForm.value.stillOnTheJob"></ion-input></ion-col>
           </ion-row>
         </ion-grid>
-        <ion-toggle formControlName="stillOnTheJob" [enableOnOffLabels]="true" (ionChange)="endDateToggle($event)">Êtes-vous toujours à ce poste ?</ion-toggle>
       </ion-item>
 
       <ion-item>
-        <ion-label position="stacked"><h1>(Facultatif) Si cela vous semble pertinent, indiquez le salaire que vous touchiez</h1></ion-label>
         <ion-grid>
+
+          <ion-row class="ion-align-items-end">
+            <ion-col>
+              <ion-label position="stacked">
+                <h1>(Facultatif) Si cela vous semble pertinent, indiquez le salaire (en €) que vous touchiez :</h1>
+              </ion-label>
+            </ion-col>
+
+            <ion-col size="1">
+              <ion-button id="about-salary-info" shape="round">
+                <ion-icon slot="icon-only" name="help-circle-outline"></ion-icon>
+              </ion-button>
+              <ion-popover trigger="about-salary-info" triggerAction="click">
+                <ng-template>
+                  <ion-content class="ion-padding">
+                    <p>Indiquer votre salaire peut être utile pour :
+                      <ion-list>
+                        <ion-item>Comparer les salaires entre entreprises/postes</ion-item>
+                        <ion-item>Comparer les évolutions de salaires à un même poste</ion-item>
+                        <ion-item>...</ion-item>
+                      </ion-list>
+                    </p>
+                  </ion-content>
+                </ng-template>
+              </ion-popover>
+            </ion-col>
+          </ion-row>
+
           <ion-row>
+            <ion-col><ion-toggle formControlName="salaryNotARange" [enableOnOffLabels]="true">Indiquer un seul montant</ion-toggle></ion-col>
             <ion-col><ion-input formControlName="salaryLow" label="Salaire de" type="number"></ion-input></ion-col>
             <ion-col><ion-input formControlName="salaryHigh" label="à" type="number" [disabled]="jobInfoForm.value.salaryNotARange"></ion-input></ion-col>
-            <ion-col><ion-toggle formControlName="salaryNotARange" [enableOnOffLabels]="true">Montant exact</ion-toggle></ion-col>
           </ion-row>
+
         </ion-grid>
-        
         
         <ion-select formControlName="salaryFormat" label="Salaire exprimé en annuel/mensuel ? En brut/net ?" labelPlacement="floating">
           <ion-select-option *ngFor="let format of salaryFormats" [value]="format">{{ format }}</ion-select-option>
         </ion-select>
-      </ion-item>
 
-      <!-- <ion-item>
-        <ion-input formControlName="password" type="password" placeholder="Votre mot de passe">
-          <ion-input-password-toggle class="togglecolor" slot="end"></ion-input-password-toggle>
-        </ion-input>
-      </ion-item> -->
+      </ion-item>
+      
     </ion-list>
 
     <ion-button class="btncolor" type="submit" [disabled]="jobInfoForm.invalid" shape="round">Suivant</ion-button>
