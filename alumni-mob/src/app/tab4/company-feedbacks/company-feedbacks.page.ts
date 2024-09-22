@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { InfiniteScrollCustomEvent } from '@ionic/angular';
+import { InfiniteScrollCustomEvent, ModalController } from '@ionic/angular';
 import { take } from 'rxjs';
 import { CompanyService } from 'src/app/core/services/company.service';
 import { FeedbackService } from 'src/app/core/services/feedback.service';
 import { CompanyType } from 'src/app/core/types/company-feedback/company-feed.type';
 import { CompanyFeedbackType } from 'src/app/core/types/company-feedback/company-feedback.type';
+import { FeedbackFormStep3Component } from '../components/feedback-form-step3/feedback-form-step3.component';
+import { FeedbackFormModalsService } from '../services/feedback-form-modals.service';
 
 @Component({
   selector: 'app-company-feedbacks',
@@ -20,7 +22,10 @@ export class CompanyFeedbacksPage implements OnInit {
   constructor(private _route: ActivatedRoute,
     private _companyService: CompanyService,
     private _feedBackService: FeedbackService,
-    private _router: Router
+    private _router: Router,
+    private _modalCtrl: ModalController,
+    private _feedbackFormModals: FeedbackFormModalsService,
+    private _modalController: ModalController
   ) { }
 
   ngOnInit() {
@@ -67,7 +72,22 @@ export class CompanyFeedbacksPage implements OnInit {
     this._router.navigateByUrl('tabs/tab4');
   }
 
+  async dismiss() {
+    await this._modalController.dismiss();
+  }
+
   async addFeedback() {
-    
+    console.log(`comp : ${JSON.stringify(this.company)}`)
+    const newModalId = 'feedback-form-step-3';
+    const modal = await this._modalCtrl.create({
+      component: FeedbackFormStep3Component,
+      id: newModalId,
+      componentProps: {
+        company: this.company,
+        companyName: this.company?.name
+      }
+    });
+    this._feedbackFormModals.modalIds.push(newModalId);
+    modal.present();
   }
 }
