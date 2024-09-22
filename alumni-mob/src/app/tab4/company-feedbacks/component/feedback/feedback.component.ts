@@ -10,9 +10,11 @@ export class FeedbackComponent  implements OnInit {
 
   @Input()
   public feedback!: CompanyFeedbackType;
+
   @Input()
   public index!:number;
 
+  @Input()
   public hide: boolean = true;
 
   constructor() { }
