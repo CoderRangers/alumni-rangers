@@ -12,6 +12,7 @@ import { ModalController } from '@ionic/angular';
 import { FeedbackFormStep1Component } from './components/feedback-form-step1/feedback-form-step1.component';
 import { FeedbackFormModalsService } from './services/feedback-form-modals.service';
 import { FeedbackService } from '../core/services/feedback.service';
+import { InternService } from '../core/services/intern.service';
 
 @Component({
   selector: 'app-tab4',
@@ -29,6 +30,7 @@ export class Tab4Page implements OnInit {
     private _router: Router,
     private _modalController: ModalController,
     private _feedbackFormModals: FeedbackFormModalsService,
+    private _internService: InternService
   ) {}
 
   ngOnInit() {

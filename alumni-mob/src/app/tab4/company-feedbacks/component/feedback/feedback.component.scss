@@ -5,23 +5,23 @@ HEAD
 .styleFeed{
     color: #0d0d0d ;
     font-family: 'Georgia' , serif;
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 300;
     letter-spacing: 2px;
 }
 .styleRow{
     color: #0d0d0d ;
     font-family: 'Georgia' , serif;
-    font-size: 26px;
+    font-size: 22px;
     letter-spacing: 2px;
 }
 .styleRating{
     color: #0d0d0d ;
     font-family: 'Georgia' , serif;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 300;
     letter-spacing: 2px;
-    margin-left: 200px;
+    /* margin-left: 200px; */
 }
 .styleJob{
     color: #0d0d0d ;
@@ -44,4 +44,14 @@ HEAD
     font-size: 20px;
     font-weight: 300;
     letter-spacing: 2px;
+}
+.expand-fold {
+    text-align: center;
+    max-height: 30px;
+    margin: 0;
+    padding: 0;
+}
+.ion-icon {
+    margin: 0;
+    padding: 0;
 }

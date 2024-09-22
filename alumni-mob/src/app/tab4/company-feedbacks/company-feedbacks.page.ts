@@ -66,4 +66,8 @@ export class CompanyFeedbacksPage implements OnInit {
   back() {
     this._router.navigateByUrl('tabs/tab4');
   }
+
+  async addFeedback() {
+    
+  }
 }

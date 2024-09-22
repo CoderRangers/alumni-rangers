@@ -23,5 +23,4 @@ export class FeedbackComponent  implements OnInit {
   showAll() {
     this.hide = !this.hide;
   }
-
 }
