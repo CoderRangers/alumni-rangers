@@ -11,7 +11,23 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <p>
-    feedback-form-step4 works!
+  <p>Vous allez maintenant pouvoir écrire votre retour d'expérience.</p>
+  <p>Nous vous rappelons que le but de cet espace est de partager honnêtement nos connaissances, 
+    entre personnes de la communauté Aelion/Unlearn, dans l'intérêt professionnel de chacun·e.
   </p>
+  <p>Veillez donc à respecter cette charte :</p>
+  <ion-list>
+    <!-- <ion-list-header>Veillez donc à respecter cette charte :</ion-list-header> -->
+    <ion-item>Les retours sont uniquement destinés à notre communauté. Ne les transmettez pas hors de la communauté.</ion-item>
+    <ion-item>Les retours ne sont pas un défouloir. Pas d'insultes et de langage vulgaire</ion-item>
+    <ion-item>Ne pas nommer d'individus (hiérarchie, collègues, ...)</ion-item>
+    <ion-item>...</ion-item>
+  </ion-list>
+  <p>Enfin, nous vous rappelons aussi que les retours d'expérience sont soumis à une modération avant publication.</p>
+
+  <ion-checkbox labelPlacement="start" alignment="center" (ionChange)="toggleCharterAgreement($event)">Je m'engage à respecter la présente charte</ion-checkbox>
+
+  <br/>
+
+  <ion-button type="button" (click)="next()" [disabled]="!charterAgreedTo">Suivant</ion-button>
 </ion-content>

@@ -30,10 +30,6 @@ export class FeedbackFormStep3Component  implements OnInit {
   ngOnInit() {
     this.jobInfoForm = this._formBuilder.group({
       jobTitle: ['', Validators.required],
-      // TODO : display date as DD/MM/YYYY instead of MM/DD/YYY
-      // 2 possible approches:
-      // https://stackoverflow.com/questions/7372038/is-there-any-way-to-change-input-type-date-format
-      // https://stackoverflow.com/questions/55660262/how-can-i-set-my-reactive-form-date-input-value
       startDate: ['', Validators.required],
       stillOnTheJob: [],
       // TODO : write a custom validator to check that startDate < endDate
