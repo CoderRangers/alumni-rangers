@@ -27,10 +27,10 @@
       {{ company.name }}
     </ion-item>
   </ion-list>
-  <ion-card *ngIf="inputModel && filteredComp.length === 0"> 
-    <p>Cette entreprise n'est pas recensé dans nos bases de données</p>
-    <ion-button shape="round" (click)="next()"> Créer l'entreprise ></ion-button>
-  </ion-card>
+  <ion-list *ngIf="inputModel && filteredComp.length === 0"> 
+    <ion-item lines="none"><p>Cette entreprise n'est pas recensée dans nos bases de données</p></ion-item>
+    <ion-item lines="none"><ion-button shape="round" (click)="next()"> Créer l'entreprise ></ion-button></ion-item>
+  </ion-list>
   <ion-toolbar class="feedback-form-bottom-toolbar">
     <ion-button (click)="next()" shape="round" [disabled]="inputModel && filteredComp.length === 0">Suivant <ion-icon name="arrow-forward-outline"></ion-icon></ion-button>
   </ion-toolbar>
