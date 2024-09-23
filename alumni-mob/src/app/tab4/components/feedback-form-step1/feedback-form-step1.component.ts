@@ -117,22 +117,26 @@ export class FeedbackFormStep1Component implements OnInit {
       this._companyRefreshService.refreshCompanies(companies);
     });
   }
-  retrieveInternId(){
-    const token = this._storageService.retrieve("auht");
+  retrieveInternId():string{
+    const token = this._storageService.retrieve("internId");
     console.log(token);
+    return token
   }
 
-  // getIntern():Array<InternType>{
-  //     this.getCompanyUserId().pipe(
-  //     switchMap( id => this._internService.findOne(id))).subscribe(internData => {
-  //         this.intern.push(internData);
-  //     });;
-  //     if(this.isChecked = true){
-  //       this.nextButtonColor = 'primary';
-  //     }
-  //     console.log(this.intern[0].firstname)
-  //     return this.intern
-  // }
+  getIntern():Array<InternType>{
+    const id :string = this.retrieveInternId();
+    this._internService.findOne(id).subscribe({
+      next: (intern: InternType) => {
+        this.intern[0] = intern
+        console.log(`intern: ${JSON.stringify(intern)}`)
+        console.log(this.intern[0].firstname);
+      },
+      error: (error: any) => {},
+      complete: () => {}
+    });
+  return this.intern
+  }
+  
 }
 
 
