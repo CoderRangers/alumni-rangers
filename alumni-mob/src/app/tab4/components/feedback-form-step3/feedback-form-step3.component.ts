@@ -19,7 +19,11 @@ export class FeedbackFormStep3Component  implements OnInit {
   public companyName: string = '' 
   public company!: CompanyType
   public internName?:string
+  public interLastname?: string
   public internOccupation?:string
+  public internId = ''
+
+
   public jobInfoForm: FormGroup = new FormGroup({})
   public salaryFormats = Object.values(SalaryFormat);
 
@@ -78,6 +82,10 @@ export class FeedbackFormStep3Component  implements OnInit {
       salaryFormat: this.jobInfoForm.value.salaryFormat,
       salaryNotARange: this.jobInfoForm.value.salaryNotARange,
       salaryHigh: this.jobInfoForm.value.salaryHigh,
+      internName: this.internName,
+      interLastname: this.interLastname,
+      internOccupation: this.internOccupation,
+      internId: this.internId,
     }
     console.log(`Step 3 form content : ${JSON.stringify(partialFeedback)}`)
     if (this.jobInfoForm.valid) {

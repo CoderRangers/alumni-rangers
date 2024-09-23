@@ -85,6 +85,7 @@ export class FeedbackFormStep1Component implements OnInit {
       id: newModalId,
       componentProps: { 
         companyName: this.intern[0].company.name,
+        company: this.intern[0].company,
         internName: this.intern[0].firstname,
         interLastname:this.intern[0].lastname,
         internOccupation: this.intern[0].occupation,

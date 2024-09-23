@@ -46,12 +46,13 @@ export class FeedbackFormStep5Component  implements OnInit {
       jobTitle: this.partialFeedback.jobTitle,
       jobStartDate: this.partialFeedback.startDate,
       jobEndDate: this.partialFeedback.endDate,
+      salaryLow: this.partialFeedback.salaryLow,
+      salaryHigh: this.partialFeedback.salaryHigh,
       salaryFormat: this.partialFeedback.salaryFormat,
       postedAt: new Date(),
-      // TODO: retrieve the connected user's internID, lastname, and firstname 
-      lastname: '',
-      firstname: '',
-      internId: ''
+      lastname: this.partialFeedback.interLastname,
+      firstname: this.partialFeedback.internName,
+      internId: this.partialFeedback.internId,
     }
     console.log(`Step 5 form content : ${JSON.stringify(fullFeedback)}`)
     if (this.feedbackMainContentForm.valid) {
