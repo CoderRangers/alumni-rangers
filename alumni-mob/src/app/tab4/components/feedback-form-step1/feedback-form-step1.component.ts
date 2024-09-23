@@ -3,10 +3,15 @@ import { IonInput, ModalController } from '@ionic/angular';
 import { FeedbackFormStep2Component } from '../feedback-form-step2/feedback-form-step2.component';
 import { FeedbackFormModalsService } from '../../services/feedback-form-modals.service';
 import { CompanyType } from 'src/app/core/types/company-feedback/company-feed.type';
-import { take } from 'rxjs';
+import { map, Observable, switchMap, take } from 'rxjs';
 import { CompanyService } from 'src/app/core/services/company.service';
 import { FeedbackFormStep3Component } from '../feedback-form-step3/feedback-form-step3.component';
 import { RefreshCompaniesService } from '../../services/refresh-company.service';
+import { LoginService } from 'src/app/login/services/login.service';
+import { InternService } from 'src/app/core/services/intern.service';
+import { TokenInfoType } from 'src/app/core/types/login/token-type';
+import { InternType } from 'src/app/core/types/intern-type';
+import { InternTransformer } from 'src/app/core/types/intern/intern-transformer';
 
 @Component({
   selector: 'app-feedback-form-step1',
@@ -16,15 +21,19 @@ import { RefreshCompaniesService } from '../../services/refresh-company.service'
 export class FeedbackFormStep1Component implements OnInit {
   public companys!: Array<CompanyType>;
   public filteredComp!: Array<CompanyType>;
+  public intern = "";
   public inputModel = '';
   public selectedCompany: any = null;
   public nextButtonColor: string = 'medium'
-
+  public isChecked:Boolean = false;
   constructor(
     private _feedbackFormModals: FeedbackFormModalsService,
     private modalCtrl: ModalController,
     private _companyService: CompanyService,
-    private _companyRefreshService: RefreshCompaniesService
+    private _companyRefreshService: RefreshCompaniesService,
+    private _loginService: LoginService,
+    private _internService: InternService,
+    
   ) {}
 
   ngOnInit(): void {
@@ -68,7 +77,10 @@ export class FeedbackFormStep1Component implements OnInit {
       component: FeedbackFormStep3Component,
       id: newModalId,
       componentProps: { 
-        companyName: this.inputModel
+        companyName: this.inputModel,
+        
+        
+        
       }
     });
     this._feedbackFormModals.modalIds.push(newModalId);
@@ -102,6 +114,16 @@ export class FeedbackFormStep1Component implements OnInit {
     this._companyService.findAll().pipe(take(1)).subscribe(companies => {
       this._companyRefreshService.refreshCompanies(companies);
     });
+  }
+  getCompanyUserId():Observable<string>{
+    return this._loginService.tokenInfo().pipe(
+      map(tokenInfo => tokenInfo.id.toString())
+    );
+  }
+
+  getIntern(){
+     return this.getCompanyUserId().pipe(
+      switchMap( id => this._internService.findOne(id)));
   }
 }
 

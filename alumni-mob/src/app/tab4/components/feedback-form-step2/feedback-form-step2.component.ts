@@ -6,8 +6,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CompanyService } from 'src/app/core/services/company.service';
 import { CompanyType, CompanyCategory } from 'src/app/core/types/company-feedback/company-feed.type';
 import { CompanyRating } from 'src/app/core/types/company-feedback/company-rating.type';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, map, Observable, switchMap } from 'rxjs';
 import { RefreshCompaniesService } from '../../services/refresh-company.service';
+import { InternType } from 'src/app/core/types/intern-type';
+import { LoginService } from 'src/app/login/services/login.service';
+import { InternService } from 'src/app/core/services/intern.service';
 
 
 @Component({
@@ -21,13 +24,16 @@ export class FeedbackFormStep2Component implements OnInit {
   public companyTypes = Object.values(CompanyCategory);
   public companyRatings = Object.values(CompanyRating);
 
+
   constructor(
     private modalCtrl: ModalController,
     private _feedbackFormModals: FeedbackFormModalsService,
     private fb: FormBuilder,
     private companyService: CompanyService,
     private toastController: ToastController,
-    private _companyRefreshService: RefreshCompaniesService
+    private _companyRefreshService: RefreshCompaniesService,
+    private _loginService: LoginService,
+    private _internService: InternService
   ) {}
 
   ngOnInit() {
@@ -90,4 +96,5 @@ export class FeedbackFormStep2Component implements OnInit {
     this._feedbackFormModals.modalIds.push(newModalId);
     modal.present();
   }
+  
 }
