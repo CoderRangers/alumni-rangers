@@ -3,7 +3,7 @@ import { IonInput, ModalController } from '@ionic/angular';
 import { FeedbackFormStep2Component } from '../feedback-form-step2/feedback-form-step2.component';
 import { FeedbackFormModalsService } from '../../services/feedback-form-modals.service';
 import { CompanyType } from 'src/app/core/types/company-feedback/company-feed.type';
-import { map, Observable, switchMap, take } from 'rxjs';
+import { map, Observable, of, switchMap, take } from 'rxjs';
 import { CompanyService } from 'src/app/core/services/company.service';
 import { FeedbackFormStep3Component } from '../feedback-form-step3/feedback-form-step3.component';
 import { RefreshCompaniesService } from '../../services/refresh-company.service';
@@ -12,6 +12,7 @@ import { InternService } from 'src/app/core/services/intern.service';
 import { TokenInfoType } from 'src/app/core/types/login/token-type';
 import { InternType } from 'src/app/core/types/intern-type';
 import { InternTransformer } from 'src/app/core/types/intern/intern-transformer';
+import { StorageService } from 'src/app/core/services/storage.service';
 
 @Component({
   selector: 'app-feedback-form-step1',
@@ -21,7 +22,7 @@ import { InternTransformer } from 'src/app/core/types/intern/intern-transformer'
 export class FeedbackFormStep1Component implements OnInit {
   public companys!: Array<CompanyType>;
   public filteredComp!: Array<CompanyType>;
-  public intern = "";
+  public intern :InternType[] = [];
   public inputModel = '';
   public selectedCompany: any = null;
   public nextButtonColor: string = 'medium'
@@ -31,8 +32,8 @@ export class FeedbackFormStep1Component implements OnInit {
     private modalCtrl: ModalController,
     private _companyService: CompanyService,
     private _companyRefreshService: RefreshCompaniesService,
-    private _loginService: LoginService,
     private _internService: InternService,
+    private _storageService: StorageService
     
   ) {}
 
@@ -78,9 +79,10 @@ export class FeedbackFormStep1Component implements OnInit {
       id: newModalId,
       componentProps: { 
         companyName: this.inputModel,
-        
-        
-        
+        internName: this.intern[0].firstname,
+        interLastname:this.intern[0].lastname,
+        internOccupation: this.intern[0].occupation,
+        internCompany:this.intern[0].company.name
       }
     });
     this._feedbackFormModals.modalIds.push(newModalId);
@@ -115,16 +117,22 @@ export class FeedbackFormStep1Component implements OnInit {
       this._companyRefreshService.refreshCompanies(companies);
     });
   }
-  getCompanyUserId():Observable<string>{
-    return this._loginService.tokenInfo().pipe(
-      map(tokenInfo => tokenInfo.id.toString())
-    );
+  retrieveInternId(){
+    const token = this._storageService.retrieve("auht");
+    console.log(token)
   }
 
-  getIntern(){
-     return this.getCompanyUserId().pipe(
-      switchMap( id => this._internService.findOne(id)));
-  }
+  // getIntern():Array<InternType>{
+  //     this.getCompanyUserId().pipe(
+  //     switchMap( id => this._internService.findOne(id))).subscribe(internData => {
+  //         this.intern.push(internData);
+  //     });;
+  //     if(this.isChecked = true){
+  //       this.nextButtonColor = 'primary';
+  //     }
+  //     console.log(this.intern[0].firstname)
+  //     return this.intern
+  // }
 }
 
 

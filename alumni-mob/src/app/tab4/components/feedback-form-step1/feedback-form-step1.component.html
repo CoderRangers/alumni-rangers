@@ -9,6 +9,12 @@
 
 <ion-content class="ion-padding">
   <ion-item>
+    <p>Renseigner un avis sur votre entreprise actuelle  </p>
+    <ion-checkbox [(ngModel)]="isChecked" (ionChange)="retrieveInternId()"></ion-checkbox>
+  </ion-item>
+  <p> ou </p>
+  <p>chercher une entreprise dans notre BDD</p>
+  <ion-item>
     <ion-input  
       placeholder="Entrer le nom d'entreprise"
       [(ngModel)]="inputModel" 
@@ -26,9 +32,16 @@
   <ion-card *ngIf="inputModel && filteredComp.length === 0"> 
     <p>Cette entreprise n'est pas recensé dans nos bases de données</p>
     <ion-button shape="round" (click)="next()"> Créer l'entreprise ></ion-button>
+<<<<<<< HEAD
   </ion-card>
 
   <ion-toolbar class="feedback-form-bottom-toolbar">
     <ion-button (click)="next()" shape="round" [disabled]="inputModel && filteredComp.length === 0">Suivant <ion-icon name="arrow-forward-outline"></ion-icon></ion-button>
   </ion-toolbar>
+=======
+    </ion-card>
+    <ion-buttons slot="end">
+      <ion-button [color]="nextButtonColor" (click)="next()" [strong]="true">Suivant</ion-button>
+    </ion-buttons>
+>>>>>>> 498e75f (fixing style and input on step1)
 </ion-content>
