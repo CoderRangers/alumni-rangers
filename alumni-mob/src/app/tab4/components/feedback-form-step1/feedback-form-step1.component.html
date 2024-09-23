@@ -3,10 +3,7 @@
     <ion-buttons slot="start">
       <ion-button color="medium" (click)="cancel()"><ion-icon name="close-outline"></ion-icon></ion-button>
     </ion-buttons>
-    <ion-title>Nouvel Avis - étape 1</ion-title>
-    <ion-buttons slot="end">
-      <ion-button [color]="nextButtonColor" (click)="next()" [strong]="true">Suivant</ion-button>
-    </ion-buttons>
+    <ion-title>Nouveau retour d'expérience</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -29,5 +26,9 @@
   <ion-card *ngIf="inputModel && filteredComp.length === 0"> 
     <p>Cette entreprise n'est pas recensé dans nos bases de données</p>
     <ion-button shape="round" (click)="next()"> Créer l'entreprise ></ion-button>
-    </ion-card>
+  </ion-card>
+
+  <ion-toolbar class="feedback-form-bottom-toolbar">
+    <ion-button (click)="next()" shape="round" [disabled]="inputModel && filteredComp.length === 0">Suivant <ion-icon name="arrow-forward-outline"></ion-icon></ion-button>
+  </ion-toolbar>
 </ion-content>

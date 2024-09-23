@@ -3,10 +3,7 @@
     <ion-buttons slot="start">
       <ion-button color="medium" (click)="previous()"><ion-icon name="arrow-back"></ion-icon></ion-button>
     </ion-buttons>
-    <ion-title>Nouvel Avis - étape 4</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="next()" [strong]="true">Suivant</ion-button>
-    </ion-buttons>
+    <ion-title>Nouveau retour d'expérience</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -29,5 +26,7 @@
 
   <br/>
 
-  <ion-button type="button" (click)="next()" [disabled]="!charterAgreedTo">Suivant</ion-button>
+  <ion-toolbar class="feedback-form-bottom-toolbar">
+    <ion-button (click)="next()" [disabled]="!charterAgreedTo" shape="round">Suivant <ion-icon name="arrow-forward-outline"></ion-icon></ion-button>
+  </ion-toolbar>
 </ion-content>

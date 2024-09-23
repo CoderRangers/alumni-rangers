@@ -46,9 +46,9 @@ export class FeedbackFormStep3Component  implements OnInit {
     return this.modalCtrl.dismiss(null, 'cancel');
   }
 
-  next() {
+  /* next() {
     this.openStep4Modal(null)
-  }
+  } */
 
   async openStep4Modal(feedback: any) {
     const newModalId = 'feedback-form-step-4'

@@ -3,10 +3,7 @@
     <ion-buttons slot="start">
       <ion-button color="medium" (click)="previous()"><ion-icon name="arrow-back"></ion-icon></ion-button>
     </ion-buttons>
-    <ion-title>Nouvel Avis - étape 3</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="next()" [strong]="true">Suivant</ion-button>
-    </ion-buttons>
+    <ion-title>Nouveau retour d'expérience</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -75,6 +72,8 @@
       
     </ion-list>
 
-    <ion-button class="btncolor" type="submit" [disabled]="jobInfoForm.invalid" shape="round">Suivant</ion-button>
+    <ion-toolbar class="feedback-form-bottom-toolbar">
+      <ion-button type="submit" [disabled]="jobInfoForm.invalid" shape="round">Suivant <ion-icon name="arrow-forward-outline"></ion-icon></ion-button>
+    </ion-toolbar>
   </form>
 </ion-content>

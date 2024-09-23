@@ -3,19 +3,19 @@
     <ion-buttons slot="start">
       <ion-button color="medium" (click)="previous()"><ion-icon name="arrow-back"></ion-icon></ion-button>
     </ion-buttons>
-    <ion-title>Nouvel Avis - étape 6</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="finish()" [strong]="true">Envoyer</ion-button>
-    </ion-buttons>
+    <ion-title>Nouveau retour d'expérience</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
   <app-feedback class="comp" [feedback]="companyFeedback" [index]="0" [hide]="false"></app-feedback>
 
-  <ion-checkbox labelPlacement="start" alignment="center" (ionChange)="toggleCharterRespect($event)">Je confirme que retour d'expérience respecte la charte</ion-checkbox>
+  <ion-checkbox labelPlacement="start" alignment="center" (ionChange)="toggleCharterRespect($event)">Je confirme que mon retour d'expérience respecte la charte</ion-checkbox>
 
   <br/>
 
-  <ion-button type="button" (click)="finish()" [disabled]="!charterRespected">Demander la publication par l'équipe de modération</ion-button>
+  <ion-toolbar class="feedback-form-bottom-toolbar">
+    <ion-button (click)="finish()" [disabled]="!charterRespected" shape="round">Demander la publication par l'équipe de modération <ion-icon name="send-outline"></ion-icon></ion-button>
+  </ion-toolbar>
+  <!-- <ion-button type="button" (click)="finish()" [disabled]="!charterRespected">Demander la publication par l'équipe de modération</ion-button> -->
 </ion-content>
