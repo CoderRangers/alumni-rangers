@@ -23,7 +23,7 @@ export class CompanyFeedbackEntity {
   })
   rating: CompanyRating;
 
-  @Column()
+  @Column({ type: 'longtext' })
   feedbackText: string;
 
   @Column()
