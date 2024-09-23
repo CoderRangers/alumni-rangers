@@ -83,6 +83,7 @@ export class FeedbackFormStep2Component implements OnInit {
       component: FeedbackFormStep3Component,
       id: newModalId,
       componentProps: {
+        companyName: company.name,
         company: company
       }
     });
