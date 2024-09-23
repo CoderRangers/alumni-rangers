@@ -1,12 +1,7 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button color="medium" (click)="previous()"><ion-icon name="arrow-back"></ion-icon></ion-button>
-    </ion-buttons>
-    <ion-title>Nouveau retour d'expérience</ion-title>
-  </ion-toolbar>
-</ion-header>
-
+<app-feedback-form-header [isFirstStep]="false"></app-feedback-form-header>
+<ion-item>
+  <ion-label>Visualisation de votre avis</ion-label>
+</ion-item>
 <ion-content class="ion-padding">
   <app-feedback class="comp" [feedback]="companyFeedback" [index]="0" [isPreview]="true"></app-feedback>
 

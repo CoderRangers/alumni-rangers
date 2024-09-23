@@ -3,7 +3,8 @@
     <div class="toolBarChild">
       <div class="return">
         <ion-button class="btncolor" (click)="cancelOrPrevious()">
-          <ion-icon name="close-outline"></ion-icon>
+          <ion-icon *ngIf="isFirstStep" name="close-outline"></ion-icon>
+          <ion-icon *ngIf="!isFirstStep" name="arrow-back"></ion-icon>
         </ion-button>
       </div>
       <div class="title">
