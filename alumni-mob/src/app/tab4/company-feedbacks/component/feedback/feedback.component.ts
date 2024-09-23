@@ -19,16 +19,25 @@ export class FeedbackComponent  implements OnInit {
   public index!:number;
 
   @Input()
+  public isPreview:boolean = false;
+
   public hide: boolean = true;
+
   constructor(
     private _router: Router
   ) { }
 
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.isPreview) {
+      this.hide = false;
+    }
+  }
 
   goToProfile() {
-    this._router.navigate(['intern', this.feedback.internId]);
+    if (!this.isPreview) {
+      this._router.navigate(['intern', this.feedback.internId]);
+    }
   }
 
   showAll() {
