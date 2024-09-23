@@ -63,6 +63,7 @@ export class FeedbackFormStep5Component  implements OnInit {
     const newModalId = 'feedback-form-step-6'
     const modal = await this.modalCtrl.create({
       component: FeedbackFormStep6Component,
+      backdropDismiss: false,
       id: newModalId,
       componentProps: {
         companyFeedback: feedback

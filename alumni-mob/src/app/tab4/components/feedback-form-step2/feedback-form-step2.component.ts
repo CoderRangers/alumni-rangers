@@ -40,8 +40,6 @@ export class FeedbackFormStep2Component implements OnInit {
     this.form = this.fb.group({
       name: [this.companyName, Validators.required],//quand on initialise le formulaire sur le champ name on lui passe la valeur
       type: ['', Validators.required],
-      medianRating: ['', Validators.required],
-      logo: ['']
     });
   }
 
@@ -59,8 +57,8 @@ export class FeedbackFormStep2Component implements OnInit {
     const company: CompanyType = {
       name: this.form.value.name,
       type: this.form.value.type,
-      medianRating: this.form.value.medianRating,
-      logo: this.form.value.logo
+      medianRating: CompanyRating.neutral,
+      logo: "",
     };
 
     try {
@@ -87,6 +85,7 @@ export class FeedbackFormStep2Component implements OnInit {
     const newModalId = 'feedback-form-step-3';
     const modal = await this.modalCtrl.create({
       component: FeedbackFormStep3Component,
+      backdropDismiss: false,
       id: newModalId,
       componentProps: {
         companyName: company.name,

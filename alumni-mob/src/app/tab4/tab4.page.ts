@@ -66,6 +66,7 @@ export class Tab4Page implements OnInit {
     const newModalId = 'feedback-form-step-1'
     const modal = await this._modalController.create({
       component: FeedbackFormStep1Component,
+      backdropDismiss: false,
       id: newModalId,
     });
     this._feedbackFormModals.modalIds.push(newModalId)

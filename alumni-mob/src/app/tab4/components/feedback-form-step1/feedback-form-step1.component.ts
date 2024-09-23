@@ -65,6 +65,7 @@ export class FeedbackFormStep1Component implements OnInit {
     const modal = await this.modalCtrl.create({
       component: FeedbackFormStep2Component,
       id: newModalId,
+      backdropDismiss: false,
       componentProps: { // ici on passe une propriété qu'on peut récuperer par la prochaine modal
         companyName: this.inputModel //on la nomme companyName et on lui assigne ce que contient l'input de recherche === rendez-vous dans step2.ts
       }
@@ -76,6 +77,7 @@ export class FeedbackFormStep1Component implements OnInit {
     const newModalId = 'feedback-form-step-3';
     const modal = await this.modalCtrl.create({
       component: FeedbackFormStep3Component,
+      backdropDismiss: false,
       id: newModalId,
       componentProps: { 
         companyName: this.inputModel,

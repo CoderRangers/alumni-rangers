@@ -32,6 +32,7 @@ export class FeedbackFormStep4Component  implements OnInit {
     const newModalId = 'feedback-form-step-5'
     const modal = await this.modalCtrl.create({
       component: FeedbackFormStep5Component,
+      backdropDismiss: false,
       id: newModalId,
       componentProps: {
         partialFeedback: feedbackData
