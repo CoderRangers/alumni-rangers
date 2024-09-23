@@ -3,7 +3,7 @@
     <ion-card-title>
       <ion-grid>
         <ion-row>
-          <ion-col class="styleFeed">{{ feedback.firstname }} {{feedback.lastname}}</ion-col>
+          <ion-col class="styleFeed" (click)="goToProfile()">{{ feedback.firstname }} {{feedback.lastname}}</ion-col>
           <ion-col class="styleRating">{{ feedback.rating }}</ion-col>
         </ion-row>
         <ion-row>
