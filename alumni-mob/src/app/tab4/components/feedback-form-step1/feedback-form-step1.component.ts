@@ -119,7 +119,7 @@ export class FeedbackFormStep1Component implements OnInit {
   }
   retrieveInternId(){
     const token = this._storageService.retrieve("auht");
-    console.log(token)
+    console.log(token);
   }
 
   // getIntern():Array<InternType>{
