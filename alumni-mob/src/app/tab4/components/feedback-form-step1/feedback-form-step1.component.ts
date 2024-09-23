@@ -84,7 +84,7 @@ export class FeedbackFormStep1Component implements OnInit {
       backdropDismiss: false,
       id: newModalId,
       componentProps: { 
-        companyName: this.inputModel,
+        companyName: this.intern[0].company.name,
         internName: this.intern[0].firstname,
         interLastname:this.intern[0].lastname,
         internOccupation: this.intern[0].occupation,
@@ -177,6 +177,8 @@ export class FeedbackFormStep1Component implements OnInit {
       }else if(this.isCompanySelected === true){
         console.log("you go with the company you've selected")
         this.ready = true;
+      }else if(this.inputModel =="" && this.isChecked == false){
+        this.ready = false;
       }
     }
   
