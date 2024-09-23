@@ -61,9 +61,9 @@
 
           <ion-row>
             <ion-col><ion-toggle formControlName="salaryNotARange" [enableOnOffLabels]="true">Indiquer un seul montant</ion-toggle></ion-col>
-            <ion-col><ion-input formControlName="salaryLow" label="Salaire de" type="number"></ion-input></ion-col>
-            <ion-col><ion-input formControlName="salaryHigh" label="à" type="number" [disabled]="jobInfoForm.value.salaryNotARange"></ion-input></ion-col>
           </ion-row>
+          <ion-row><ion-col><ion-input label="Solid input" fill="solid" formControlName="salaryLow" label="Salaire de" type="number"></ion-input></ion-col>
+            <ion-col><ion-input label="Solid input" fill="solid" formControlName="salaryHigh" label="à" type="number" [disabled]="jobInfoForm.value.salaryNotARange"></ion-input></ion-col></ion-row>
 
         </ion-grid>
         
