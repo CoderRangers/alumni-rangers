@@ -22,19 +22,6 @@
       </ion-select>
     </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">Évaluation</ion-label>
-      <ion-select formControlName="medianRating">
-        <ion-select-option *ngFor="let rating of companyRatings" [value]="rating">{{ rating }}</ion-select-option>
-      </ion-select>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Logo</ion-label>
-      <ion-input formControlName="logo"></ion-input>
-    </ion-item>
-
-    <p>help</p>
     <ion-toolbar class="feedback-form-bottom-toolbar">
       <ion-button (click)="next()" [disabled]="!form.valid" shape="round">Suivant <ion-icon name="arrow-forward-outline"></ion-icon></ion-button>
     </ion-toolbar>
