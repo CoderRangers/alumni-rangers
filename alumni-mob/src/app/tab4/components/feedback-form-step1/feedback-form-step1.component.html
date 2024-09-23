@@ -27,7 +27,7 @@
   <ion-toolbar class="feedback-form-bottom-toolbar">
     <ion-button (click)="next()" shape="round" [disabled]="inputModel && filteredComp.length === 0 || ready === false ">Suivant <ion-icon name="arrow-forward-outline"></ion-icon></ion-button>
   </ion-toolbar>
-    <ion-buttons slot="end">
-      <ion-button [color]="nextButtonColor" (click)="next()" [strong]="true">Suivant</ion-button>
-    </ion-buttons>
+  <ion-toolbar class="feedback-form-bottom-toolbar">
+    <ion-label>Étape 1/4</ion-label>
+  </ion-toolbar>
 </ion-content>

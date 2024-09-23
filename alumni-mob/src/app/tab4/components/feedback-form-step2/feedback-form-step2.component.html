@@ -1,4 +1,3 @@
-<!-- feedback-form-step2.component.html -->
 <app-feedback-form-header [isFirstStep]="false"></app-feedback-form-header>
 <ion-item>
   <ion-label>Saisissez votre entreprise</ion-label>
@@ -19,6 +18,9 @@
 
     <ion-toolbar class="feedback-form-bottom-toolbar">
       <ion-button (click)="next()" [disabled]="!form.valid" shape="round">Suivant <ion-icon name="arrow-forward-outline"></ion-icon></ion-button>
+    </ion-toolbar>
+    <ion-toolbar class="feedback-form-bottom-toolbar">
+      <ion-label>Étape 1/4</ion-label>
     </ion-toolbar>
   </form>
 </ion-content>
