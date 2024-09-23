@@ -10,7 +10,7 @@
           <ion-card-subtitle class="styleJob">{{ feedback.jobTitle }} <br> du {{feedback.jobStartDate | date: 'dd/MM/yyy'}} au {{feedback.jobEndDate | date: 'dd/MM/yyy'}}</ion-card-subtitle>
         </ion-row>
         <ion-row>
-          <ion-card-subtitle class="styleJob" *ngIf="feedback.salaryLow !== null">
+          <ion-card-subtitle class="styleJob" *ngIf="feedback.salaryLow !== null && !hide">
             <ion-note *ngIf="feedback.salaryLow && feedback.salaryHigh === null">Salaire : {{feedback.salaryLow}}€ {{feedback.salaryFormat}}</ion-note>
             <ion-note *ngIf="feedback.salaryLow && feedback.salaryHigh">Salaire: {{feedback.salaryLow}}€ et {{feedback.salaryHigh}}€ {{feedback.salaryFormat}}</ion-note>
           </ion-card-subtitle>
@@ -26,7 +26,9 @@
       <ion-icon name="chevron-down-outline"></ion-icon>
     </ion-toolbar>
     <div class="footer" *ngIf="!hide">
-      <ion-note class="styleNote">Posté le {{feedback.postedAt | date: 'dd/MM/yyy'}}</ion-note>
+      <ion-toolbar class="postedAt">
+        <ion-note class="styleNote">Posté le {{feedback.postedAt | date: 'dd/MM/yyy'}}</ion-note>
+    </ion-toolbar>
       <ion-toolbar class="expand-fold" (click)="showAll()">
         <ion-icon name="chevron-up-outline"></ion-icon>
       </ion-toolbar>
