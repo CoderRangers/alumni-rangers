@@ -5,3 +5,53 @@
 .togglecolor{
     --background-checked: var(--ion-color-toggle)
 }
+.auth-container {
+  display: flex;
+  justify-content: center;
+}
+.img{
+  width: 900px;
+  height: auto;
+  justify-content: center;
+}
+.styleContent{
+  color: #000000 ;
+  font-family: 'Georgia' , serif;
+  font-size: 25px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  display: flex;
+  justify-content: center;
+}
+.styleTitle{
+  color: #D01A6D;
+  font-family: 'Georgia' , serif;
+  font-size: 25px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+.colorOne{
+  background-color: #25aae1;
+  color: #faf9f9 ;
+  font-family: 'Georgia' , serif;
+  font-weight: bold;
+}
+.colorT{
+  background-color: #D01A6D;
+  color: #faf9f9 ;
+  font-family: 'Georgia' , serif;
+  font-weight: bold;
+}
+.colorThree{
+  background-color: #ec851d;
+  color: #faf9f9 ;
+  font-family: 'Georgia' , serif;
+  font-weight: bold;
+}
+.styleCol{
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  margin-left: 200px;
+}

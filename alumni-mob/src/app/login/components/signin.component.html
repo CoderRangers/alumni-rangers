@@ -8,6 +8,26 @@
         <ion-input-password-toggle class="togglecolor" slot="end"></ion-input-password-toggle>
       </ion-input>
     </ion-item>
+    <div class="auth-container">
       <ion-button class="btncolor" type="submit" [disabled]="form.invalid" shape="round">Se connecter</ion-button>
+      <br>
+      <ion-button class="btncolor" type="submit" shape="round">S'identifier</ion-button>
+    </div>
   </ion-list>
+    <ion-card-header class="styleContent">
+    <ion-card-title  class="styleTitle">Si tu es ici, c’est que tu fais partie de nos Alumni, et c’est une grande fierté ! </ion-card-title>
+    </ion-card-header>
+  <ion-card-content class="styleContent">
+    Félicitations, tu viens d’intégrer notre réseau privé qui rassemble les anciens élèves du centre Aelion, présent à travers 15 agences en France.
+  </ion-card-content>
+  <div>
+  <ion-col class="styleCol">
+    <ion-chip class="styleContent" class="colorOne">ENTRAIDE</ion-chip>
+    <ion-chip class="styleContent" class="colorT">PARTAGE</ion-chip>
+    <ion-chip class="styleContent" class="colorThree">REUSSITE</ion-chip>
+  </ion-col>
+  <ion-col>
+    <img class="styleCol" class="img" alt="carte-aelion_0" src="/assets/carte-aelion_0.png" />
+  </ion-col>
+</div>
 </form>
