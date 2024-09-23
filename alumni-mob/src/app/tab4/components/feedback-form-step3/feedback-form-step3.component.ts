@@ -21,7 +21,7 @@ export class FeedbackFormStep3Component  implements OnInit {
   public internName?:string
   public interLastname?: string
   public internOccupation?:string
-  public internId = ''
+  public internId?: string
 
 
   public jobInfoForm: FormGroup = new FormGroup({})
