@@ -54,6 +54,7 @@ export class SigninComponent implements OnInit {
                 this._service.tokenInfo().pipe(take(1))
                 .subscribe({
                   next: (tokenInfo: TokenInfoType) => {
+                    this._storage.store('internId', tokenInfo.internId);
                     this._wsService.connect(tokenInfo.internId);
                     this._wsService.receiveIdentity()
                       .subscribe((identity: any) => {
