@@ -15,6 +15,7 @@ import { FeedbackFormStep4Component } from './components/feedback-form-step4/fee
 import { FeedbackFormStep5Component } from './components/feedback-form-step5/feedback-form-step5.component';
 import { FeedbackFormStep6Component } from './components/feedback-form-step6/feedback-form-step6.component';
 import { CompanyFeedbacksPageModule } from './company-feedbacks/company-feedbacks.module';
+import { FeedbackFormHeaderComponent } from './components/feedback-form-header/feedback-form-header.component';
 
 @NgModule({
   imports: [
@@ -25,6 +26,16 @@ import { CompanyFeedbacksPageModule } from './company-feedbacks/company-feedback
     ReactiveFormsModule,
     CompanyFeedbacksPageModule
   ],
-  declarations: [Tab4Page, CompanyComponent, FeedbackFormStep1Component, FeedbackFormStep2Component, FeedbackFormStep3Component, FeedbackFormStep4Component, FeedbackFormStep5Component, FeedbackFormStep6Component]
+  declarations: [
+    Tab4Page,
+    CompanyComponent,
+    FeedbackFormStep1Component,
+    FeedbackFormStep2Component,
+    FeedbackFormStep3Component,
+    FeedbackFormStep4Component,
+    FeedbackFormStep5Component,
+    FeedbackFormStep6Component,
+    FeedbackFormHeaderComponent,
+  ]
 })
 export class Tab4PageModule {}
