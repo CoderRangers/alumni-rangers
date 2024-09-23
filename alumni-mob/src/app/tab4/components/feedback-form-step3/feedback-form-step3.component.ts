@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CompanyType } from 'src/app/core/types/company-type';
 import { SalaryFormat } from 'src/app/core/types/company-feedback/salary-format.enum';
 import { IonToggleCustomEvent } from '@ionic/core';
+import { InternType } from 'src/app/core/types/intern-type';
 
 @Component({
   selector: 'app-feedback-form-step3',
@@ -17,7 +18,8 @@ export class FeedbackFormStep3Component  implements OnInit {
   // Values filled by the previous modals, when creating this modal
   public companyName: string = '' 
   public company!: CompanyType
-
+  public internName?:string
+  public internOccupation?:string
   public jobInfoForm: FormGroup = new FormGroup({})
   public salaryFormats = Object.values(SalaryFormat);
 
@@ -29,7 +31,7 @@ export class FeedbackFormStep3Component  implements OnInit {
 
   ngOnInit() {
     this.jobInfoForm = this._formBuilder.group({
-      jobTitle: ['', Validators.required],
+      jobTitle: [this.internOccupation, Validators.required],
       startDate: ['', Validators.required],
       stillOnTheJob: [],
       // TODO : write a custom validator to check that startDate < endDate

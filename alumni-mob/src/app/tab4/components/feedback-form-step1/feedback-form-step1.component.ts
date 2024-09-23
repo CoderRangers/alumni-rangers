@@ -27,6 +27,10 @@ export class FeedbackFormStep1Component implements OnInit {
   public selectedCompany: any = null;
   public nextButtonColor: string = 'medium'
   public isChecked:Boolean = false;
+  public withMyCompany:Boolean = false;
+  public isCompanySelected:Boolean = false;
+  public ready:Boolean = false;
+  public noCompany:Boolean = false;
   constructor(
     private _feedbackFormModals: FeedbackFormModalsService,
     private modalCtrl: ModalController,
@@ -47,7 +51,6 @@ export class FeedbackFormStep1Component implements OnInit {
           this.filteredComp = this.companys;
         },
       });
-
     this._companyRefreshService.companies$.subscribe(companies => {
       this.companys = companies;
       this.filteredComp = this.companys;
@@ -75,7 +78,8 @@ export class FeedbackFormStep1Component implements OnInit {
   }
   async openStep3Modal() {
     const newModalId = 'feedback-form-step-3';
-    const modal = await this.modalCtrl.create({
+    if(this.isCompanySelected === false){
+      const modal = await this.modalCtrl.create({
       component: FeedbackFormStep3Component,
       backdropDismiss: false,
       id: newModalId,
@@ -84,24 +88,39 @@ export class FeedbackFormStep1Component implements OnInit {
         internName: this.intern[0].firstname,
         interLastname:this.intern[0].lastname,
         internOccupation: this.intern[0].occupation,
-        internCompany:this.intern[0].company.name
+        internCompany:this.intern[0].company.name,
+        internId: this.intern[0].id
       }
     });
     this._feedbackFormModals.modalIds.push(newModalId);
     modal.present();
+  }else if(this.isCompanySelected === true){
+    const modal = await this.modalCtrl.create({
+      component: FeedbackFormStep3Component,
+      id: newModalId,
+      componentProps: { 
+        companyName: this.inputModel,
+      }
+    });
+    this._feedbackFormModals.modalIds.push(newModalId);
+    modal.present();
+
   }
+}
   cancel() {
     return this.modalCtrl.dismiss(null, 'cancel');
   }
 
   next() {
-    if(this.nextButtonColor == 'medium'){
+    if(this.inputModel && this.filteredComp.length === 0){
       this.openStep2Modal();
       this.cleanInput();
 
-    }else{
+    }else if(this.isChecked == true){
       this.openStep3Modal();
       this.cleanInput()
+    }else if(this.isCompanySelected == true){
+      this.openStep3Modal();
     }
     
   }
@@ -112,8 +131,10 @@ export class FeedbackFormStep1Component implements OnInit {
   selectCompany(company: any) {
     this.inputModel = company.name;
     this.selectedCompany = company;
-    this.nextButtonColor = 'primary';
-  }
+    this.isCompanySelected = true;
+    console.log("iscompanyselected"+this.isCompanySelected)
+    this.readyToGoToStep3();
+    }
   refreshCompany() {
     this._companyService.findAll().pipe(take(1)).subscribe(companies => {
       this._companyRefreshService.refreshCompanies(companies);
@@ -124,9 +145,10 @@ export class FeedbackFormStep1Component implements OnInit {
     console.log(token);
     return token
   }
-
+  
   getIntern():Array<InternType>{
-    const id :string = this.retrieveInternId();
+    if(this.withMyCompany == false){
+      const id :string = this.retrieveInternId();
     this._internService.findOne(id).subscribe({
       next: (intern: InternType) => {
         this.intern[0] = intern
@@ -136,8 +158,27 @@ export class FeedbackFormStep1Component implements OnInit {
       error: (error: any) => {},
       complete: () => {}
     });
-  return this.intern
+    this.withMyCompany = true;
+    this.readyToGoToStep3();
+    console.log("withmycompany == "+this.withMyCompany);
+    }else{
+    this.isChecked = false;
+    this.withMyCompany = false;
+    this.ready = false;
+    console.log("ischecked"+this.isChecked)
   }
+  return this.intern
+    }
+    readyToGoToStep3(){
+      if(this.isChecked === true){
+        console.log('you go with userdata and input are filled with ')
+        this.ready = true;
+
+      }else if(this.isCompanySelected === true){
+        console.log("you go with the company you've selected")
+        this.ready = true;
+      }
+    }
   
 }
 

@@ -16,7 +16,7 @@
     ></ion-input>
   </ion-item>
   <ion-list *ngIf="inputModel && filteredComp.length > 0"> 
-    <ion-item *ngFor="let company of filteredComp" (click)="selectCompany(company)">
+    <ion-item *ngFor="let company of filteredComp" (click)="selectCompany(company) ">
       {{ company.name }}
     </ion-item>
   </ion-list>
@@ -25,7 +25,7 @@
     <ion-item lines="none"><ion-button shape="round" (click)="next()"> Créer l'entreprise ></ion-button></ion-item>
   </ion-list>
   <ion-toolbar class="feedback-form-bottom-toolbar">
-    <ion-button (click)="next()" shape="round" [disabled]="inputModel && filteredComp.length === 0">Suivant <ion-icon name="arrow-forward-outline"></ion-icon></ion-button>
+    <ion-button (click)="next()" shape="round" [disabled]="inputModel && filteredComp.length === 0 || ready === false ">Suivant <ion-icon name="arrow-forward-outline"></ion-icon></ion-button>
   </ion-toolbar>
     <ion-buttons slot="end">
       <ion-button [color]="nextButtonColor" (click)="next()" [strong]="true">Suivant</ion-button>
