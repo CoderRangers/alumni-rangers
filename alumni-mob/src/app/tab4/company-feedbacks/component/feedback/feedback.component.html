@@ -7,7 +7,8 @@
           <ion-col class="styleRating">{{ feedback.rating }}</ion-col>
         </ion-row>
         <ion-row>
-          <ion-card-subtitle class="styleJob">{{ feedback.jobTitle }} <br> du {{feedback.jobStartDate | date: 'dd/MM/yyy'}} au {{feedback.jobEndDate | date: 'dd/MM/yyy'}}</ion-card-subtitle>
+          <ion-card-subtitle *ngIf="!isPreview" class="styleJob">{{ feedback.jobTitle }} <br> du {{feedback.jobStartDate | date: 'dd/MM/yyy'}} au {{feedback.jobEndDate | date: 'dd/MM/yyy'}}</ion-card-subtitle>
+          <ion-card-subtitle *ngIf="isPreview" class="styleJob">{{ feedback.jobTitle }} chez {{feedback.company.name}} <br> du {{feedback.jobStartDate | date: 'dd/MM/yyy'}} au {{feedback.jobEndDate | date: 'dd/MM/yyy'}}</ion-card-subtitle>
         </ion-row>
         <ion-row>
           <ion-card-subtitle class="styleJob" *ngIf="feedback.salaryLow !== null && !hide">
