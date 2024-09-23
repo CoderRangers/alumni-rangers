@@ -7,7 +7,7 @@ import { Repository } from 'typeorm';
 @Injectable()
 export class AppService {
   // How many new feedbacks to load when reaching the bottom of an infinite scroll list
-  private _nbFeedbacks = 3;
+  private _nbFeedbacks = 6;
 
   constructor(
     @InjectRepository(CompanyFeedbackEntity) //it works without add companyEntity.... weird !
