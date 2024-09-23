@@ -1,9 +1,8 @@
 <app-feedback-form-header [isFirstStep]="false"></app-feedback-form-header>
-<ion-item>
-  <ion-label>Renseignez vos information par rapport à l'entreprise</ion-label>
-</ion-item>
 
 <ion-content class="ion-padding">
+  <div class="feedback-form-step-purpose"><h3>Informations sur votre poste</h3></div>
+
   <form [formGroup]="jobInfoForm" (ngSubmit)="onSubmit()">
     <ion-list>
       <ion-item>

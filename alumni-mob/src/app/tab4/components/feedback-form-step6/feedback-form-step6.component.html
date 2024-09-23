@@ -1,8 +1,8 @@
 <app-feedback-form-header [isFirstStep]="false"></app-feedback-form-header>
-<ion-item>
-  <ion-label>Visualisation de votre avis</ion-label>
-</ion-item>
+
 <ion-content class="ion-padding">
+  <div class="feedback-form-step-purpose"><h3>Prévisualisation</h3></div>
+
   <app-feedback class="comp" [feedback]="companyFeedback" [index]="0" [isPreview]="true"></app-feedback>
 
   <ion-checkbox labelPlacement="start" alignment="center" (ionChange)="toggleCharterRespect($event)">Je confirme que mon retour d'expérience respecte la charte</ion-checkbox>

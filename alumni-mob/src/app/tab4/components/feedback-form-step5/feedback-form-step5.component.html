@@ -1,9 +1,8 @@
 <app-feedback-form-header [isFirstStep]="false"></app-feedback-form-header>
-<ion-item>
-  <ion-label>Saisissez votre avis</ion-label>
-</ion-item>
 
 <ion-content class="ion-padding">
+  <div class="feedback-form-step-purpose"><h3>Saisie de votre retour</h3></div>
+
   <form [formGroup]="feedbackMainContentForm" (ngSubmit)="onSubmit()">
     <ion-list>
       <ion-item>

@@ -1,6 +1,8 @@
 <app-feedback-form-header></app-feedback-form-header>
 
 <ion-content class="ion-padding">
+  <div class="feedback-form-step-purpose"><h3>Choix de l'entreprise</h3></div>
+  
   <ion-item>
     <p>Renseigner un avis sur votre entreprise actuelle  </p>
     <ion-checkbox [(ngModel)]="isChecked" (ionChange)="getIntern()"></ion-checkbox>
